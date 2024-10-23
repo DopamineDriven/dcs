@@ -43,6 +43,5 @@ export default withPWAInit({ dest: "public", register: true, scope: "/app" })({
       }
     ]
   },
-  productionBrowserSourceMaps: true,
-  swcMinify: true
+  productionBrowserSourceMaps: true
 });
