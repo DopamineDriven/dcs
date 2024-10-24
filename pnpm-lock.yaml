@@ -189,6 +189,9 @@ importers:
       '@graphql-tools/executor-http':
         specifier: ^1.1.7
         version: 1.1.7(@types/node@22.7.7)(graphql@16.9.0)
+      '@graphql-typed-document-node/core':
+        specifier: ^3.2.0
+        version: 3.2.0(graphql@16.9.0)
       '@headlessui/tailwindcss':
         specifier: ^0.2.1
         version: 0.2.1(tailwindcss@3.4.14(ts-node@10.9.1(@swc/core@1.7.39(@swc/helpers@0.5.13))(@swc/wasm@1.7.39)(@types/node@22.7.7)(typescript@5.6.3)))
@@ -308,7 +311,7 @@ importers:
         version: 1.2.1(eslint@9.13.0(jiti@2.3.3))
       '@next/eslint-plugin-next':
         specifier: latest
-        version: 15.0.0
+        version: 15.0.1
       eslint-config-turbo:
         specifier: latest
         version: 2.2.3(eslint@9.13.0(jiti@2.3.3))
@@ -323,7 +326,7 @@ importers:
         version: 7.37.1(eslint@9.13.0(jiti@2.3.3))
       eslint-plugin-react-hooks:
         specifier: rc
-        version: 5.1.0-rc-45804af1-20241021(eslint@9.13.0(jiti@2.3.3))
+        version: 5.1.0-rc-1631855f-20241023(eslint@9.13.0(jiti@2.3.3))
       eslint-plugin-storybook:
         specifier: ^0.10.1
         version: 0.10.1(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3)
@@ -1868,8 +1871,8 @@ packages:
   '@next/env@15.0.0':
     resolution: {integrity: sha512-Mcv8ZVmEgTO3bePiH/eJ7zHqQEs2gCqZ0UId2RxHmDDc7Pw6ngfSrOFlxG8XDpaex+n2G+TKPsQAf28MO+88Gw==}
 
-  '@next/eslint-plugin-next@15.0.0':
-    resolution: {integrity: sha512-UG/Gnsq6Sc4wRhO9qk+vc/2v4OfRXH7GEH6/TGlNF5eU/vI9PIO7q+kgd65X2DxJ+qIpHWpzWwlPLmqMi1FE9A==}
+  '@next/eslint-plugin-next@15.0.1':
+    resolution: {integrity: sha512-bKWsMaGPbiFAaGqrDJvbE8b4Z0uKicGVcgOI77YM2ui3UfjHMr4emFPrZTLeZVchi7fT1mooG2LxREfUUClIKw==}
 
   '@next/swc-darwin-arm64@15.0.0':
     resolution: {integrity: sha512-Gjgs3N7cFa40a9QT9AEHnuGKq69/bvIOn0SLGDV+ordq07QOP4k1GDOVedMHEjVeqy1HBLkL8rXnNTuMZIv79A==}
@@ -3673,8 +3676,8 @@ packages:
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9
 
-  eslint-plugin-react-hooks@5.1.0-rc-45804af1-20241021:
-    resolution: {integrity: sha512-q8MQ4OQ0TYmKT6eS2ZObxmA+OvUrd27MN72zU5b3ib7Q+1I78C9aUzy1GelM8ttgkEkwSxE+qDBgV+K84tjt+Q==}
+  eslint-plugin-react-hooks@5.1.0-rc-1631855f-20241023:
+    resolution: {integrity: sha512-ohDko9xwausG054sm2kvM0ZssnaZ0jRBL3tduCR9Bo3rott+zD8O9p6PC5B+LN/6f2RwKRNCdN2WcrkNul/ljg==}
     engines: {node: '>=10'}
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
@@ -8861,7 +8864,7 @@ snapshots:
 
   '@next/env@15.0.0': {}
 
-  '@next/eslint-plugin-next@15.0.0':
+  '@next/eslint-plugin-next@15.0.1':
     dependencies:
       fast-glob: 3.3.1
 
@@ -10867,7 +10870,7 @@ snapshots:
       safe-regex-test: 1.0.3
       string.prototype.includes: 2.0.1
 
-  eslint-plugin-react-hooks@5.1.0-rc-45804af1-20241021(eslint@9.13.0(jiti@2.3.3)):
+  eslint-plugin-react-hooks@5.1.0-rc-1631855f-20241023(eslint@9.13.0(jiti@2.3.3)):
     dependencies:
       eslint: 9.13.0(jiti@2.3.3)
 
