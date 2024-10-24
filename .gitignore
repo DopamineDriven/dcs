@@ -38,3 +38,5 @@ yarn-error.log*
 dist
 notes.md
 .env*.local
+
+schema.graphql
