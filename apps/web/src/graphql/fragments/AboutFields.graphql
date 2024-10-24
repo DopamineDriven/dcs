@@ -1,0 +1,13 @@
+fragment AboutFragment on About {
+  content
+  id
+  title
+  modified
+  uri
+  slug
+  databaseId
+  date
+  dateGmt
+  toPing
+  status
+}

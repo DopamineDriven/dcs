@@ -1,0 +1,4 @@
+fragment AboutPollyFragment on About_Polly {
+  audio
+  fieldGroupName
+}
