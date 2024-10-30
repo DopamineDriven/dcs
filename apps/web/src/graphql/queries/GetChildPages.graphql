@@ -1,0 +1,27 @@
+# import PageFragment from "../fragments/PageFragment.graphql";
+# import NodeWithFeaturedImageToMediaItemConnectionEdgeFragment from "../fragments/NodeWithFeaturedImageToMediaItemConnectionEdgeFragment.graphql";
+# import MediaDetailsFragment from "../fragments/MediaDetails.graphql";
+# import MediaItemFragment from "../fragments/MediaItem.graphql";
+
+query ChildPages(
+  $parent: ID
+) {
+  pages: pages(where: { parent: $parent }) {
+    edges {
+      cursor
+      node {
+        ...PageFragment
+        featuredImage {
+          ...NodeWithFeaturedImageToMediaItemConnectionEdgeFragment
+          node {
+            ...MediaItemFragment
+            mediaDetails {
+              ...MediaDetailsFragment
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
