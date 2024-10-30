@@ -23,11 +23,11 @@ export default withPWAInit({ dest: "public", register: true, scope: "/app" })({
       },
       { hostname: "d2f904nk7e5fig.cloudfront.net", protocol: "https" },
       {
-        hostname: "drisdell-headless.com",
+        hostname: "dcs-headless.com",
         protocol: "https"
       },
       {
-        hostname: "www.drisdell-headless.com",
+        hostname: "www.dcs-headless.com",
         protocol: "https"
       },
       { hostname: "drisdell.org", protocol: "https" },

@@ -1,0 +1,11 @@
+query AboutUsPaths {
+  pages(where: { parent: "cG9zdDoxNg==" }) {
+    edges {
+      node {
+        uri
+        id
+        databaseId
+      }
+    }
+  }
+}

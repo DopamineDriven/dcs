@@ -5,7 +5,7 @@ fragment MediaItemFragment on MediaItem {
   title
   sourceUrl
   databaseId
+  description
   id
-  srcSet
   slug
 }
