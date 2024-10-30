@@ -1,0 +1,11 @@
+query ConsultantPaths {
+  pages(where: { parent: "cG9zdDo4Nw==" }) {
+    edges {
+      node {
+        uri
+        id
+        databaseId
+      }
+    }
+  }
+}

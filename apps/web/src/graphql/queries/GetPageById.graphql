@@ -3,25 +3,17 @@
 # import MediaDetailsFragment from "../fragments/MediaDetails.graphql";
 # import MediaItemFragment from "../fragments/MediaItem.graphql";
 
-query GetChildPages(
-  $parent: ID
-) {
-  pages: pages(where: { parent: $parent }) {
-    edges {
-      cursor
+query GetPageById($id: ID!) {
+  page(id: $id) {
+    ...PageFragment
+    featuredImage {
+      ...NodeWithFeaturedImageToMediaItemConnectionEdgeFragment
       node {
-        ...PageFragment
-        featuredImage {
-          ...NodeWithFeaturedImageToMediaItemConnectionEdgeFragment
-          node {
-            ...MediaItemFragment
-            mediaDetails {
-              ...MediaDetailsFragment
-            }
-          }
+        ...MediaItemFragment
+        mediaDetails {
+          ...MediaDetailsFragment
         }
       }
     }
   }
 }
-

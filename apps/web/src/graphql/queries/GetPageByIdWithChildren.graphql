@@ -1,0 +1,40 @@
+query GetPageByIdWithChildren($id: ID!) {
+  page(id: $id) {
+    content
+    uri
+    slug
+    title
+    isPreview
+    databaseId
+    id
+    featuredImage {
+      node {
+        sourceUrl
+        mediaDetails {
+        width
+        height
+        }
+      }
+    }
+    children {
+      edges {
+        cursor
+        node {
+          ... on Page {
+            uri
+            title
+            featuredImage {
+              node {
+                sourceUrl
+                mediaDetails {
+                width
+                height
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
