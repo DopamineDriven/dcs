@@ -14,12 +14,12 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 const documents = {
-    "fragment AboutFragment on About {\n  content\n  id\n  title\n  modified\n  uri\n  slug\n  databaseId\n  date\n  dateGmt\n  toPing\n  status\n}": types.AboutFragmentFragmentDoc,
-    "fragment AboutPollyFragment on About_Polly {\n  audio\n  fieldGroupName\n}": types.AboutPollyFragmentFragmentDoc,
     "fragment MediaDetailsFragment on MediaDetails {\n  __typename\n  width\n  height\n}": types.MediaDetailsFragmentFragmentDoc,
     "fragment MediaItemFragment on MediaItem {\n  __typename\n  altText\n  uri\n  title\n  sourceUrl\n  databaseId\n  id\n  srcSet\n  slug\n}": types.MediaItemFragmentFragmentDoc,
-    "fragment NodeWithFeaturedImageToMediaItemConnectionEdgeFragment on NodeWithFeaturedImageToMediaItemConnectionEdge {\n  __typename\n}": types.NodeWithFeaturedImageToMediaItemConnectionEdgeFragmentFragmentDoc,
-    "fragment AboutFields on About {\n  id\n  uri\n  slug\n}\n\nquery OurCareers($id: ID!, $idType: AboutIdType!) {\n  consultantPost: about(id: $id, idType: $idType) {\n    ...AboutFragment\n    polly {\n      ...AboutPollyFragment\n    }\n    featuredImage {\n      ...NodeWithFeaturedImageToMediaItemConnectionEdgeFragment\n      node {\n        ...MediaItemFragment\n        mediaDetails {\n          ...MediaDetailsFragment\n        }\n      }\n    }\n  }\n}": types.AboutFieldsFragmentDoc,
+    "fragment NodeWithFeaturedImageToMediaItemConnectionEdgeFragment on NodeWithFeaturedImageToMediaItemConnectionEdge {\n  __typename\n  cursor\n}": types.NodeWithFeaturedImageToMediaItemConnectionEdgeFragmentFragmentDoc,
+    "fragment PageFragment on Page {\n  id\n  databaseId\n  slug\n  title\n  content\n  uri\n  date\n  dateGmt\n  status\n  isPreview\n}": types.PageFragmentFragmentDoc,
+    "query ChildPages($parent: ID) {\n  pages: pages(where: {parent: $parent}) {\n    edges {\n      cursor\n      node {\n        ...PageFragment\n        featuredImage {\n          ...NodeWithFeaturedImageToMediaItemConnectionEdgeFragment\n          node {\n            ...MediaItemFragment\n            mediaDetails {\n              ...MediaDetailsFragment\n            }\n          }\n        }\n      }\n    }\n  }\n}": types.ChildPagesDocument,
+    "query GetPages($first: Int!, $field: PostObjectsConnectionOrderbyEnum!, $order: OrderEnum!, $parentIn: [ID]) {\n  pages: pages(\n    first: $first\n    where: {parentIn: $parentIn, orderby: {field: $field, order: $order}}\n  ) {\n    edges {\n      cursor\n      node {\n        ...PageFragment\n        featuredImage {\n          ...NodeWithFeaturedImageToMediaItemConnectionEdgeFragment\n          node {\n            ...MediaItemFragment\n            mediaDetails {\n              ...MediaDetailsFragment\n            }\n          }\n        }\n      }\n    }\n  }\n}": types.GetPagesDocument,
 };
 
 /**
@@ -39,14 +39,6 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "fragment AboutFragment on About {\n  content\n  id\n  title\n  modified\n  uri\n  slug\n  databaseId\n  date\n  dateGmt\n  toPing\n  status\n}"): (typeof documents)["fragment AboutFragment on About {\n  content\n  id\n  title\n  modified\n  uri\n  slug\n  databaseId\n  date\n  dateGmt\n  toPing\n  status\n}"];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(source: "fragment AboutPollyFragment on About_Polly {\n  audio\n  fieldGroupName\n}"): (typeof documents)["fragment AboutPollyFragment on About_Polly {\n  audio\n  fieldGroupName\n}"];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
 export function graphql(source: "fragment MediaDetailsFragment on MediaDetails {\n  __typename\n  width\n  height\n}"): (typeof documents)["fragment MediaDetailsFragment on MediaDetails {\n  __typename\n  width\n  height\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
@@ -55,11 +47,19 @@ export function graphql(source: "fragment MediaItemFragment on MediaItem {\n  __
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "fragment NodeWithFeaturedImageToMediaItemConnectionEdgeFragment on NodeWithFeaturedImageToMediaItemConnectionEdge {\n  __typename\n}"): (typeof documents)["fragment NodeWithFeaturedImageToMediaItemConnectionEdgeFragment on NodeWithFeaturedImageToMediaItemConnectionEdge {\n  __typename\n}"];
+export function graphql(source: "fragment NodeWithFeaturedImageToMediaItemConnectionEdgeFragment on NodeWithFeaturedImageToMediaItemConnectionEdge {\n  __typename\n  cursor\n}"): (typeof documents)["fragment NodeWithFeaturedImageToMediaItemConnectionEdgeFragment on NodeWithFeaturedImageToMediaItemConnectionEdge {\n  __typename\n  cursor\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "fragment AboutFields on About {\n  id\n  uri\n  slug\n}\n\nquery OurCareers($id: ID!, $idType: AboutIdType!) {\n  consultantPost: about(id: $id, idType: $idType) {\n    ...AboutFragment\n    polly {\n      ...AboutPollyFragment\n    }\n    featuredImage {\n      ...NodeWithFeaturedImageToMediaItemConnectionEdgeFragment\n      node {\n        ...MediaItemFragment\n        mediaDetails {\n          ...MediaDetailsFragment\n        }\n      }\n    }\n  }\n}"): (typeof documents)["fragment AboutFields on About {\n  id\n  uri\n  slug\n}\n\nquery OurCareers($id: ID!, $idType: AboutIdType!) {\n  consultantPost: about(id: $id, idType: $idType) {\n    ...AboutFragment\n    polly {\n      ...AboutPollyFragment\n    }\n    featuredImage {\n      ...NodeWithFeaturedImageToMediaItemConnectionEdgeFragment\n      node {\n        ...MediaItemFragment\n        mediaDetails {\n          ...MediaDetailsFragment\n        }\n      }\n    }\n  }\n}"];
+export function graphql(source: "fragment PageFragment on Page {\n  id\n  databaseId\n  slug\n  title\n  content\n  uri\n  date\n  dateGmt\n  status\n  isPreview\n}"): (typeof documents)["fragment PageFragment on Page {\n  id\n  databaseId\n  slug\n  title\n  content\n  uri\n  date\n  dateGmt\n  status\n  isPreview\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query ChildPages($parent: ID) {\n  pages: pages(where: {parent: $parent}) {\n    edges {\n      cursor\n      node {\n        ...PageFragment\n        featuredImage {\n          ...NodeWithFeaturedImageToMediaItemConnectionEdgeFragment\n          node {\n            ...MediaItemFragment\n            mediaDetails {\n              ...MediaDetailsFragment\n            }\n          }\n        }\n      }\n    }\n  }\n}"): (typeof documents)["query ChildPages($parent: ID) {\n  pages: pages(where: {parent: $parent}) {\n    edges {\n      cursor\n      node {\n        ...PageFragment\n        featuredImage {\n          ...NodeWithFeaturedImageToMediaItemConnectionEdgeFragment\n          node {\n            ...MediaItemFragment\n            mediaDetails {\n              ...MediaDetailsFragment\n            }\n          }\n        }\n      }\n    }\n  }\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query GetPages($first: Int!, $field: PostObjectsConnectionOrderbyEnum!, $order: OrderEnum!, $parentIn: [ID]) {\n  pages: pages(\n    first: $first\n    where: {parentIn: $parentIn, orderby: {field: $field, order: $order}}\n  ) {\n    edges {\n      cursor\n      node {\n        ...PageFragment\n        featuredImage {\n          ...NodeWithFeaturedImageToMediaItemConnectionEdgeFragment\n          node {\n            ...MediaItemFragment\n            mediaDetails {\n              ...MediaDetailsFragment\n            }\n          }\n        }\n      }\n    }\n  }\n}"): (typeof documents)["query GetPages($first: Int!, $field: PostObjectsConnectionOrderbyEnum!, $order: OrderEnum!, $parentIn: [ID]) {\n  pages: pages(\n    first: $first\n    where: {parentIn: $parentIn, orderby: {field: $field, order: $order}}\n  ) {\n    edges {\n      cursor\n      node {\n        ...PageFragment\n        featuredImage {\n          ...NodeWithFeaturedImageToMediaItemConnectionEdgeFragment\n          node {\n            ...MediaItemFragment\n            mediaDetails {\n              ...MediaDetailsFragment\n            }\n          }\n        }\n      }\n    }\n  }\n}"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

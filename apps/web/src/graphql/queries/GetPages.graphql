@@ -1,0 +1,32 @@
+# import PageFragment from "../fragments/PageFragment.graphql";
+# import NodeWithFeaturedImageToMediaItemConnectionEdgeFragment from "../fragments/NodeWithFeaturedImageToMediaItemConnectionEdgeFragment.graphql";
+# import MediaDetailsFragment from "../fragments/MediaDetails.graphql";
+# import MediaItemFragment from "../fragments/MediaItem.graphql";
+
+query GetPages(
+  $first: Int!
+  $field: PostObjectsConnectionOrderbyEnum!
+  $order: OrderEnum!
+  $parentIn: [ID]
+) {
+  pages: pages(
+    first: $first
+    where: { parentIn: $parentIn, orderby: { field: $field, order: $order } }
+  ) {
+    edges {
+      cursor
+      node {
+        ...PageFragment
+        featuredImage {
+          ...NodeWithFeaturedImageToMediaItemConnectionEdgeFragment
+          node {
+            ...MediaItemFragment
+            mediaDetails {
+              ...MediaDetailsFragment
+            }
+          }
+        }
+      }
+    }
+  }
+}

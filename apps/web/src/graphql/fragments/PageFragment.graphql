@@ -1,0 +1,12 @@
+fragment PageFragment on Page {
+  id
+  databaseId
+  slug
+  title
+  content
+  uri
+  date
+  dateGmt
+  status
+  isPreview
+}
