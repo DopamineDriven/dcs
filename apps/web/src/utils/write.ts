@@ -1,16 +1,15 @@
-import { GetAboutUsPaths } from "@/queries/about-us";
+import { formatHelper } from "./format-helper";
 import { FsService } from "./fs";
+import { GetConsultantsPaths } from "@/queries/consultants";
 
 const fsHandler = new FsService(process.cwd());
 (async () => {
-  const data = await GetAboutUsPaths()
+  const data = await GetConsultantsPaths();
 
   const s = JSON.stringify(data, null, 2);
-
-  console.log(s);
-
+  const argv3 = process.argv[3] ?? "";
   if (data) {
-    const templated = `export const aboutUsOurWorld = ${s} as const;`;
+    const templated = `export const ${formatHelper(argv3).split(" ").join("")} = ${s};`;
     fsHandler.withWs({
       data: templated,
       cwd: process.cwd(),

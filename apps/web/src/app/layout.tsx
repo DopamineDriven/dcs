@@ -14,6 +14,7 @@ import {
   BasisGrotesqueProRegular
 } from "@/styles/fonts";
 import "./global.css";
+import { NavbarComponent } from "@/components/navbar";
 
 export const viewport = {
   colorScheme: "dark light",
@@ -28,13 +29,12 @@ export const metadata = {
   metadataBase: new URL(getSiteUrl(process.env.NODE_ENV)),
   title: {
     default: "Drisdell Consulting Services",
-    template: "%s | Exceptional Human Capital and Workforce Management IT System Support"
+    template:
+      "%s | Exceptional Human Capital and Workforce Management IT System Support"
   },
-  description: "Since 1995, we have provided quality services and custom application development solutions to our customers.  And as hard as it is to accomplish in this day and age, we have realized a 100% on time, on budget project completion record on all of our client projects. We successfully manage projects, implement systems and solve business problems—just ask any of our clients!",
-  manifest: new URL(
-    "/meta/site.webmanifest",
-    getSiteUrl(process.env.NODE_ENV)
-  ),
+  description:
+    "Since 1995, we have provided quality services and custom application development solutions to our customers.  And as hard as it is to accomplish in this day and age, we have realized a 100% on time, on budget project completion record on all of our client projects. We successfully manage projects, implement systems and solve business problems—just ask any of our clients!",
+  manifest: new URL("/meta/site.webmanifest", getSiteUrl(process.env.NODE_ENV)),
   appleWebApp: {
     capable: true,
     title: "Drisdell Consulting Services",
@@ -63,19 +63,13 @@ export const metadata = {
     {
       type: "image/png",
       rel: "icon",
-      url: new URL(
-        "/meta/favicon-32x32.png",
-        getSiteUrl(process.env.NODE_ENV)
-      ),
+      url: new URL("/meta/favicon-32x32.png", getSiteUrl(process.env.NODE_ENV)),
       sizes: "32x32"
     },
     {
       type: "image/png",
       rel: "icon",
-      url: new URL(
-        "/meta/favicon-16x16.png",
-        getSiteUrl(process.env.NODE_ENV)
-      ),
+      url: new URL("/meta/favicon-16x16.png", getSiteUrl(process.env.NODE_ENV)),
       sizes: "16x16"
     }
   ],
@@ -99,6 +93,7 @@ export default function RootLayout({
       lang='en'
       className={`h-full ${BasisGrotesqueProBlack.variable} ${BasisGrotesqueProBlackItalic.variable} ${BasisGrotesqueProBold.variable} ${BasisGrotesqueProBoldItalic.variable} ${BasisGrotesqueProItalic.variable} ${BasisGrotesqueProLight.variable} ${BasisGrotesqueProLightItalic.variable} ${BasisGrotesqueProMedium.variable} ${BasisGrotesqueProMediumItalic.variable} ${BasisGrotesqueProRegular.variable}`}>
       <body className='overflow-y-scroll'>
+        <NavbarComponent />
         <main>{children}</main>
       </body>
     </html>
