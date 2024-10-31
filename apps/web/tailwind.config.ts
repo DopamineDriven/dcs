@@ -1,8 +1,6 @@
 import type { Config as TailwindConfig } from "tailwindcss";
-import headlessUI from "@headlessui/tailwindcss";
 import forms from "@tailwindcss/forms";
 import typography from "@tailwindcss/typography";
-import animate from "tailwindcss-animate";
 
 const customGrays = {
   "1000": "#111113",
@@ -20,10 +18,10 @@ const customGrays = {
   "950": "#09090b"
 } as const;
 
-export default <TailwindConfig>{
+const config = {
   content: ["src/**/*.{js,ts,jsx,tsx}"],
   // darkMode: ["class", 'html[class~="dark"]'],
-  darkMode: "class",
+  darkMode: ["class", "class"],
   future: { hoverOnlyWhenSupported: true },
   theme: {
     extend: {
@@ -56,63 +54,62 @@ export default <TailwindConfig>{
       fontSize: {
         xxs: ["0.5rem", { lineHeight: "0.75rem" }]
       },
-
       colors: {
         gray: customGrays,
         flirt: {
-          50: "#FFF0FD",
-          100: "#FFE3FC",
-          200: "#FFC7FA",
-          300: "#FF9AF3",
-          400: "#FF5CE8",
-          500: "#FF2CD8",
-          600: "#FA08BD",
-          700: "#DA009A",
-          800: "#AC0079",
-          900: "#95066A",
-          950: "#5D003D"
+          "50": "#FFF0FD",
+          "100": "#FFE3FC",
+          "200": "#FFC7FA",
+          "300": "#FF9AF3",
+          "400": "#FF5CE8",
+          "500": "#FF2CD8",
+          "600": "#FA08BD",
+          "700": "#DA009A",
+          "800": "#AC0079",
+          "900": "#95066A",
+          "950": "#5D003D"
         },
         banner: {
-          50: "#F7F7F8",
-          100: "#EEEEF0",
-          200: "#D9D9DE",
-          300: "#B9BAC0",
-          400: "#92939E",
-          500: "#757682",
-          600: "#5E5E6B",
-          700: "#4D4D57",
-          800: "#42424A",
-          900: "#3A3A40",
-          950: "#131315"
+          "50": "#F7F7F8",
+          "100": "#EEEEF0",
+          "200": "#D9D9DE",
+          "300": "#B9BAC0",
+          "400": "#92939E",
+          "500": "#757682",
+          "600": "#5E5E6B",
+          "700": "#4D4D57",
+          "800": "#42424A",
+          "900": "#3A3A40",
+          "950": "#131315"
         },
         "stone-mist": {
-          50: "#F6F6F7",
-          100: "#EEEFF1",
-          200: "#E1E1E4",
-          300: "#CECFD3",
-          400: "#B9B9C0",
-          500: "#A5A6AF",
-          600: "#9797A1",
-          700: "#7C7C86",
-          800: "#66666D",
-          900: "#55555A",
-          950: "#323135"
+          "50": "#F6F6F7",
+          "100": "#EEEFF1",
+          "200": "#E1E1E4",
+          "300": "#CECFD3",
+          "400": "#B9B9C0",
+          "500": "#A5A6AF",
+          "600": "#9797A1",
+          "700": "#7C7C86",
+          "800": "#66666D",
+          "900": "#55555A",
+          "950": "#323135"
         }
       },
       ringWidth: {
-        3: "3px",
-        5: "5px",
-        6: "6px",
-        7: "7px"
+        "3": "3px",
+        "5": "5px",
+        "6": "6px",
+        "7": "7px"
       },
       maxWidth: {
-        "10xl": "173.75rem", // 2780 px
-        "9xl": "121rem", // 1936px
-        "8xl": "96rem" // 1536px
+        "10xl": "173.75rem",
+        "9xl": "121rem",
+        "8xl": "96rem"
       },
       width: {
-        "9xl": "120rem", // 1920px
-        "8xl": "96rem" // 1536px
+        "9xl": "120rem",
+        "8xl": "96rem"
       },
       dropShadow: {
         testimonial: "1px 1px 5px 0px rgba(0, 0, 0, 0.84)"
@@ -135,48 +132,21 @@ export default <TailwindConfig>{
           "50%": { transform: "rotate(3deg)" }
         },
         loading: {
-          "0%": {
-            opacity: ".2"
-          },
-          "20%": {
-            opacity: "1",
-            transform: "translateX(1px)"
-          },
-          to: {
-            opacity: ".2"
-          }
+          "0%": { opacity: ".2" },
+          "20%": { opacity: "1", transform: "translateX(1px)" },
+          to: { opacity: ".2" }
         },
         wave: {
-          "0%, 100%": {
-            transform: "rotate(0)"
-          },
-          "20%, 60%": {
-            transform: "rotate(-25deg)"
-          },
-          "40%, 80%": {
-            transform: "rotate(10deg)"
-          }
+          "0%, 100%": { transform: "rotate(0)" },
+          "20%, 60%": { transform: "rotate(-25deg)" },
+          "40%, 80%": { transform: "rotate(10deg)" }
         },
-        shimmer: {
-          "100%": {
-            transform: "translateX(100%)"
-          }
-        },
-        translateXReset: {
-          "100%": {
-            transform: "translateX(0)"
-          }
-        },
+        shimmer: { "100%": { transform: "translateX(100%)" } },
+        translateXReset: { "100%": { transform: "translateX(0)" } },
         fadeToTransparent: {
-          "0%": {
-            opacity: "1"
-          },
-          "40%": {
-            opacity: "1"
-          },
-          "100%": {
-            opacity: "0"
-          }
+          "0%": { opacity: "1" },
+          "40%": { opacity: "1" },
+          "100%": { opacity: "0" }
         }
       }),
       animation: {
@@ -185,8 +155,19 @@ export default <TailwindConfig>{
         slowPing: "pulse 10s cubic-bezier(0, 0, 0.2, 1) infinite",
         slowWave: "wave 10s ease-in-out",
         wave: "wave 560ms ease-in-out"
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)"
       }
     }
   },
-  plugins: [animate, forms, headlessUI, typography]
-};
+  plugins: [
+    require("tailwindcss-animate"),
+    forms,
+    require("@headlessui/tailwindcss"),
+    typography
+  ]
+} satisfies TailwindConfig;
+export default config;

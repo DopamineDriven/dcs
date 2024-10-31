@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import type { InferGSPRT } from "@/types/next";
 import { GetAboutUsChildPage, GetAboutUsPaths } from "@/queries/about-us";
-import { InferGSPRT } from "@/types/next";
 import SubContent from "@/ui/about/SubContent";
 import { formatHelper } from "@/utils/format-helper";
 
@@ -13,16 +13,19 @@ export async function generateStaticParams() {
   });
 }
 
-// export async function generateMetadata({
-//   params
-// }: InferGSPRT<typeof generateStaticParams>) {
-//   return {
-//     title: formatHelper(params.slug)
-//   } satisfies Metadata;
-// }
+export async function generateMetadata({
+  params
+}: InferGSPRT<typeof generateStaticParams>) {
+  const slug = (await params).slug;
+  return {
+    title: formatHelper(slug)
+  } satisfies Metadata;
+}
 
-export default async function AboutUsSubPages({ params }: InferGSPRT<typeof generateStaticParams>) {
-  const slug = params.slug;
+export default async function AboutUsSubPages({
+  params
+}: InferGSPRT<typeof generateStaticParams>) {
+  const slug = (await params).slug;
   const reconstructUri = `/about-us/${slug}/` as const;
   const [data] = await Promise.all([GetAboutUsChildPage(reconstructUri)]);
 

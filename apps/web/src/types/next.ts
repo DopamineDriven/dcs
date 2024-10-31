@@ -13,5 +13,5 @@ export type InferIt<T, V extends "RT" | "P" | "B"> = T extends (
   : T;
 
 export type InferGSPRT<V extends (...args: any) => any> = {
-  params: Unenumerate<InferIt<V, "RT">>;
+  params: Promise<Unenumerate<InferIt<V, "RT">>>;
 };

@@ -1,32 +1,19 @@
+import { print } from "graphql/language/printer";
+import type { ChildPathsProps } from "@/types/wp";
+import { GetPageByIdWithChildrenQuery } from "@/gql/graphql";
+import { parentPagesById } from "@/types/wp";
 import { fetchWpAPI } from "@/utils/fetch-wordpress";
-import { ConsultantPathsQuery, GetPageByIdWithChildrenQuery } from "@/gql/graphql";
+import { ChildPaths } from "./paths";
 
-export const ConsultantsPaths = /* GraphQL */ `
-  query ConsultantsPaths {
-    pages(where:{parent:"cG9zdDo4Nw=="}) {
-      edges {
-        node {
-          uri
-          databaseId
-          id
-        }
-      }
-    }
-  }
-`;
+/* eslint-disable @typescript-eslint/no-non-null-assertion  */
 
-export async function GetConsultantsPathsQuery() {
-  return await fetchWpAPI<ConsultantPathsQuery>(
-    ConsultantsPaths,
-    {}
-  ).then(
-    /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
-    data => data!
-  );
+export async function GetConsultantsPaths() {
+  return await fetchWpAPI<ChildPathsProps>(print(ChildPaths), {
+    parent: parentPagesById.Consultants
+  }).then(data => data);
 }
 
-
-export const ConsultantsWithChildrenQuery =  /* GraphQL */ `
+export const ConsultantsWithChildrenQuery = /* GraphQL */ `
   fragment MediaDetailsFragment on MediaDetails {
     __typename
     width
@@ -103,8 +90,5 @@ export async function GetConsultantsWithChildrenQuery() {
   return await fetchWpAPI<GetPageByIdWithChildrenQuery>(
     ConsultantsWithChildrenQuery,
     {}
-  ).then(
-    /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
-    data => data!
-  );
+  ).then(data => data!);
 }

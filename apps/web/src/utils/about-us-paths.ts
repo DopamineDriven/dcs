@@ -1,4 +1,4 @@
-export const aboutUsOurWorld = {
+export const AboutUsPaths = {
   "pages": {
     "edges": [
       {
@@ -75,15 +75,4 @@ export const aboutUsOurWorld = {
       }
     ]
   }
-} satisfies {
-  pages: {
-      edges: {
-          node: {
-              uri: string;
-              id: string;
-              databaseId: number;
-              slug: string;
-          };
-      }[];
-  };
 };

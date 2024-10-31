@@ -3,32 +3,19 @@ import { print } from "graphql/language/printer";
 import type {
   AboutUsChildPageByUriProps,
   AboutUsChildPagesProps,
-  AboutUsPathsProps,
+  ChildPathsProps,
   GetAboutUsWithChildrenProps
 } from "@/types/wp";
 import { fetchWpAPI } from "@/utils/fetch-wordpress";
+import { ChildPaths } from "./paths";
+import { parentPagesById } from "@/types/wp";
 
 /* eslint-disable @typescript-eslint/no-non-null-assertion  */
 
-export const AboutUsPaths = /* GraphQL */ `
-  query AboutUsPaths {
-    pages(where: { parent: "cG9zdDoxNg==" }) {
-      edges {
-        node {
-          uri
-          id
-          databaseId
-          slug
-        }
-      }
-    }
-  }
-`;
-
 export async function GetAboutUsPaths() {
-  return await fetchWpAPI<AboutUsPathsProps>(AboutUsPaths, {}).then(
-    data => data!
-  );
+  return await fetchWpAPI<ChildPathsProps>(print(ChildPaths), {
+    parent: parentPagesById.About_Us
+  }).then(data => data!);
 }
 
 export const AboutUsWithChildrenQuery = /* GraphQL */ `

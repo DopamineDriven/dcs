@@ -36,8 +36,8 @@ export const PostObjectsConnectionOrderbyEnum = {
   TITLE: "TITLE"
 } as const;
 
-export const topLevelPages = {
-  "About Us": "cG9zdDoxNg==",
+export const parentPagesById = {
+  About_Us: "cG9zdDoxNg==",
   Consultants: "cG9zdDo4Nw==",
   Home: ""
 } as const;
@@ -115,45 +115,45 @@ export type AboutUsChildPagesProps = {
   };
 };
 
-export type AboutUsChildPageByUriProps =  {
+export type AboutUsChildPageByUriProps = {
   page: {
-      id: string;
-      databaseId: number;
-      slug: string;
-      title: string;
-      content: string;
-      uri: string;
-      date: string;
-      dateGmt: string;
-      status: string;
-      isPreview: boolean;
-      featuredImage: {
-          node: {
-              __typename: string;
-              altText: string;
-              uri: string;
-              title: string;
-              sourceUrl: string;
-              databaseId: number;
-              id: string;
-              mediaDetails: {
-                  width: number;
-                  height: number;
-              };
-          };
+    id: string;
+    databaseId: number;
+    slug: string;
+    title: string;
+    content: string;
+    uri: string;
+    date: string;
+    dateGmt: string;
+    status: string;
+    isPreview: boolean;
+    featuredImage: {
+      node: {
+        __typename: string;
+        altText: string;
+        uri: string;
+        title: string;
+        sourceUrl: string;
+        databaseId: number;
+        id: string;
+        mediaDetails: {
+          width: number;
+          height: number;
+        };
       };
+    };
   };
 };
 
-export type AboutUsPathsProps = {
+export type ChildPathsProps = {
   pages: {
-      edges: {
-          node: {
-              uri: string;
-              id: string;
-              databaseId: number;
-              slug: string;
-          };
-      }[];
+    edges: {
+      node: {
+        uri: string;
+        id: string;
+        databaseId: number;
+        slug: string;
+      };
+    }[];
   };
 };
