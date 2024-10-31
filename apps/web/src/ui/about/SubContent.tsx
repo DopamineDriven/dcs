@@ -3,6 +3,7 @@
 import Image from "next/image";
 import type { AboutUsChildPageByUriProps } from "@/types/wp";
 import { shimmer } from "@/lib/shimmer";
+import css from "./sub-content.module.css";
 
 export default function SubContent({ page }: AboutUsChildPageByUriProps) {
   return (
@@ -69,7 +70,10 @@ export default function SubContent({ page }: AboutUsChildPageByUriProps) {
               <h1 className='mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl'>
                 {page.title}
               </h1>
-              <div dangerouslySetInnerHTML={{ __html: page.content }} />
+              <div
+                dangerouslySetInnerHTML={{ __html: page.content }}
+                className={css.inner_wp_content}
+              />
             </div>
           </div>
         </div>
