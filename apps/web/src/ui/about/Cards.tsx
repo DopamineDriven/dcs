@@ -9,13 +9,13 @@ export default function Cards<const T extends Children>({ edges }: T) {
   return (
     <div className='bg-white py-24 sm:py-32'>
       <div className='mx-auto max-w-7xl px-6 lg:px-8'>
-        <div className='mx-auto max-w-2xl text-center'>
+        <div className='mx-auto max-w-3xl text-center'>
           <h2 className='text-balance text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl'>
-            Drisdell Consulting Services
+            About Drisdell Consulting Services
           </h2>
-          <p className='mt-2 text-lg/8 text-gray-600'>
+          {/* <p className='mt-2 text-lg/8 text-gray-600'>
             Learn how to grow your business with our expert advice.
-          </p>
+          </p> */}
         </div>
         <div className='mx-auto mt-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-6 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3'>
           {edges.map(post => (

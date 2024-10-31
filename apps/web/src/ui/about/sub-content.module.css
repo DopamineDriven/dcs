@@ -1,0 +1,14 @@
+.inner_wp_content {
+  & > h1 {
+    @apply font-basis-grotesque-pro-medium my-2 text-[1.7rem] tracking-tighter leading-tight text-gray-900;
+  }
+  & > h3 {
+    @apply font-basis-grotesque-pro-medium my-2 text-[1.7rem] tracking-tighter leading-tight text-gray-900;
+  }
+  & > audio {
+    @apply rounded-full;
+  }
+  & > p {
+    @apply text-base/6 text-gray-700 lg:max-w-lg my-2;
+  }
+}
