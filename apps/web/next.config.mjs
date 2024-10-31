@@ -1,4 +1,6 @@
-export default {
+import withPWAInit from "@ducanh2912/next-pwa";
+
+export default withPWAInit({ dest: "public", register: true, scope: "/app" })({
   reactStrictMode: true,
   eslint: { ignoreDuringBuilds: false },
   typescript: { ignoreBuildErrors: false, tsconfigPath: "./tsconfig.json" },
@@ -42,4 +44,4 @@ export default {
     ]
   },
   productionBrowserSourceMaps: true
-};
+});
