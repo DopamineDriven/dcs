@@ -1,10 +1,10 @@
 import { formatHelper } from "./format-helper";
 import { FsService } from "./fs";
-import { GetConsultantsPaths } from "@/queries/consultants";
+import { QueryChildPaths } from "@/queries/paths";
 
 const fsHandler = new FsService(process.cwd());
 (async () => {
-  const data = await GetConsultantsPaths();
+  const data = await QueryChildPaths("Consultants");
 
   const s = JSON.stringify(data, null, 2);
   const argv3 = process.argv[3] ?? "";

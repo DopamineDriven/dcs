@@ -38,11 +38,55 @@ export const PostObjectsConnectionOrderbyEnum = {
 
 export const parentPagesById = {
   About_Us: "cG9zdDoxNg==",
-  Consultants: "cG9zdDo4Nw==",
-  Home: ""
+  Consultants: "cG9zdDo4Nw=="
 } as const;
 
 export type GetAboutUsWithChildrenProps = {
+  page: {
+    id: string;
+    databaseId: number;
+    slug: string;
+    title: string;
+    content: string;
+    uri: string;
+    date: string;
+    dateGmt: string;
+    status: string;
+    isPreview: boolean;
+    featuredImage: null;
+    children: {
+      edges: {
+        cursor: string;
+        node: {
+          uri: string;
+          title: string;
+          featuredImage: {
+            __typename: string;
+            cursor: string;
+            node: {
+              __typename: string;
+              altText: string;
+              uri: string;
+              title: string;
+              sourceUrl: string;
+              databaseId: number;
+              description: string;
+              id: string;
+              slug: string;
+              mediaDetails: {
+                __typename: string;
+                width: number;
+                height: number;
+              };
+            };
+          };
+        };
+      }[];
+    };
+  };
+};
+
+export type PageByIdWithChildrenProps = {
   page: {
     id: string;
     databaseId: number;
@@ -116,6 +160,36 @@ export type AboutUsChildPagesProps = {
 };
 
 export type AboutUsChildPageByUriProps = {
+  page: {
+    id: string;
+    databaseId: number;
+    slug: string;
+    title: string;
+    content: string;
+    uri: string;
+    date: string;
+    dateGmt: string;
+    status: string;
+    isPreview: boolean;
+    featuredImage: {
+      node: {
+        __typename: string;
+        altText: string;
+        uri: string;
+        title: string;
+        sourceUrl: string;
+        databaseId: number;
+        id: string;
+        mediaDetails: {
+          width: number;
+          height: number;
+        };
+      };
+    };
+  };
+};
+
+export type PageByUriProps = {
   page: {
     id: string;
     databaseId: number;

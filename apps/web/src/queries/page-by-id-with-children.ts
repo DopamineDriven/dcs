@@ -1,19 +1,11 @@
+import gql from "graphql-tag";
 import { print } from "graphql/language/printer";
-import type { ChildPathsProps } from "@/types/wp";
-import { GetPageByIdWithChildrenQuery } from "@/gql/graphql";
+import type { PageByIdWithChildrenProps } from "@/types/wp";
 import { parentPagesById } from "@/types/wp";
 import { fetchWpAPI } from "@/utils/fetch-wordpress";
-import { ChildPaths } from "./paths";
 
 /* eslint-disable @typescript-eslint/no-non-null-assertion  */
-
-export async function GetConsultantsPaths() {
-  return await fetchWpAPI<ChildPathsProps>(print(ChildPaths), {
-    parent: parentPagesById.Consultants
-  }).then(data => data);
-}
-
-export const ConsultantsWithChildrenQuery = /* GraphQL */ `
+export const PageByIdWithChildrenQuery = gql`
   fragment MediaDetailsFragment on MediaDetails {
     __typename
     width
@@ -50,8 +42,8 @@ export const ConsultantsWithChildrenQuery = /* GraphQL */ `
     isPreview
   }
 
-  query GetPageByIdWithChildren {
-    page(id: "cG9zdDo4Nw==") {
+  query GetPageByIdWithChildren($id: ID!) {
+    page(id: $id) {
       ...PageFragment
       featuredImage {
         ...NodeWithFeaturedImageToMediaItemConnectionEdgeFragment
@@ -86,9 +78,11 @@ export const ConsultantsWithChildrenQuery = /* GraphQL */ `
   }
 `;
 
-export async function GetConsultantsWithChildrenQuery() {
-  return await fetchWpAPI<GetPageByIdWithChildrenQuery>(
-    ConsultantsWithChildrenQuery,
-    {}
+export async function QueryPageByIdWithChildren<
+  const T extends keyof typeof parentPagesById
+>(target: T) {
+  return await fetchWpAPI<PageByIdWithChildrenProps>(
+    print(PageByIdWithChildrenQuery),
+    { id: parentPagesById[target] }
   ).then(data => data!);
 }

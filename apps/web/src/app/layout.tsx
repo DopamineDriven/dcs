@@ -30,10 +30,11 @@ export const metadata = {
   title: {
     default: "Drisdell Consulting Services",
     template:
-      "%s | Exceptional Human Capital and Workforce Management IT System Support"
+      "%s | Drisdell Consulting Services"
   },
+  // Since 1995, we have provided quality services and custom application development solutions to our customers.  And as hard as it is to accomplish in this day and age, we have realized a 100% on time, on budget project completion record on all of our client projects. We successfully manage projects, implement systems and solve business problems—just ask any of our clients!
   description:
-    "Since 1995, we have provided quality services and custom application development solutions to our customers.  And as hard as it is to accomplish in this day and age, we have realized a 100% on time, on budget project completion record on all of our client projects. We successfully manage projects, implement systems and solve business problems—just ask any of our clients!",
+    "Exceptional Human Capital and Workforce Management IT System Support",
   manifest: new URL("/meta/site.webmanifest", getSiteUrl(process.env.NODE_ENV)),
   appleWebApp: {
     capable: true,
