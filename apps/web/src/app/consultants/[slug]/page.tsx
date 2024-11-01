@@ -7,7 +7,7 @@ import { QueryChildPageBySlug } from "@/queries/page-by-uri";
 import { QueryChildPaths } from "@/queries/paths";
 
 export async function generateStaticParams() {
-  return (await QueryChildPaths("About_Us")).pages.edges.map(page => {
+  return (await QueryChildPaths("Consultants")).pages.edges.map(page => {
     return {
       slug: page.node.slug
     };
@@ -23,11 +23,11 @@ export async function generateMetadata({
   } satisfies Metadata;
 }
 
-export default async function AboutUsSubPages({
+export default async function ConsultantsSubPages({
   params
 }: InferGSPRT<typeof generateStaticParams>) {
   const slug = (await params).slug;
-  const [data] = await Promise.all([QueryChildPageBySlug("About_Us", slug)]);
+  const [data] = await Promise.all([QueryChildPageBySlug("Consultants", slug)]);
 
   if (!data.page) {
     notFound();

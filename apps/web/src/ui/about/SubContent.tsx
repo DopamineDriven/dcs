@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import type { AboutUsChildPageByUriProps } from "@/types/wp";
+import type { PageByUriProps } from "@/types/wp";
 import { shimmer } from "@/lib/shimmer";
 import css from "./sub-content.module.css";
 
-export default function SubContent({ page }: AboutUsChildPageByUriProps) {
+export default function SubContent({ page }: PageByUriProps) {
   return (
     <div className='bg-white py-12 sm:py-16'>
       <div className='mx-auto max-w-7xl px-6 lg:px-8'>

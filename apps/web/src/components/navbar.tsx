@@ -10,6 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
+import { DrisdellIcon } from "@/ui/icons/DrisdellIcon";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -71,8 +72,8 @@ export function NavbarComponent() {
         <div className='flex h-16 justify-between'>
           <div className='flex'>
             <div className='flex flex-shrink-0 items-center'>
-              <Link href='/' className='text-gray-800 text-xl font-bold'>
-                Logo
+              <Link href='/' className='text-xl font-bold text-gray-800 z-[100]'>
+                <DrisdellIcon width={50} />
               </Link>
             </div>
             <div className='hidden sm:ml-6 sm:flex sm:space-x-8'>
@@ -81,7 +82,7 @@ export function NavbarComponent() {
                   {item.children ? (
                     <>
                       <Link
-                        className='text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center border-b-2 border-transparent px-1 py-2 text-sm font-medium'
+                        className='inline-flex items-center border-b-2 border-transparent px-1 py-2 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'
                         href={item.href}>
                         {item.name}
                       </Link>
@@ -89,7 +90,7 @@ export function NavbarComponent() {
                         <DropdownMenuTrigger asChild>
                           <Button
                             variant='ghost'
-                            className='text-gray-500 hover:text-gray-700 h-auto rounded-full px-1 py-1 text-sm font-medium'>
+                            className='h-auto rounded-full px-1 py-1 text-sm font-medium text-gray-500 hover:text-gray-700'>
                             <ChevronDown className='h-4 w-4' />
                           </Button>
                         </DropdownMenuTrigger>
@@ -105,7 +106,7 @@ export function NavbarComponent() {
                   ) : (
                     <Link
                       href={item.href}
-                      className='text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center border-b-2 border-transparent px-1 py-2 text-sm font-medium'>
+                      className='inline-flex items-center border-b-2 border-transparent px-1 py-2 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'>
                       {item.name}
                     </Link>
                   )}
@@ -116,7 +117,7 @@ export function NavbarComponent() {
           <div className='-mr-2 flex items-center sm:hidden'>
             <Button
               variant='ghost'
-              className='text-gray-400 hover:bg-gray-100 hover:text-gray-500 inline-flex items-center justify-center rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500'
+              className='inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500'
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
               <span className='sr-only'>Open main menu</span>
               {mobileMenuOpen ? (
@@ -138,7 +139,7 @@ export function NavbarComponent() {
                 <div>
                   <Button
                     variant='ghost'
-                    className='text-gray-500 hover:bg-gray-100 hover:text-gray-700 flex w-full items-center justify-between px-3 py-2 text-base font-medium'
+                    className='flex w-full items-center justify-between px-3 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700'
                     onClick={() => toggleExpanded(item.name)}>
                     {item.name}
                     {expandedItems.includes(item.name) ? (
@@ -153,7 +154,7 @@ export function NavbarComponent() {
                         <Link
                           key={child.name}
                           href={child.href}
-                          className='text-gray-500 hover:bg-gray-100 hover:text-gray-700 block px-3 py-2 text-base font-medium'>
+                          className='block px-3 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700'>
                           {child.name}
                         </Link>
                       ))}
@@ -163,7 +164,7 @@ export function NavbarComponent() {
               ) : (
                 <Link
                   href={item.href}
-                  className='text-gray-500 hover:bg-gray-100 hover:text-gray-700 block px-3 py-2 text-base font-medium'>
+                  className='block px-3 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700'>
                   {item.name}
                 </Link>
               )}
