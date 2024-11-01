@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { ChevronDown, ChevronUp, Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/nav-button";
 import {
   DropdownMenu,
   DropdownMenuContent,
