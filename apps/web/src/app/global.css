@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+/* body {
   min-height: 100vh;
   width: 100vw;
   min-width: 100vw;
@@ -10,7 +10,7 @@ body {
   padding: 0;
   overflow-x: hidden;
   max-width: 2780px !important;
-}
+} */
 
 @layer base {
   :root {
