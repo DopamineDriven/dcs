@@ -271,46 +271,45 @@ export const aboutUsWithChildrenData = {
   }
 } satisfies {
   page: {
-      id: string;
-      databaseId: number;
-      slug: string;
-      title: string;
-      content: string;
-      uri: string;
-      date: string;
-      dateGmt: string;
-      status: string;
-      isPreview: boolean;
-      featuredImage: null;
-      children: {
-          edges: {
-              cursor: string;
-              node: {
-                  uri: string;
-                  title: string;
-                  featuredImage: {
-                      __typename: string;
-                      cursor: string;
-                      node: {
-                          __typename: string;
-                          altText: string;
-                          uri: string;
-                          title: string;
-                          sourceUrl: string;
-                          databaseId: number;
-                          description: string;
-                          id: string;
-                          slug: string;
-                          mediaDetails: {
-                              __typename: string;
-                              width: number;
-                              height: number;
-                          };
-                      };
-                  };
+    id: string;
+    databaseId: number;
+    slug: string;
+    title: string;
+    content: string;
+    uri: string;
+    date: string;
+    dateGmt: string;
+    status: string;
+    isPreview: boolean;
+    featuredImage: null;
+    children: {
+      edges: {
+        cursor: string;
+        node: {
+          uri: string;
+          title: string;
+          featuredImage: {
+            __typename: string;
+            cursor: string;
+            node: {
+              __typename: string;
+              altText: string;
+              uri: string;
+              title: string;
+              sourceUrl: string;
+              databaseId: number;
+              description: string;
+              id: string;
+              slug: string;
+              mediaDetails: {
+                __typename: string;
+                width: number;
+                height: number;
               };
-          }[];
-      };
+            };
+          };
+        };
+      }[];
+    };
   };
 };
-;
