@@ -48,7 +48,7 @@
     "@dcs/prettier-config": "workspace:*",
     "@dcs/tsconfig": "workspace:*",
     "@total-typescript/ts-reset": "^0.6.1",
-    "@types/node": "^22.8.6",
+    "@types/node": "^22.9.0",
     "dotenv": "^16.4.5",
     "dotenv-cli": "^7.4.2",
     "dotenv-expand": "^11.0.6",
