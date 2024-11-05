@@ -1,47 +1,19 @@
 import gql from "graphql-tag";
 import { print } from "graphql/language/printer";
 import type { PageByIdWithChildrenProps } from "@/types/wp";
+import { MediaDetailsFragment } from "@/fragments/MediaDetails";
+import { MediaItemFragment } from "@/fragments/MediaItems";
+import { NodeWithFeaturedImageToMediaItemConnectionEdgeFragment } from "@/fragments/NodeWithFeaturedImageToMediaItemConnectionEdgeFragment";
+import { PageFragment } from "@/fragments/Page";
 import { parentPagesById } from "@/types/wp";
 import { fetchWpAPI } from "@/utils/fetch-wordpress";
 
 /* eslint-disable @typescript-eslint/no-non-null-assertion  */
 export const PageByIdWithChildrenQuery = gql`
-  fragment MediaDetailsFragment on MediaDetails {
-    __typename
-    width
-    height
-  }
-
-  fragment MediaItemFragment on MediaItem {
-    __typename
-    altText
-    uri
-    title
-    sourceUrl
-    databaseId
-    description
-    id
-    slug
-  }
-
-  fragment NodeWithFeaturedImageToMediaItemConnectionEdgeFragment on NodeWithFeaturedImageToMediaItemConnectionEdge {
-    __typename
-    cursor
-  }
-
-  fragment PageFragment on Page {
-    id
-    databaseId
-    slug
-    title
-    content
-    uri
-    date
-    dateGmt
-    status
-    isPreview
-  }
-
+  ${MediaItemFragment}
+  ${MediaDetailsFragment}
+  ${PageFragment}
+  ${NodeWithFeaturedImageToMediaItemConnectionEdgeFragment}
   query GetPageByIdWithChildren($id: ID!) {
     page(id: $id) {
       ...PageFragment

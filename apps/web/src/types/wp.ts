@@ -231,3 +231,71 @@ export type ChildPathsProps = {
     }[];
   };
 };
+
+export type ContactFormSubmissionPayloadProps = {
+  data: {
+    submitGfForm: {
+      clientMutationId: string;
+      confirmation: {
+        message: string;
+        pageId: string | number | null;
+        queryString: string | null;
+        type: string;
+        url: string | null;
+        __typename: string;
+      };
+      errors: string | null;
+      __typename: string;
+      entry: {
+        dateCreated: string;
+        userAgent: string;
+        __typename: string;
+        ip: string;
+        formId: string;
+        isSubmitted: boolean;
+        sourceUrl: string;
+        id: string;
+        createdById: string;
+        createdByDatabaseId: number;
+        dateCreatedGmt: string;
+        form: {
+          cssClass: string | null;
+          databaseId: number;
+          dateCreated: string;
+          description: string;
+          title: string;
+          nextFieldId: number;
+          __typename: string;
+        };
+        formFields: {
+          __typename: string;
+          edges: {
+            cursor: string;
+            __typename: string;
+            node: {
+              databaseId: number;
+              displayOnly: boolean;
+              inputType: string;
+              layoutGridColumnSpan: number | string | null;
+              layoutSpacerGridColumnSpan: number | string | null;
+              pageNumber: number;
+              type: string;
+              visibility: string;
+              __typename: string;
+            };
+          }[];
+        };
+      };
+    };
+  };
+};
+
+export type ExecuteContactFormSubmissionMutationProps = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  subject?: string;
+  body: string;
+  userAgent?: string;
+  ip?: string;
+};
