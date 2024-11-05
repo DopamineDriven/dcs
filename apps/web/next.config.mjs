@@ -38,7 +38,7 @@ export default withPWAInit({ dest: "public", register: true, scope: "/app" })({
         protocol: "https"
       },
       {
-        hostname: "futurebot-search-eu-standard1.azurewebsites.net",
+        hostname: "drisdell-dev.vercel.app",
         protocol: "https"
       }
     ]

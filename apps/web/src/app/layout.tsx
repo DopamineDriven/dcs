@@ -29,7 +29,7 @@ export const metadata = {
   metadataBase: new URL(getSiteUrl(process.env.NODE_ENV)),
   title: {
     default: "Drisdell Consulting Services",
-    template: "%s | Drisdell Consulting Services"
+    template: "Drisdell Consulting Services | %s"
   },
   // Since 1995, we have provided quality services and custom application development solutions to our customers.  And as hard as it is to accomplish in this day and age, we have realized a 100% on time, on budget project completion record on all of our client projects. We successfully manage projects, implement systems and solve business problems—just ask any of our clients!
   description:
@@ -93,7 +93,7 @@ export default function RootLayout({
       suppressHydrationWarning
       lang='en'
       className={`h-full ${BasisGrotesqueProBlack.variable} ${BasisGrotesqueProBlackItalic.variable} ${BasisGrotesqueProBold.variable} ${BasisGrotesqueProBoldItalic.variable} ${BasisGrotesqueProItalic.variable} ${BasisGrotesqueProLight.variable} ${BasisGrotesqueProLightItalic.variable} ${BasisGrotesqueProMedium.variable} ${BasisGrotesqueProMediumItalic.variable} ${BasisGrotesqueProRegular.variable}`}>
-      <body className='overflow-y-scroll'>
+      <body className=''>
         <NavbarComponent />
         <main>{children}</main>
       </body>

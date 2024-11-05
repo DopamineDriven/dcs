@@ -1,20 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadFull } from "tsparticles";
 import type { Container, ISourceOptions } from "@tsparticles/engine";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import css from "./particle-header.module.css";
 
-export function ParticleHeaderComponent({
-  title = "Drisdell Consulting",
-  primaryCTA = "Get Started",
-  secondaryCTA = "Learn More"
-}: {
-  title?: string;
-  primaryCTA?: string;
-  secondaryCTA?: string;
-}) {
+export function ParticleHeaderComponent<
+  const T extends "HOME" | "ABOUT" | "CONSULTANTS" | "CONTACT"
+>({ content, title, target }: { content: string; title: string; target: T }) {
   const [init, setInit] = useState(false);
 
   useEffect(() => {
@@ -30,13 +27,30 @@ export function ParticleHeaderComponent({
     console.log(container);
   };
 
+  const tsTheme = useMemo(() => {
+    return target === "CONTACT"
+      ? "#ffffff"
+      : target === "ABOUT"
+        ? "#ffffff"
+        : "#102a43";
+  }, [target]);
+
+  const tsParticle = useMemo(() => {
+    return target === "CONTACT"
+      ? "#102a43"
+      : target === "ABOUT"
+        ? "#102a43"
+        : "#ffffff";
+  }, [target]);
+
   const options = {
     background: {
       color: {
-        value: "transparent"
+        value: tsTheme
       }
     },
     fpsLimit: 120,
+    fullScreen: { enable: false },
     interactivity: {
       events: {
         onClick: {
@@ -61,10 +75,10 @@ export function ParticleHeaderComponent({
     },
     particles: {
       color: {
-        value: "#ffffff"
+        value: tsParticle
       },
       links: {
-        color: "#ffffff",
+        color: tsParticle,
         distance: 150,
         enable: true,
         opacity: 0.5,
@@ -102,29 +116,101 @@ export function ParticleHeaderComponent({
   } satisfies ISourceOptions;
 
   return (
-    <header className='relative h-64 w-full overflow-hidden bg-gradient-to-r from-blue-500 to-purple-600 md:h-96'>
-      {init && (
-        <Particles
-          id='tsparticles'
-          particlesLoaded={particlesLoaded}
-          options={options}
-          className='absolute inset-0'
-        />
-      )}
+    <div className='relative h-[75vh]'>
+      <div
+        className='absolute inset-0 hidden sm:flex sm:flex-col'
+        aria-hidden='true'>
+        <div className='relative w-full flex-1'>
+          <div className='absolute inset-0 overflow-hidden'>
+            {init && (
+              <Particles
+                id='tsparticles'
+                particlesLoaded={particlesLoaded}
+                options={options}
+                className='h-full w-full object-cover object-center'
+              />
+            )}
+          </div>
+          <div className='absolute inset-0 opacity-50' />
+        </div>
+        <div className='inset-0 w-full bg-white' />
+      </div>
       <div className='relative z-10 flex h-full w-full flex-col items-center justify-center'>
-        <h1 className='mb-8 px-4 text-center text-4xl font-bold text-white md:text-6xl'>
+        <h1
+          className={cn(
+            "mb-4 px-4 text-center font-basis-grotesque-pro-bold text-4xl md:text-6xl",
+            target === "HOME"
+              ? "text-white"
+              : target === "CONSULTANTS"
+                ? "text-white"
+                : "text-[#102a43]"
+          )}>
           {title}
         </h1>
+        <div
+          dangerouslySetInnerHTML={{ __html: content }}
+          className={cn(
+            "mx-auto mb-4 flex flex-col justify-center px-4 text-center font-basis-grotesque-pro-regular",
+            css.content,
+            target === "HOME"
+              ? "text-white"
+              : target === "CONSULTANTS"
+                ? "text-white"
+                : "text-[#102a43]"
+          )}
+        />
         <div className='flex flex-row gap-4'>
-          <Button variant='default' size='lg'>
-            {primaryCTA}
-          </Button>
-          <Button variant='outline' size='lg'>
-            {secondaryCTA}
-          </Button>
+          {target === "CONTACT" ? (
+            <>
+              <Link href='/consultants'>
+                <Button variant='default' size='lg'>
+                  {"Consultants"}
+                </Button>
+              </Link>
+              <a
+                href='mailto:contact@drisdellconsulting.com'
+                rel='noopener noreferrer'
+                target='_blank'
+                className='appearance-none'>
+                <Button variant='default' size='lg'>
+                  {"Send an Email"}
+                </Button>
+              </a>
+              <Link href='/consultants/skills-and-positions'>
+                <Button variant='default' size='lg'>
+                  {"Skills & Positions"}
+                </Button>
+              </Link>
+            </>
+          ) : target === "ABOUT" ? (
+            <>
+              <Link href='/consultants'>
+                <Button variant='default' size='lg'>
+                  {"Consultants"}
+                </Button>
+              </Link>
+              <Link href='/contact-us'>
+                <Button variant='default' size='lg'>
+                  {"Contact Us"}
+                </Button>
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link href='/about-us'>
+                <Button variant='default' size='lg'>
+                  {"About Us"}
+                </Button>
+              </Link>
+              <Link href='/contact-us'>
+                <Button variant='default' size='lg'>
+                  {"Contact Us"}
+                </Button>
+              </Link>
+            </>
+          )}
         </div>
       </div>
-    </header>
+    </div>
   );
 }
-// https://github.com/DopamineDriven/drisdell-consulting-services/blob/main/components/Landing/LandingData/landing-data.tsx

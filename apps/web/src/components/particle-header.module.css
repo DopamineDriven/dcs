@@ -1,0 +1,5 @@
+.content {
+  & > p {
+  @apply max-w-[60%] self-center text-[1rem] font-basis-grotesque-pro-regular leading-normal;
+}
+}

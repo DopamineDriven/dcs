@@ -47,26 +47,6 @@ declare module "eslint-plugin-react-hooks" {
   export const rules: Record<string, Rule.RuleModule>;
 }
 
-declare module "eslint-plugin-storybook" {
-  import type { Linter, Rule } from "eslint";
-
-  export const configs: {
-    csf: {
-      rules: Linter.RulesRecord;
-    };
-    "csf-strict": {
-      rules: Linter.RulesRecord;
-    };
-    recommended: {
-      rules: Linter.RulesRecord;
-    };
-    "addon-interactions": {
-      rules: Linter.RulesRecord;
-    };
-  };
-  export const rules: Record<string, Rule.RuleModule>;
-}
-
 declare module "@next/eslint-plugin-next" {
   import type { Linter, Rule } from "eslint";
 
