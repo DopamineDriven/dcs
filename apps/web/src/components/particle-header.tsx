@@ -5,12 +5,12 @@ import Link from "next/link";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadFull } from "tsparticles";
 import type { Container, ISourceOptions } from "@tsparticles/engine";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/particles-button";
 import { cn } from "@/lib/utils";
 import css from "./particle-header.module.css";
 
 export function ParticleHeaderComponent<
-  const T extends "HOME" | "ABOUT" | "CONSULTANTS" | "CONTACT"
+  const T extends "HOME" | "ABOUT" | "CONSULTANTS" | "CONTACT" | "QR"
 >({ content, title, target }: { content: string; title: string; target: T }) {
   const [init, setInit] = useState(false);
 
@@ -179,6 +179,28 @@ export function ParticleHeaderComponent<
               <Link href='/consultants/skills-and-positions'>
                 <Button variant='dcs' size='dcs'>
                   {"Skills & Positions"}
+                </Button>
+              </Link>
+            </>
+          ) : target === "QR" ? (
+            <>
+              <Link href='/consultants'>
+                <Button variant='dcs' size='dcs'>
+                  {"Consultants"}
+                </Button>
+              </Link>
+              <Link
+                href='/qr#get-in-touch'
+                scroll={true}
+                style={{ scrollBehavior: "smooth" }}
+                shallow={true}>
+                <Button variant='dcs' size='dcs'>
+                  {"Get in Touch"}
+                </Button>
+              </Link>
+              <Link href='/about-us'>
+                <Button variant='dcs' size='dcs'>
+                  {"About Us"}
                 </Button>
               </Link>
             </>

@@ -1,7 +1,7 @@
 import { print } from "graphql";
 import type {
-  SubmissionPayloadProps,
-  ExecuteContactFormSubmissionMutationProps
+  ExecuteEventFormSubmissionMutationProps,
+  SubmissionPayloadProps
 } from "@/types/wp";
 import { DateCreatedHelper } from "@/utils/date-created";
 import { EncodeClientMutationId } from "@/utils/encode-client-mutation-id";
@@ -10,9 +10,9 @@ import { SubmissionWorkup } from "./submission-workup";
 
 /* eslint-disable @typescript-eslint/no-non-null-assertion  */
 
-export async function ExecuteContactFormSubmissionMutation<
-  const T extends ExecuteContactFormSubmissionMutationProps
->({ body, email, firstName, lastName, subject, ip, userAgent }: T) {
+export async function ExecuteEventFormSubmissionMutation<
+  const T extends ExecuteEventFormSubmissionMutationProps
+>({ body, email, firstName, lastName, phone, ip, userAgent }: T) {
   return await fetchWpAPI<SubmissionPayloadProps>(
     print(SubmissionWorkup),
     {
@@ -40,8 +40,12 @@ export async function ExecuteContactFormSubmissionMutation<
             }
           },
           {
+            id: 8,
+            value: phone
+          },
+          {
             id: 6,
-            value: subject ?? "no subject"
+            value: "QR Event Submission"
           },
           {
             id: 7,

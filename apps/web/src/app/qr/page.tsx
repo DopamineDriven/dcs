@@ -1,31 +1,28 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { headers } from "next/headers";
+import { EventFormPopupComponent } from "@/components/contact-form-popup";
 import { ParticleHeaderComponent } from "@/components/particle-header";
 import { Spinner } from "@/ui/loading/Spinner";
-import { ContactForm } from "@/ui/sections/ContactForm";
 
 export const metadata = {
-  title: "Contact Us"
+  title: "Event"
 } satisfies Metadata;
 
-export default async function ContactUsPage() {
+export const dynamic = "auto";
+export default async function QrPage() {
   const headersList = await headers();
   const userAgent = headersList.get("user-agent") ?? "";
   const ip = headersList.get("X-Forwarded-For") ?? "";
   return (
     <>
       <div className='relative'>
-        <ParticleHeaderComponent
-          title='Contact Us'
-          content=''
-          target='CONTACT'
-        />
+        <ParticleHeaderComponent title='' content='' target='QR' />
         <div className='absolute inset-0 overflow-hidden' />
       </div>
       <div className='relative'>
         <Suspense fallback={<Spinner />}>
-          <ContactForm ip={ip} userAgent={userAgent} />
+          <EventFormPopupComponent ip={ip} userAgent={userAgent} />
         </Suspense>
       </div>
     </>
