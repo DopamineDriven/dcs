@@ -1,4 +1,5 @@
 "use client"
+/* eslint-disable */
 
 // Inspired by react-hot-toast library
 import * as React from "react"
@@ -129,7 +130,7 @@ export const reducer = (state: State, action: Action): State => {
   }
 }
 
-const listeners: Array<(state: State) => void> = []
+const listeners = Array.of<((state: State) => void)>();
 
 let memoryState: State = { toasts: [] }
 

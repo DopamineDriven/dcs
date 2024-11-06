@@ -29,7 +29,7 @@ export function ParticleHeaderComponent<
 
   const tsTheme = useMemo(() => {
     return target === "CONTACT"
-      ? "#ffffff"
+      ? "#ffffff" : target === "QR" ? "#ffffff"
       : target === "ABOUT"
         ? "#ffffff"
         : "#102a43";
@@ -37,7 +37,7 @@ export function ParticleHeaderComponent<
 
   const tsParticle = useMemo(() => {
     return target === "CONTACT"
-      ? "#102a43"
+      ? "#102a43" : target === "QR" ? "#102a43"
       : target === "ABOUT"
         ? "#102a43"
         : "#ffffff";
@@ -142,6 +142,7 @@ export function ParticleHeaderComponent<
             target === "HOME"
               ? "text-white"
               : target === "CONSULTANTS"
+                ? "text-white"  : target === "QR"
                 ? "text-white"
                 : "text-[#102a43]"
           )}>
@@ -155,6 +156,7 @@ export function ParticleHeaderComponent<
             target === "HOME"
               ? "text-white"
               : target === "CONSULTANTS"
+                ? "text-white" : target === "QR"
                 ? "text-white"
                 : "text-[#102a43]"
           )}

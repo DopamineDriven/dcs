@@ -5,7 +5,7 @@ import {
   userAgentFromString
 } from "next/server";
 import { geolocation, ipAddress } from "@vercel/functions";
-import { getSiteUrl } from "./lib/site-url";
+
 
 /* eslint-disable */
 
@@ -138,7 +138,7 @@ export default async function middleware(req: NextRequest) {
 
   getLoc ? url.searchParams.set("loc", getLoc) : null;
   if (/true/gi.test(qr) === true) {
-    return NextResponse.rewrite(getSiteUrl(process.env.NODE_ENV).concat("/qr"));
+    return NextResponse.rewrite(new URL("/qr", req.url));
   } else if (/true/gi.test(qr) === false && url.pathname.startsWith("/qr")) {
     return NextResponse.redirect(new URL("/", req.url));
   } else {

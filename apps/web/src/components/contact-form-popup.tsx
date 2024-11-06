@@ -67,7 +67,7 @@ export function EventFormPopupComponent({
         <form
           action={formAction}
           onSubmit={handleSubmit}
-          className='mt-2 space-y-3 sm:mt-4 sm:space-y-4'>
+          className='mt-2 space-y-3 sm:mt-4 sm:space-y-4 text-black'>
           <input
             aria-hidden='true'
             type='hidden'
