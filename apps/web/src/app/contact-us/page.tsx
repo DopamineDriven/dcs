@@ -13,6 +13,8 @@ export default async function ContactUsPage() {
   const headersList = await headers();
   const userAgent = headersList.get("user-agent") ?? "";
   const ip = headersList.get("X-Forwarded-For") ?? "";
+  const s = Object.fromEntries(headersList.entries());
+  console.log(s);
   return (
     <>
       <div className='relative'>
@@ -23,9 +25,11 @@ export default async function ContactUsPage() {
         />
         <div className='absolute inset-0 overflow-hidden' />
       </div>
-      <Suspense fallback={<Spinner />}>
-        <ContactForm ip={ip} userAgent={userAgent} />
-      </Suspense>
+      <div className='relative'>
+        <Suspense fallback={<Spinner />}>
+          <ContactForm ip={ip} userAgent={userAgent} />
+        </Suspense>
+      </div>
     </>
   );
 }

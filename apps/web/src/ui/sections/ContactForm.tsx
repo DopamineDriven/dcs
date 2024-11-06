@@ -47,10 +47,10 @@ export function ContactForm({
     }
   }
   return (
-    <div className='isolate bg-white px-6 py-24 sm:py-32 lg:px-8'>
+    <div className='isolate bg-white px-6 py-8 sm:py-16 lg:px-8 font-basis-grotesque-pro-medium'>
       <div
         aria-hidden='true'
-        className='absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]'>
+        className='absolute inset-x-0 -top-32 -z-10 transform-gpu overflow-hidden blur-3xl'>
         <div
           style={{
             clipPath:
@@ -60,8 +60,8 @@ export function ContactForm({
         />
       </div>
       <div className='mx-auto max-w-2xl text-center'>
-        <h2 className='text-balance text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl'>
-          Contact Us
+        <h2 className='text-balance text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl' id="send-us-an-email">
+          Send us an Email
         </h2>
       </div>
       <form
@@ -88,7 +88,7 @@ export function ContactForm({
                 name='first-name'
                 type='text'
                 autoComplete='given-name'
-                className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6'
+                className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-dcs-800 sm:text-sm/6'
               />
             </div>
           </div>
@@ -104,7 +104,7 @@ export function ContactForm({
                 name='last-name'
                 type='text'
                 autoComplete='family-name'
-                className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6'
+                className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-dcs-800 sm:text-sm/6'
               />
             </div>
           </div>
@@ -120,7 +120,7 @@ export function ContactForm({
                 name='email'
                 type='email'
                 autoComplete='email'
-                className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6'
+                className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-dcs-800 sm:text-sm/6'
               />
             </div>
           </div>
@@ -136,7 +136,7 @@ export function ContactForm({
                 name='subject'
                 type='text'
                 defaultValue={""}
-                className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6'
+                className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-dcs-800 sm:text-sm/6'
               />
             </div>
           </div>
@@ -151,7 +151,7 @@ export function ContactForm({
                 id='body'
                 name='body'
                 rows={4}
-                className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6'
+                className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-dcs-800 sm:text-sm/6'
                 defaultValue={""}
               />
             </div>

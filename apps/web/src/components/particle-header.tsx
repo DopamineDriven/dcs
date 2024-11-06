@@ -167,15 +167,14 @@ export function ParticleHeaderComponent<
                   {"Consultants"}
                 </Button>
               </Link>
-              <a
-                href='mailto:contact@drisdellconsulting.com'
-                rel='noopener noreferrer'
-                target='_blank'
-                className='appearance-none'>
+              <Link
+                href='/contact-us#send-us-an-email'
+                style={{ scrollBehavior: "smooth" }}
+                shallow={true}>
                 <Button variant='dcs' size='dcs'>
                   {"Send an Email"}
                 </Button>
-              </a>
+              </Link>
               <Link href='/consultants/skills-and-positions'>
                 <Button variant='dcs' size='dcs'>
                   {"Skills & Positions"}
