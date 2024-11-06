@@ -143,7 +143,7 @@ export function ParticleHeaderComponent<
               ? "text-white"
               : target === "CONSULTANTS"
                 ? "text-white"  : target === "QR"
-                ? "text-white"
+                ? "text-[#102a43]"
                 : "text-[#102a43]"
           )}>
           {title}

@@ -57,7 +57,7 @@ export function EventFormPopupComponent({
       </DialogTrigger>
       <DialogContent className='w-[90vw] max-w-[425px] sm:w-full'>
         <DialogHeader className='flex flex-col items-center space-y-2 sm:space-y-4'>
-          <div className='flex h-12 w-12 items-center justify-center rounded-full bg-neutral-900 p-2 dark:bg-neutral-50 sm:h-16 sm:w-16'>
+          <div className='flex h-12 w-12 items-center justify-center rounded-full sm:h-16 sm:w-16'>
             <DrisdellIcon className='h-6 w-6 sm:h-8 sm:w-8' />
           </div>
           <DialogTitle className='text-xl font-bold sm:text-2xl'>
