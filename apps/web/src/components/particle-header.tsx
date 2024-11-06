@@ -116,9 +116,9 @@ export function ParticleHeaderComponent<
   } satisfies ISourceOptions;
 
   return (
-    <div className='relative h-[75vh]'>
+    <div className='relative h-[50vh] sm:h-[33rem]'>
       <div
-        className='absolute inset-0 hidden sm:flex sm:flex-col'
+        className='absolute inset-0 flex flex-col'
         aria-hidden='true'>
         <div className='relative w-full flex-1'>
           <div className='absolute inset-0 overflow-hidden'>
@@ -159,7 +159,7 @@ export function ParticleHeaderComponent<
                 : "text-[#102a43]"
           )}
         />
-        <div className='flex flex-row gap-4'>
+        <div className='flex flex-col sm:flex-row gap-4'>
           {target === "CONTACT" ? (
             <>
               <Link href='/consultants'>
@@ -169,6 +169,7 @@ export function ParticleHeaderComponent<
               </Link>
               <Link
                 href='/contact-us#send-us-an-email'
+                scroll={true}
                 style={{ scrollBehavior: "smooth" }}
                 shallow={true}>
                 <Button variant='dcs' size='dcs'>
@@ -197,12 +198,12 @@ export function ParticleHeaderComponent<
           ) : (
             <>
               <Link href='/about-us'>
-                <Button variant='default' size='lg'>
+                <Button variant='dcs_dark' size='dcs'>
                   {"About Us"}
                 </Button>
               </Link>
               <Link href='/contact-us'>
-                <Button variant='default' size='lg'>
+                <Button variant='dcs_dark' size='dcs'>
                   {"Contact Us"}
                 </Button>
               </Link>

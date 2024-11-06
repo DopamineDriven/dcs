@@ -1,11 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import type { PageByUriProps } from "@/types/wp";
 import { shimmer } from "@/lib/shimmer";
 import css from "./sub-content.module.css";
 
 export default function SubContent({ page }: PageByUriProps) {
+  const pathname = usePathname();
   return (
     <div className='bg-white py-12 sm:py-16'>
       <div className='mx-auto max-w-7xl px-6 lg:px-8'>
@@ -70,10 +72,20 @@ export default function SubContent({ page }: PageByUriProps) {
               <h1 className='mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl'>
                 {page.title}
               </h1>
-              <div
-                dangerouslySetInnerHTML={{ __html: page.content }}
-                className={css.inner_wp_content}
-              />
+              {pathname === "/about-us/our-project-delivery" ? (
+                <Image
+                  className="my-2 rounded-3xl"
+                  alt='dcs project delivery'
+                  src='/infographics/DCS_Project_Delivery.png'
+                  width='2312'
+                  height='1707'
+                />
+              ) : (
+                <div
+                  dangerouslySetInnerHTML={{ __html: page.content }}
+                  className={css.inner_wp_content}
+                />
+              )}
             </div>
           </div>
         </div>
