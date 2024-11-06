@@ -3,8 +3,8 @@
 import { useRef } from "react";
 import { useFormStatus } from "react-dom";
 import type { TsxExclude } from "@/types/helpers";
-import { cn } from "@/lib/utils";
 import { contactUsAction } from "@/app/actions";
+import { cn } from "@/lib/utils";
 
 export function SendButton({
   className,
@@ -27,7 +27,13 @@ export function SendButton({
   );
 }
 
-export function ContactForm() {
+export function ContactForm({
+  ip,
+  userAgent
+}: {
+  ip: string;
+  userAgent: string;
+}) {
   const formRef = useRef<HTMLFormElement | null>(null);
 
   async function formAction(formData: FormData) {
@@ -35,7 +41,9 @@ export function ContactForm() {
       await contactUsAction(formData);
       formRef.current?.reset();
     } catch (err) {
-      console.error(typeof err === "string" ? err : JSON.stringify(err,null,2));
+      console.error(
+        typeof err === "string" ? err : JSON.stringify(err, null, 2)
+      );
     }
   }
   return (
@@ -60,6 +68,13 @@ export function ContactForm() {
         action={formAction}
         ref={formRef}
         className='mx-auto mt-16 max-w-xl sm:mt-20'>
+        <input type='hidden' name='ip' id='ip' value={ip} />
+        <input
+          type='hidden'
+          name='user-agent'
+          id='user-agent'
+          value={userAgent}
+        />
         <div className='grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2'>
           <div>
             <label
@@ -127,14 +142,14 @@ export function ContactForm() {
           </div>
           <div className='sm:col-span-2'>
             <label
-              htmlFor='message'
+              htmlFor='body'
               className='block text-sm/6 font-semibold text-gray-900'>
               Message
             </label>
             <div className='mt-2.5'>
               <textarea
-                id='message'
-                name='message'
+                id='body'
+                name='body'
                 rows={4}
                 className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6'
                 defaultValue={""}

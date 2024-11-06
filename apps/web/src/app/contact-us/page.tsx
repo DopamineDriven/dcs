@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
+import { headers } from "next/headers";
 import { ParticleHeaderComponent } from "@/components/particle-header";
+import { Spinner } from "@/ui/loading/Spinner";
 import { ContactForm } from "@/ui/sections/ContactForm";
 
 export const metadata = {
@@ -7,6 +10,9 @@ export const metadata = {
 } satisfies Metadata;
 
 export default async function ContactUsPage() {
+  const headersList = await headers();
+  const userAgent = headersList.get("user-agent") ?? "";
+  const ip = headersList.get("X-Forwarded-For") ?? "";
   return (
     <>
       <div className='relative'>
@@ -17,7 +23,9 @@ export default async function ContactUsPage() {
         />
         <div className='absolute inset-0 overflow-hidden' />
       </div>
-      <ContactForm />
+      <Suspense fallback={<Spinner />}>
+        <ContactForm ip={ip} userAgent={userAgent} />
+      </Suspense>
     </>
   );
 }

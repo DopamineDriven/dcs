@@ -16,13 +16,12 @@ export async function contactUsAction(formData: FormData) {
       ? (formData.get("subject") as string)
       : "No Subject",
     body: (formData.get("body") as string) ?? "",
-    ip: "73.209.222.239",
-    userAgent:
-      "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0"
+    ip: (formData.get("ip") as string) ?? "",
+    userAgent: (formData.get("user-agent") as string) ?? ""
   } satisfies ExecuteContactFormSubmissionMutationProps;
   try {
+    console.log(derivedData);
     const data = await ExecuteContactFormSubmissionMutation(derivedData);
-
     if (data.data.submitGfForm.errors != null) {
       console.log(data.data.submitGfForm.errors);
       return { res: data.data.submitGfForm.errors };
