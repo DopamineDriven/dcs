@@ -4,10 +4,7 @@ import type { ExecuteContactFormSubmissionMutationProps } from "@/types/wp";
 import { ExecuteContactFormSubmissionMutation } from "@/mutations/contact-submission";
 
 export async function contactUsAction(formData: FormData) {
-  // const fetcher = await fetch("http://localhost:3001").then(
-  //   data => data.headers
-  // );
-  // console.log(fetcher);
+
   const derivedData = {
     firstName: (formData.get("first-name") as string) ?? "",
     lastName: (formData.get("last-name") as string) ?? "",
@@ -19,6 +16,7 @@ export async function contactUsAction(formData: FormData) {
     ip: (formData.get("ip") as string) ?? "",
     userAgent: (formData.get("user-agent") as string) ?? ""
   } satisfies ExecuteContactFormSubmissionMutationProps;
+
   try {
     console.log(derivedData);
     const data = await ExecuteContactFormSubmissionMutation(derivedData);
