@@ -15,7 +15,7 @@ import { EllipseTwo } from "@/ui/vectors/EllipseTwo";
 
 export function SubHero({ px }: { px?: string }) {
   return (
-    <section className={cn("bg-[#234670] mb-4 max-w-9xl", px ? px : "")}>
+    <section className={cn("bg-dcs-800 mb-4 max-w-9xl", px ? px : "")}>
       <div className='mx-auto max-w-9xl overflow-hidden pt-[2.5rem] lg:pr-0 lg:pt-0'>
         <div className='mx-auto justify-between gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center'>
           <div className='w-full px-6 sm:max-w-3xl lg:shrink-0 lg:pl-20'>

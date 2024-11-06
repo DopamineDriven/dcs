@@ -4,6 +4,12 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
+const defaultVariant = {
+  default: `inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none
+  focus-visible:ring-1 focus-visible:ring-neutral-950 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4
+  [&_svg]:shrink-0 dark:focus-visible:ring-neutral-300`
+};
+
 const variants = {
   variant: {
     default:
@@ -16,26 +22,25 @@ const variants = {
       "bg-neutral-100 text-neutral-900 shadow-sm hover:bg-neutral-100/80 dark:bg-neutral-800 dark:text-neutral-50 dark:hover:bg-neutral-800/80",
     ghost:
       "hover:bg-neutral-100 hover:text-neutral-900 dark:hover:bg-neutral-800 dark:hover:text-neutral-50",
-    link: "text-neutral-900 underline-offset-4 hover:underline dark:text-neutral-50"
+    link: "text-neutral-900 underline-offset-4 hover:underline dark:text-neutral-50",
+    dcs: "mx-auto items-center justify-center border border-transparent text-[#243b53] bg-opacity-25 bg-white ring-2 ring-[#243b53] ring-inset hover:bg-[#d9e2ec] hover:text-[#102a43] z-50 transition-colors duration-150"
   },
   size: {
     default: "h-9 px-4 py-2",
     sm: "h-8 rounded-md px-3 text-xs",
     lg: "h-10 rounded-md px-8",
-    icon: "h-9 w-9"
+    icon: "h-9 w-9",
+    dcs: "px-4 py-3 w-full sm:w-auto sm:px-8 rounded-full text-lg font-semibold shadow-sm"
   }
 };
 
-const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-950 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 dark:focus-visible:ring-neutral-300",
-  {
-    variants,
-    defaultVariants: {
-      variant: "default",
-      size: "default"
-    }
+const buttonVariants = cva(defaultVariant.default, {
+  variants,
+  defaultVariants: {
+    variant: "default",
+    size: "default"
   }
-);
+});
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,

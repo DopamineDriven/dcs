@@ -163,7 +163,7 @@ export function ParticleHeaderComponent<
           {target === "CONTACT" ? (
             <>
               <Link href='/consultants'>
-                <Button variant='default' size='lg'>
+                <Button variant='dcs' size='dcs'>
                   {"Consultants"}
                 </Button>
               </Link>
@@ -172,12 +172,12 @@ export function ParticleHeaderComponent<
                 rel='noopener noreferrer'
                 target='_blank'
                 className='appearance-none'>
-                <Button variant='default' size='lg'>
+                <Button variant='dcs' size='dcs'>
                   {"Send an Email"}
                 </Button>
               </a>
               <Link href='/consultants/skills-and-positions'>
-                <Button variant='default' size='lg'>
+                <Button variant='dcs' size='dcs'>
                   {"Skills & Positions"}
                 </Button>
               </Link>
@@ -185,12 +185,12 @@ export function ParticleHeaderComponent<
           ) : target === "ABOUT" ? (
             <>
               <Link href='/consultants'>
-                <Button variant='default' size='lg'>
+                <Button variant='dcs' size='dcs'>
                   {"Consultants"}
                 </Button>
               </Link>
               <Link href='/contact-us'>
-                <Button variant='default' size='lg'>
+                <Button variant='dcs' size='dcs'>
                   {"Contact Us"}
                 </Button>
               </Link>

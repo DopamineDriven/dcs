@@ -21,7 +21,7 @@ export default async function AboutUsPage() {
         />
         <div className='absolute inset-0 overflow-hidden' />
       </div>
-      <Cards target='About Us' edges={data.page.children.edges} />
+      <Cards target='About_Us' edges={data.page.children.edges} />
     </>
   );
 }
