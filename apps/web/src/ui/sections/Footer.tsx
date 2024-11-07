@@ -116,7 +116,7 @@ export function Footer() {
           <div className='not-sr-only col-span-2 mr-[3.25rem] flex flex-shrink'>
             <Link href='/' className='lg:-m-1.5 lg:px-1.5 lg:pb-1.5'>
               <span className='sr-only'>Drisdell Consulting Services</span>
-              <DrisdellIcon height={115} width={115} />
+              <DrisdellIcon height={100} width={100} />
             </Link>
           </div>
           <div className='my-auto flex flex-col justify-start gap-y-3.5'>
@@ -124,7 +124,7 @@ export function Footer() {
               <Link
                 key={`footer-${item.name}`}
                 href={item.href}
-                className='font-basis-grotesque-pro-medium text-[1.125rem] leading-[1.5rem] tracking-[-0.00675rem] text-dcs-800 hover:text-dcs-900'>
+                className='font-basis-grotesque-pro-medium text-[0.875rem] leading-[1.25rem] tracking-[-0.00675rem] text-dcs-800 hover:text-dcs-900'>
                 {item.name}
               </Link>
             ))}
