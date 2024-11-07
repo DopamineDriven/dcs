@@ -8,9 +8,14 @@ import type {
   ToastActionElement,
   ToastProps,
 } from "@/components/ui/toast"
+import { RemoveFields } from "@/types/helpers"
 
 const TOAST_LIMIT = 1
 const TOAST_REMOVE_DELAY = 1000000
+
+// type ToastMapped<T extends keyof ToastProps> = {[P in T]: ToastProps[P]}[T];
+
+// type ToastPropsExclude<T extends keyof ToastProps, P extends keyof ToastMapped<T>> = RemoveFields<ToastMapped<T>, P>;
 
 type ToasterToast = ToastProps & {
   id: string
@@ -132,7 +137,7 @@ export const reducer = (state: State, action: Action): State => {
 
 const listeners = Array.of<((state: State) => void)>();
 
-let memoryState: State = { toasts: [] }
+let memoryState = { toasts: Array.of<ToasterToast>() } satisfies State;
 
 function dispatch(action: Action) {
   memoryState = reducer(memoryState, action)

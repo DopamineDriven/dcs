@@ -1,0 +1,22 @@
+.root {
+  @apply bg-white relative transition-transform transform-gpu font-basis-grotesque-pro-regular bg-opacity-100 mx-auto w-full min-w-full overflow-x-hidden;
+  max-width: 2780px !important;
+}
+
+.stickyNav {
+  position: sticky;
+  z-index: 100;
+  top: 0;
+  backdrop-filter: saturate(180%) blur(20px);
+  transition: background-color 0.1 ease-in-out;
+}
+
+@supports not (backdrop-filter: none) {
+  .sticky-nav {
+    backdrop-filter: none;
+    @apply bg-opacity-100;
+  }
+}
+.logo {
+  @apply block h-8 z-50 w-auto;
+}

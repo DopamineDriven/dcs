@@ -15,6 +15,7 @@ import {
 } from "@/styles/fonts";
 import "./global.css";
 import { NavbarComponent } from "@/components/navbar";
+import { Footer } from "@/ui/sections/Footer";
 
 export const viewport = {
   colorScheme: "dark light",
@@ -96,6 +97,7 @@ export default function RootLayout({
       <body className=''>
         <NavbarComponent />
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
