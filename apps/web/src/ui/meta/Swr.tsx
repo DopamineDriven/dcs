@@ -4,7 +4,17 @@ import type { SyntheticEvent } from "react";
 import { useCallback, useRef, useState } from "react";
 import useSWR from "swr";
 
-export type ExpectedRes = { qr: string; userAgentObject: globalThis.UserAgent };
+export type ExpectedRes = {
+  qr: string;
+  userAgentObject: globalThis.UserAgent;
+  ua: string;
+  ip: string;
+  tz: string;
+  city: string;
+  lat: string;
+  lng: string;
+  flag: string;
+};
 
 function fetcher<const T extends ExpectedRes | undefined>(
   input: RequestInfo,

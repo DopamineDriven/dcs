@@ -7,6 +7,11 @@ export type ExpectedRes = {
   userAgentObject: globalThis.UserAgent;
   ua: string;
   ip: string;
+  tz: string;
+  city: string;
+  lat: string;
+  lng: string;
+  flag: string;
 };
 
 export function fetcher<const T extends ExpectedRes | undefined>(
@@ -31,10 +36,6 @@ export function UseSwrSync({ hasData }: { hasData: boolean }) {
     isLoading,
     isValidating
   };
-}
-
-export function UseMeta() {
-  return UseSwrSync;
 }
 
 export function UseGetMeta() {
