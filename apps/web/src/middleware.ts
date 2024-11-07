@@ -138,9 +138,9 @@ export default async function middleware(req: NextRequest) {
 
   getLoc ? url.searchParams.set("loc", getLoc) : null;
   if (/true/gi.test(qr) === true) {
-    return NextResponse.rewrite(new URL("/qr", req.url));
+    return NextResponse.rewrite(new URL("/qr", url));
   } else if (/true/gi.test(qr) === false && url.pathname.startsWith("/qr")) {
-    return NextResponse.redirect(new URL("/", req.url));
+    return NextResponse.redirect(new URL("/", url));
   } else {
     return NextResponse.rewrite(url);
   }

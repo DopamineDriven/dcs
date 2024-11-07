@@ -7,5 +7,3 @@ export function getYear(date: typeof Date) {
       ?.toString() ?? ""
   );
 }
-
-console.log(getYear(Date));
