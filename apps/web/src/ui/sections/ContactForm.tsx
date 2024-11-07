@@ -6,6 +6,7 @@ import { useRef } from "react";
 import { useFormStatus } from "react-dom";
 import type { TsxExclude } from "@/types/helpers";
 import { contactUsAction } from "@/app/actions";
+import { UseGetMeta } from "@/hooks/use-meta";
 import { cn } from "@/lib/utils";
 
 export function SendButton({
@@ -29,17 +30,13 @@ export function SendButton({
   );
 }
 
-export function ContactForm({
-  ip,
-  userAgent
-}: {
-  ip: string;
-  userAgent: string;
-}) {
+export function ContactForm() {
   const formRef = useRef<HTMLFormElement | null>(null);
   // const qs =useSearchParams();
   // const qr = qs.get("qr");
   // const obj = Object.fromEntries(qs.entries())
+
+  const {ua: userAgent, ip} = UseGetMeta();
 
   async function formAction(formData: FormData) {
     try {

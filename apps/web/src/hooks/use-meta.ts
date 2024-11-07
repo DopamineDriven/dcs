@@ -1,0 +1,52 @@
+"use client";
+
+import useSWR from "swr";
+
+export type ExpectedRes = {
+  qr: string;
+  userAgentObject: globalThis.UserAgent;
+  ua: string;
+  ip: string;
+};
+
+export function fetcher<const T extends ExpectedRes | undefined>(
+  input: RequestInfo,
+  init?: RequestInit
+) {
+  return fetch(input, init).then(res => res.json() as Promise<T>);
+}
+
+export function UseSwrSync({ hasData }: { hasData: boolean }) {
+  const { data, isValidating, isLoading, error } = useSWR<
+    ExpectedRes | undefined,
+    unknown
+  >(hasData === false ? "/api?code=yes" : null, fetcher, {
+    refreshInterval: 100000,
+    fetcher: fetcher
+  });
+
+  return {
+    data,
+    error,
+    isLoading,
+    isValidating
+  };
+}
+
+export function UseMeta() {
+  return UseSwrSync;
+}
+
+export function UseGetMeta() {
+  const { data } = UseSwrSync({ hasData: true });
+  if (data) {
+    return {
+      ua: data.ua,
+      ip: data.ip
+    };
+  } else
+    return {
+      ua: "null",
+      ip: "null"
+    };
+}

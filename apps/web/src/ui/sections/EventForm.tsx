@@ -5,6 +5,7 @@ import { useFormStatus } from "react-dom";
 import type { TsxExclude } from "@/types/helpers";
 import { eventSubmissionAction } from "@/app/actions";
 import { cn } from "@/lib/utils";
+import { UseGetMeta } from "@/hooks/use-meta";
 
 export function SendButton({
   className,
@@ -27,14 +28,10 @@ export function SendButton({
   );
 }
 
-export function EventForm({
-  ip,
-  userAgent
-}: {
-  ip: string;
-  userAgent: string;
-}) {
+export function EventForm() {
   const formRef = useRef<HTMLFormElement | null>(null);
+  const { ua: userAgent, ip } = UseGetMeta()
+
 
   async function formAction(formData: FormData) {
     try {
@@ -46,6 +43,8 @@ export function EventForm({
       );
     }
   }
+
+
   return (
     <div className='isolate bg-white px-6 py-8 font-basis-grotesque-pro-medium sm:py-16 lg:px-8'>
       <div
