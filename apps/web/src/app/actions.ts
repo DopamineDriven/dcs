@@ -31,7 +31,23 @@ export async function contactUsAction(formData: FormData) {
   }
 }
 
+function handleBody({city, lng, lat, flag, body, ip, ua, tz}: {city: string;lng: string;lat: string; flag: string;body: string; ip: string; ua: string; tz: string;}) {
+  return `${body}\n\n --- \n\n city: ${city}\n\ncoordinates: [${lat},${lng}]\n\ntimezone: ${tz}\n\nip:${ip}\n\nuser-agent: ${ua}\n\nflag: ${flag}`
+}
+
 export async function eventSubmissionAction(formData: FormData) {
+  const additionalData = {
+    city: (formData.get("city") as string) ?? "",
+    lat: (formData.get("lat") as string) ?? "",
+    lng: (formData.get("lng") as string) ?? "",
+    flag: (formData.get("flag") as string) ?? "",
+    ip: (formData.get("ip") as string) ?? "",
+    tz: (formData.get("tz") as string) ?? "",
+    body: (formData.get("body") as string) ?? "",
+    ua: (formData.get("user-agent") as string) ?? ""
+  };
+
+  const enhancedBody = handleBody(additionalData);
   const derivedData = {
     firstName: (formData.get("first-name") as string) ?? "",
     lastName: (formData.get("last-name") as string) ?? "",
@@ -39,10 +55,12 @@ export async function eventSubmissionAction(formData: FormData) {
     phone: formData.get("phone-number")
       ? (formData.get("phone-number") as string)
       : "+15555555555",
-    body: (formData.get("body") as string) ?? "",
+    body: enhancedBody,
     ip: (formData.get("ip") as string) ?? "",
     userAgent: (formData.get("user-agent") as string) ?? ""
   } satisfies ExecuteEventFormSubmissionMutationProps;
+
+
 
   try {
     const data = await ExecuteEventFormSubmissionMutation(derivedData);

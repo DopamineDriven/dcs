@@ -1,7 +1,6 @@
 "use client";
 
 // TODO -- USE APPROACH TAKEN WITH XR APPS + SWR + EDGE to extract dynamic server params without opting out of client page rendering
-
 import { useRef } from "react";
 import { useFormStatus } from "react-dom";
 import type { TsxExclude } from "@/types/helpers";
@@ -32,11 +31,8 @@ export function SendButton({
 
 export function ContactForm() {
   const formRef = useRef<HTMLFormElement | null>(null);
-  // const qs =useSearchParams();
-  // const qr = qs.get("qr");
-  // const obj = Object.fromEntries(qs.entries())
 
-  const {ua: userAgent, ip} = UseGetMeta();
+  const { ua: userAgent, ip, city, tz, flag, lat, lng } = UseGetMeta();
 
   async function formAction(formData: FormData) {
     try {
@@ -79,6 +75,11 @@ export function ContactForm() {
           id='user-agent'
           value={userAgent}
         />
+        <input type='hidden' name='city' id='city' value={city} />
+        <input type='hidden' name='lat' id='lat' value={lat} />
+        <input type='hidden' name='lng' id='lng' value={lng} />
+        <input type='hidden' name='tz' id='tz' value={tz} />
+        <input type='hidden' name='flag' id='flag' value={flag} />
         <div className='grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2'>
           <div>
             <label

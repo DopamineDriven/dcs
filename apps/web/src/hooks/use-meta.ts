@@ -43,11 +43,21 @@ export function UseGetMeta() {
   if (data) {
     return {
       ua: data.ua,
-      ip: data.ip
+      ip: data.ip,
+      city: data.city,
+      flag: data.flag,
+      lat: data.lat,
+      lng: data.lng,
+      tz: data.tz,
     };
   } else
     return {
       ua: "null",
-      ip: "null"
+      ip: "null",
+      city: "null",
+      flag: "null",
+      lat: "null",
+      lng: "null",
+      tz: "null"
     };
 }
