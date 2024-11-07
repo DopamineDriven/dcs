@@ -8,6 +8,18 @@ import { ExecuteContactFormSubmissionMutation } from "@/mutations/contact-submis
 import { ExecuteEventFormSubmissionMutation } from "@/mutations/event-submission";
 
 export async function contactUsAction(formData: FormData) {
+  const additionalData = {
+    city: (formData.get("city") as string) ?? "",
+    lat: (formData.get("lat") as string) ?? "",
+    lng: (formData.get("lng") as string) ?? "",
+    flag: (formData.get("flag") as string) ?? "",
+    ip: (formData.get("ip") as string) ?? "",
+    tz: (formData.get("tz") as string) ?? "",
+    body: (formData.get("body") as string) ?? "",
+    ua: (formData.get("user-agent") as string) ?? ""
+  };
+
+  const enhancedBody = handleBody(additionalData);
   const derivedData = {
     firstName: (formData.get("first-name") as string) ?? "",
     lastName: (formData.get("last-name") as string) ?? "",
@@ -15,7 +27,7 @@ export async function contactUsAction(formData: FormData) {
     subject: formData.get("subject")
       ? (formData.get("subject") as string)
       : "No Subject",
-    body: (formData.get("body") as string) ?? "",
+    body: enhancedBody,
     ip: (formData.get("ip") as string) ?? "",
     userAgent: (formData.get("user-agent") as string) ?? ""
   } satisfies ExecuteContactFormSubmissionMutationProps;

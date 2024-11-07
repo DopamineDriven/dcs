@@ -4,8 +4,8 @@ import { useRef } from "react";
 import { useFormStatus } from "react-dom";
 import type { TsxExclude } from "@/types/helpers";
 import { eventSubmissionAction } from "@/app/actions";
-import { cn } from "@/lib/utils";
 import { UseGetMeta } from "@/hooks/use-meta";
+import { cn } from "@/lib/utils";
 
 export function SendButton({
   className,
@@ -30,8 +30,7 @@ export function SendButton({
 
 export function EventForm() {
   const formRef = useRef<HTMLFormElement | null>(null);
-  const { ua: userAgent, ip } = UseGetMeta()
-
+  const { ua: userAgent, ip, city, flag, lat, lng, tz } = UseGetMeta();
 
   async function formAction(formData: FormData) {
     try {
@@ -43,7 +42,6 @@ export function EventForm() {
       );
     }
   }
-
 
   return (
     <div className='isolate bg-white px-6 py-8 font-basis-grotesque-pro-medium sm:py-16 lg:px-8'>
@@ -70,6 +68,11 @@ export function EventForm() {
         ref={formRef}
         className='mx-auto mt-16 max-w-xl sm:mt-20'>
         <input type='hidden' name='ip' id='ip' value={ip} />
+        <input type='hidden' name='city' id='city' value={city} />
+        <input type='hidden' name='lat' id='lat' value={lat} />
+        <input type='hidden' name='lng' id='lng' value={lng} />
+        <input type='hidden' name='tz' id='tz' value={tz} />
+        <input type='hidden' name='flag' id='flag' value={flag} />
         <input
           type='hidden'
           name='user-agent'
