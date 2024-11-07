@@ -3,14 +3,13 @@ import Link from "next/link";
 import type { PageByIdWithChildrenProps } from "@/types/wp";
 import { shimmer } from "@/lib/shimmer";
 import { cn } from "@/lib/utils";
+import { parentPagesById } from "@/types/wp";
 
-export type Children = PageByIdWithChildrenProps["page"]["children"];
-
-export type CardsProps<T extends "About Us" | "Consultants"> = {
+export type CardsProps<T extends keyof typeof parentPagesById> = {
   target: T;
-} & Children;
+} & PageByIdWithChildrenProps["page"]["children"];
 
-export function Cards<const T extends "About Us" | "Consultants">({
+export function Cards<const T extends keyof typeof parentPagesById>({
   target,
   edges
 }: CardsProps<T>) {
@@ -19,18 +18,15 @@ export function Cards<const T extends "About Us" | "Consultants">({
       <div className='mx-auto max-w-7xl px-6 lg:px-8'>
         <div className='mx-auto max-w-3xl text-center'>
           <h2 className='text-balance text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl'>
-            {target === "About Us"
+            {target === "About_Us"
               ? "About Drisdell Consulting Services"
               : "Consultants"}
           </h2>
-          {/* <p className='mt-2 text-lg/8 text-gray-600'>
-            Learn how to grow your business with our expert advice.
-          </p> */}
         </div>
         <div
           className={cn(
             "mx-auto mt-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-6 sm:mt-20 lg:mx-0 lg:max-w-none",
-            target === "About Us" ? "lg:grid-cols-3" : "lg:grid-cols-2"
+            target === "About_Us" ? "lg:grid-cols-3" : "lg:grid-cols-2"
           )}>
           {edges.map(post => (
             <article

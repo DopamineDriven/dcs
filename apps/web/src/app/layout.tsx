@@ -14,11 +14,12 @@ import {
   BasisGrotesqueProRegular
 } from "@/styles/fonts";
 import "./global.css";
-import { NavbarComponent } from "@/components/navbar";
+import { Footer } from "@/ui/sections/Footer";
+import { Nav } from "@/ui/sections/Nav";
 
 export const viewport = {
   colorScheme: "dark light",
-  themeColor: "#d9e2ec",
+  themeColor: "#234670",
   viewportFit: "auto",
   initialScale: 1,
   maximumScale: 1,
@@ -94,8 +95,9 @@ export default function RootLayout({
       lang='en'
       className={`h-full ${BasisGrotesqueProBlack.variable} ${BasisGrotesqueProBlackItalic.variable} ${BasisGrotesqueProBold.variable} ${BasisGrotesqueProBoldItalic.variable} ${BasisGrotesqueProItalic.variable} ${BasisGrotesqueProLight.variable} ${BasisGrotesqueProLightItalic.variable} ${BasisGrotesqueProMedium.variable} ${BasisGrotesqueProMediumItalic.variable} ${BasisGrotesqueProRegular.variable}`}>
       <body className=''>
-        <NavbarComponent />
+        <Nav />
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

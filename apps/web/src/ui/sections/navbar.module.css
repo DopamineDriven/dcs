@@ -1,0 +1,14 @@
+.stickyNav {
+  position: sticky;
+  z-index: 50;
+  top: 0;
+  backdrop-filter: saturate(180%) blur(20px);
+  transition: background-color 0.1 ease-in-out;
+}
+
+@supports not (backdrop-filter: none) {
+  .stickyNav {
+    backdrop-filter: none;
+    @apply bg-opacity-100;
+  }
+}

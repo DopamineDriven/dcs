@@ -93,9 +93,7 @@ export class FsService {
         });
       }
     } else {
-      throw new Error(
-        "please create a .npmrc file"
-      );
+      throw new Error("please create a .npmrc file");
     }
   }
 

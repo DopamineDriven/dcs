@@ -1,7 +1,7 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ParticleHeaderComponent } from "@/components/particle-header";
 import { QueryPageByUri } from "@/queries/page-by-uri";
-import type { Metadata } from "next";
 
 export const metadata = {
   title: "Home"
@@ -16,7 +16,7 @@ export default async function HomePage() {
     <div className='relative'>
       <ParticleHeaderComponent
         title={data.page.title}
-        target="HOME"
+        target='HOME'
         content={data.page.content}
       />
       <div className='absolute inset-0 overflow-hidden' />

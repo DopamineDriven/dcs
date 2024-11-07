@@ -1,5 +1,6 @@
 import type { FC } from "react";
 import type { TsxExclude } from "@/types/helpers";
+
 export const EllipseThree: FC<
   TsxExclude<"svg", "fill" | "viewBox" | "xmlns">
 > = ({ height, width, ...svg }) => (

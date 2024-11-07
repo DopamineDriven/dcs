@@ -1,16 +1,19 @@
 "use client";
 
-import * as React from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import throttle from "lodash.throttle";
 import { ChevronDown, ChevronUp, Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/nav-button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/nav-button";
+import { cn } from "@/lib/utils";
 import { DrisdellIcon } from "@/ui/icons/DrisdellIcon";
+import css from "./navbar.module.css";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -54,9 +57,23 @@ const navigation = [
   { name: "Contact Us", href: "/contact-us" }
 ];
 
-export function NavbarComponent() {
-  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
-  const [expandedItems, setExpandedItems] = React.useState<string[]>([]);
+export function Nav() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [expandedItems, setExpandedItems] = useState<string[]>([]);
+  const [hasScrolled, setHasScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = throttle(() => {
+      const offset = 0;
+      const { scrollTop } = document.documentElement;
+      const scrolled = scrollTop > offset;
+      setHasScrolled(scrolled);
+    }, 200);
+    document.addEventListener("scroll", handleScroll);
+    return () => {
+      document.removeEventListener("scroll", handleScroll);
+    };
+  }, [hasScrolled]);
 
   const toggleExpanded = (itemName: string) => {
     setExpandedItems(prev =>
@@ -67,12 +84,19 @@ export function NavbarComponent() {
   };
 
   return (
-    <nav className='bg-white shadow'>
-      <div className='mx-auto max-w-8xl px-4 sm:px-6 lg:px-8'>
+    <nav
+      className={cn(
+        "bg-white font-basis-grotesque-pro-medium shadow will-change-scroll",
+        css.stickyNav,
+        hasScrolled === false ? "bg-opacity-100" : "bg-opacity-95"
+      )}>
+      <div className={"mx-auto max-w-8xl px-4 sm:px-6 lg:px-8"}>
         <div className='flex h-16 justify-between'>
           <div className='flex'>
             <div className='flex flex-shrink-0 items-center'>
-              <Link href='/' className='text-xl font-bold text-gray-800 z-[100]'>
+              <Link
+                href='/'
+                className='z-[100] text-xl font-bold text-gray-800'>
                 <DrisdellIcon width={50} />
               </Link>
             </div>
@@ -82,7 +106,7 @@ export function NavbarComponent() {
                   {item.children ? (
                     <>
                       <Link
-                        className='inline-flex items-center border-b-2 border-transparent px-1 py-2 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                        className='inline-flex items-center border-b-2 border-transparent px-1 py-2 text-sm font-medium text-dcs-800 hover:border-dcs-800 hover:text-dcs-900'
                         href={item.href}>
                         {item.name}
                       </Link>
@@ -90,7 +114,7 @@ export function NavbarComponent() {
                         <DropdownMenuTrigger asChild>
                           <Button
                             variant='ghost'
-                            className='h-auto rounded-full px-1 py-1 text-sm font-medium text-gray-500 hover:text-gray-700'>
+                            className='h-auto rounded-full px-1 py-1 text-sm font-medium text-dcs-800 hover:text-dcs-900'>
                             <ChevronDown className='h-4 w-4' />
                           </Button>
                         </DropdownMenuTrigger>
@@ -106,7 +130,7 @@ export function NavbarComponent() {
                   ) : (
                     <Link
                       href={item.href}
-                      className='inline-flex items-center border-b-2 border-transparent px-1 py-2 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'>
+                      className='inline-flex items-center border-b-2 border-transparent px-1 py-2 text-sm font-medium text-dcs-800 hover:border-dcs-800 hover:text-dcs-900'>
                       {item.name}
                     </Link>
                   )}
@@ -117,7 +141,7 @@ export function NavbarComponent() {
           <div className='-mr-2 flex items-center sm:hidden'>
             <Button
               variant='ghost'
-              className='inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500'
+              className='inline-flex items-center justify-center rounded-md p-2 text-dcs-800 hover:bg-dcs-200 hover:text-dcs-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-dcs-800'
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
               <span className='sr-only'>Open main menu</span>
               {mobileMenuOpen ? (
@@ -139,7 +163,7 @@ export function NavbarComponent() {
                 <div>
                   <Button
                     variant='ghost'
-                    className='flex w-full items-center justify-between px-3 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700'
+                    className='flex w-full items-center justify-between px-3 py-2 text-base font-medium text-dcs-800 hover:bg-dcs-200 hover:text-dcs-900'
                     onClick={() => toggleExpanded(item.name)}>
                     {item.name}
                     {expandedItems.includes(item.name) ? (
@@ -154,7 +178,7 @@ export function NavbarComponent() {
                         <Link
                           key={child.name}
                           href={child.href}
-                          className='block px-3 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700'>
+                          className='block px-3 py-2 text-base font-medium text-dcs-800 hover:bg-dcs-200 hover:text-dcs-900'>
                           {child.name}
                         </Link>
                       ))}
@@ -164,7 +188,7 @@ export function NavbarComponent() {
               ) : (
                 <Link
                   href={item.href}
-                  className='block px-3 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700'>
+                  className='block px-3 py-2 text-base font-medium text-dcs-800 hover:bg-dcs-200 hover:text-dcs-900'>
                   {item.name}
                 </Link>
               )}

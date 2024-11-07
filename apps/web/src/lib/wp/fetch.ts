@@ -1,7 +1,8 @@
 import * as dotenv from "dotenv";
-dotenv.config();
 import { OrderEnum, PostObjectsConnectionOrderbyEnum } from "@/types/wp";
 import { wpHeaders } from "../constants";
+
+dotenv.config();
 
 async function fetchAPI<const T>(
   query: keyof typeof queryObject,
@@ -108,8 +109,8 @@ export async function fetcher() {
 (async () => {
   return await getPagesData({ field: "SLUG", order: "ASC", first: 100 }).then(
     data => {
-
-      const handleData = typeof data ==="object" ?JSON.stringify(data, null,2) : data;
+      const handleData =
+        typeof data === "object" ? JSON.stringify(data, null, 2) : data;
       console.log(handleData);
       return data;
     }

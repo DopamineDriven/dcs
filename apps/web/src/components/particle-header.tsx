@@ -5,12 +5,12 @@ import Link from "next/link";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadFull } from "tsparticles";
 import type { Container, ISourceOptions } from "@tsparticles/engine";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/particles-button";
 import { cn } from "@/lib/utils";
 import css from "./particle-header.module.css";
 
 export function ParticleHeaderComponent<
-  const T extends "HOME" | "ABOUT" | "CONSULTANTS" | "CONTACT"
+  const T extends "HOME" | "ABOUT" | "CONSULTANTS" | "CONTACT" | "QR"
 >({ content, title, target }: { content: string; title: string; target: T }) {
   const [init, setInit] = useState(false);
 
@@ -30,17 +30,21 @@ export function ParticleHeaderComponent<
   const tsTheme = useMemo(() => {
     return target === "CONTACT"
       ? "#ffffff"
-      : target === "ABOUT"
+      : target === "QR"
         ? "#ffffff"
-        : "#102a43";
+        : target === "ABOUT"
+          ? "#ffffff"
+          : "#102a43";
   }, [target]);
 
   const tsParticle = useMemo(() => {
     return target === "CONTACT"
       ? "#102a43"
-      : target === "ABOUT"
+      : target === "QR"
         ? "#102a43"
-        : "#ffffff";
+        : target === "ABOUT"
+          ? "#102a43"
+          : "#ffffff";
   }, [target]);
 
   const options = {
@@ -116,10 +120,8 @@ export function ParticleHeaderComponent<
   } satisfies ISourceOptions;
 
   return (
-    <div className='relative h-[75vh]'>
-      <div
-        className='absolute inset-0 hidden sm:flex sm:flex-col'
-        aria-hidden='true'>
+    <div className='relative h-[50vh] sm:h-[33rem]'>
+      <div className='absolute inset-0 flex flex-col' aria-hidden='true'>
         <div className='relative w-full flex-1'>
           <div className='absolute inset-0 overflow-hidden'>
             {init && (
@@ -143,7 +145,9 @@ export function ParticleHeaderComponent<
               ? "text-white"
               : target === "CONSULTANTS"
                 ? "text-white"
-                : "text-[#102a43]"
+                : target === "QR"
+                  ? "text-[#102a43]"
+                  : "text-[#102a43]"
           )}>
           {title}
         </h1>
@@ -156,41 +160,65 @@ export function ParticleHeaderComponent<
               ? "text-white"
               : target === "CONSULTANTS"
                 ? "text-white"
-                : "text-[#102a43]"
+                : target === "QR"
+                  ? "text-white"
+                  : "text-[#102a43]"
           )}
         />
-        <div className='flex flex-row gap-4'>
+        <div className='flex flex-col gap-4 sm:flex-row'>
           {target === "CONTACT" ? (
             <>
               <Link href='/consultants'>
-                <Button variant='default' size='lg'>
+                <Button variant='dcs' size='dcs'>
                   {"Consultants"}
                 </Button>
               </Link>
-              <a
-                href='mailto:contact@drisdellconsulting.com'
-                rel='noopener noreferrer'
-                target='_blank'
-                className='appearance-none'>
-                <Button variant='default' size='lg'>
+              <Link
+                href='/contact-us#send-us-an-email'
+                scroll={true}
+                style={{ scrollBehavior: "smooth" }}
+                shallow={true}>
+                <Button variant='dcs' size='dcs'>
                   {"Send an Email"}
                 </Button>
-              </a>
+              </Link>
               <Link href='/consultants/skills-and-positions'>
-                <Button variant='default' size='lg'>
+                <Button variant='dcs' size='dcs'>
                   {"Skills & Positions"}
+                </Button>
+              </Link>
+            </>
+          ) : target === "QR" ? (
+            <>
+              <Link href='/consultants'>
+                <Button variant='dcs' size='dcs'>
+                  {"Consultants"}
+                </Button>
+              </Link>
+              <Link
+                href='/qr#get-in-touch'
+                scroll={true}
+                style={{ scrollBehavior: "smooth" }}
+                shallow={true}>
+                <Button variant='dcs' size='dcs'>
+                  {"Get in Touch"}
+                </Button>
+              </Link>
+              <Link href='/about-us'>
+                <Button variant='dcs' size='dcs'>
+                  {"About Us"}
                 </Button>
               </Link>
             </>
           ) : target === "ABOUT" ? (
             <>
               <Link href='/consultants'>
-                <Button variant='default' size='lg'>
+                <Button variant='dcs' size='dcs'>
                   {"Consultants"}
                 </Button>
               </Link>
               <Link href='/contact-us'>
-                <Button variant='default' size='lg'>
+                <Button variant='dcs' size='dcs'>
                   {"Contact Us"}
                 </Button>
               </Link>
@@ -198,12 +226,12 @@ export function ParticleHeaderComponent<
           ) : (
             <>
               <Link href='/about-us'>
-                <Button variant='default' size='lg'>
+                <Button variant='dcs_dark' size='dcs'>
                   {"About Us"}
                 </Button>
               </Link>
               <Link href='/contact-us'>
-                <Button variant='default' size='lg'>
+                <Button variant='dcs_dark' size='dcs'>
                   {"Contact Us"}
                 </Button>
               </Link>

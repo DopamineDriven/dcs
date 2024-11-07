@@ -12,6 +12,11 @@
   max-width: 2780px !important;
 } */
 
+body {
+  max-width: 2780px !important;
+  margin: auto;
+}
+
 @layer base {
   :root {
     --radius: 0.5rem;

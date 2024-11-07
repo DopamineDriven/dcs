@@ -232,7 +232,7 @@ export type ChildPathsProps = {
   };
 };
 
-export type ContactFormSubmissionPayloadProps = {
+export type SubmissionPayloadProps = {
   data: {
     submitGfForm: {
       clientMutationId: string;
@@ -295,6 +295,16 @@ export type ExecuteContactFormSubmissionMutationProps = {
   lastName: string;
   email: string;
   subject?: string;
+  body: string;
+  userAgent?: string;
+  ip?: string;
+};
+
+export type ExecuteEventFormSubmissionMutationProps = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
   body: string;
   userAgent?: string;
   ip?: string;

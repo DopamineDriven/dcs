@@ -71,13 +71,31 @@ export function whAdjust<O extends string, T extends number>(
 
 export function omitFields<
   const Target extends { [record: string | symbol | number]: unknown },
-  const Key extends (keyof Target)[]
->(target: Target, ...keys: Key[]): Omit<Target, Unenumerate<Key>> {
-  for (const key of keys) {
-    delete target[key as Unenumerate<Key>];
-  }
-  return target;
+  const Key extends keyof Target
+>(target: Target, keys: Key[]): RemoveFields<Target, Unenumerate<Key>> {
+  // eslint-disable-next-line
+  let obj = target;
+  keys.forEach(t => {
+    if (t in obj) {
+      delete obj[t];
+      return obj;
+    } else {
+      return obj;
+    }
+  });
+  return obj;
 }
+
+// works like a charm
+
+// const s = {
+//   test: "yes",
+//   thissss: "no",
+//   maybe: 0,
+//   so: () => true
+// } as const
+
+// const xyz = () => ({...omitFields(s, ["so", "maybe"])})
 
 export type UserAgentProps = {
   isBot: boolean;

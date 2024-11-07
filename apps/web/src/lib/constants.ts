@@ -10,4 +10,3 @@ export const wpHeaders = {
   Connection: "keep-alive",
   Authorization: `Bearer ${wpAuthToken}`
 } as const;
-
