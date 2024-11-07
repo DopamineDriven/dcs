@@ -12,7 +12,3 @@
     @apply bg-opacity-100;
   }
 }
-
-.logo {
-  @apply z-50 block h-8 w-auto;
-}
