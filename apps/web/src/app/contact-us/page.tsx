@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { headers } from "next/headers";
 import { ParticleHeaderComponent } from "@/components/particle-header";
 import { Spinner } from "@/ui/loading/Spinner";
+import { RenderingPageSkeleton } from "@/ui/RenderPageSkeleton";
 import { ContactForm } from "@/ui/sections/ContactForm";
 
 export const metadata = {
@@ -16,12 +17,14 @@ export default async function ContactUsPage() {
   return (
     <>
       <div className='relative'>
-        <ParticleHeaderComponent
-          title='Contact Us'
-          content=''
-          target='CONTACT'
-        />
-        <div className='absolute inset-0 overflow-hidden' />
+        <Suspense fallback={<RenderingPageSkeleton />}>
+          <ParticleHeaderComponent
+            title='Contact Us'
+            content=''
+            target='CONTACT'
+          />
+          <div className='absolute inset-0 overflow-hidden' />
+        </Suspense>
       </div>
       <div className='relative'>
         <Suspense fallback={<Spinner />}>
