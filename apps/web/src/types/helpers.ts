@@ -75,14 +75,14 @@ export function omitFields<
 >(target: Target, keys: Key[]): RemoveFields<Target, Unenumerate<Key>> {
   // eslint-disable-next-line
   let obj = target;
-  keys.forEach((t) => {
+  keys.forEach(t => {
     if (t in obj) {
       delete obj[t];
       return obj;
     } else {
       return obj;
     }
-  })
+  });
   return obj;
 }
 

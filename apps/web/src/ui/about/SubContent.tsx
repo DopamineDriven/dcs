@@ -74,7 +74,7 @@ export default function SubContent({ page }: PageByUriProps) {
               </h1>
               {pathname === "/about-us/our-project-delivery" ? (
                 <Image
-                  className="my-2 rounded-3xl"
+                  className='my-2 rounded-3xl'
                   alt='dcs project delivery'
                   src='/infographics/DCS_Project_Delivery.png'
                   width='2312'

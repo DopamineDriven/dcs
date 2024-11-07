@@ -3,7 +3,8 @@ import type { MetadataRoute } from "next";
 export default function manifest() {
   return <MetadataRoute.Manifest>{
     short_name: "DCS",
-    description: "Exceptional Human Capital and Workforce Management IT System Support",
+    description:
+      "Exceptional Human Capital and Workforce Management IT System Support",
     background_color: "#FFFFFF",
     name: "Drisdell Consulting Services",
     theme_color: "#234670",

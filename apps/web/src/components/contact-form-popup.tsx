@@ -53,7 +53,9 @@ export function EventFormPopupComponent({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant='outline' id="get-in-touch">Get in Touch</Button>
+        <Button variant='outline' id='get-in-touch'>
+          Get in Touch
+        </Button>
       </DialogTrigger>
       <DialogContent className='w-[90vw] max-w-[425px] sm:w-full'>
         <DialogHeader className='flex flex-col items-center space-y-2 sm:space-y-4'>
@@ -67,7 +69,7 @@ export function EventFormPopupComponent({
         <form
           action={formAction}
           onSubmit={handleSubmit}
-          className='mt-2 space-y-3 sm:mt-4 sm:space-y-4 text-black'>
+          className='mt-2 space-y-3 text-black sm:mt-4 sm:space-y-4'>
           <input
             aria-hidden='true'
             type='hidden'
@@ -126,7 +128,7 @@ export function EventFormPopupComponent({
               type='tel'
               name='phone-number'
               required
-              autoComplete="tel"
+              autoComplete='tel'
               className='px-3 py-2'
             />
           </div>

@@ -1,12 +1,13 @@
 .inner_wp_content {
   @apply font-basis-grotesque-pro-regular;
-  & > h1, h3 {
-    @apply my-2 text-[1.7rem] tracking-tighter leading-tight text-gray-900;
+  & > h1,
+  h3 {
+    @apply my-2 text-[1.7rem] leading-tight tracking-tighter text-gray-900;
   }
   & > audio {
     @apply rounded-full;
   }
   & > p {
-    @apply text-base/6 text-gray-700 lg:max-w-lg my-2;
+    @apply my-2 text-base/6 text-gray-700 lg:max-w-lg;
   }
 }

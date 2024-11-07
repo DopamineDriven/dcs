@@ -17,7 +17,11 @@ export default async function QrPage() {
   return (
     <>
       <div className='relative'>
-        <ParticleHeaderComponent title='Event Form Placeholder' content='' target='QR' />
+        <ParticleHeaderComponent
+          title='Event Form Placeholder'
+          content=''
+          target='QR'
+        />
         <div className='absolute inset-0 overflow-hidden' />
       </div>
       <div className='relative'>

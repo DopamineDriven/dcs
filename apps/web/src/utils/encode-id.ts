@@ -4,4 +4,3 @@ export function EncodeId<const First extends string, const Last extends string>(
 ) {
   return Buffer.from(`${first}.${last}`, "utf-8").toString("binary");
 }
-

@@ -29,18 +29,22 @@ export function ParticleHeaderComponent<
 
   const tsTheme = useMemo(() => {
     return target === "CONTACT"
-      ? "#ffffff" : target === "QR" ? "#ffffff"
-      : target === "ABOUT"
+      ? "#ffffff"
+      : target === "QR"
         ? "#ffffff"
-        : "#102a43";
+        : target === "ABOUT"
+          ? "#ffffff"
+          : "#102a43";
   }, [target]);
 
   const tsParticle = useMemo(() => {
     return target === "CONTACT"
-      ? "#102a43" : target === "QR" ? "#102a43"
-      : target === "ABOUT"
+      ? "#102a43"
+      : target === "QR"
         ? "#102a43"
-        : "#ffffff";
+        : target === "ABOUT"
+          ? "#102a43"
+          : "#ffffff";
   }, [target]);
 
   const options = {
@@ -117,9 +121,7 @@ export function ParticleHeaderComponent<
 
   return (
     <div className='relative h-[50vh] sm:h-[33rem]'>
-      <div
-        className='absolute inset-0 flex flex-col'
-        aria-hidden='true'>
+      <div className='absolute inset-0 flex flex-col' aria-hidden='true'>
         <div className='relative w-full flex-1'>
           <div className='absolute inset-0 overflow-hidden'>
             {init && (
@@ -142,9 +144,10 @@ export function ParticleHeaderComponent<
             target === "HOME"
               ? "text-white"
               : target === "CONSULTANTS"
-                ? "text-white"  : target === "QR"
-                ? "text-[#102a43]"
-                : "text-[#102a43]"
+                ? "text-white"
+                : target === "QR"
+                  ? "text-[#102a43]"
+                  : "text-[#102a43]"
           )}>
           {title}
         </h1>
@@ -156,12 +159,13 @@ export function ParticleHeaderComponent<
             target === "HOME"
               ? "text-white"
               : target === "CONSULTANTS"
-                ? "text-white" : target === "QR"
                 ? "text-white"
-                : "text-[#102a43]"
+                : target === "QR"
+                  ? "text-white"
+                  : "text-[#102a43]"
           )}
         />
-        <div className='flex flex-col sm:flex-row gap-4'>
+        <div className='flex flex-col gap-4 sm:flex-row'>
           {target === "CONTACT" ? (
             <>
               <Link href='/consultants'>

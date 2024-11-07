@@ -320,4 +320,3 @@ export type Equal<X, Y> =
  * CANNOT be passed to a function which expects 'a'.
  */
 export type Extends<X, Y> = Y extends X ? true : false;
-

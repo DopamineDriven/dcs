@@ -14,5 +14,5 @@
 }
 
 .logo {
-  @apply block h-8 z-50 w-auto;
+  @apply z-50 block h-8 w-auto;
 }

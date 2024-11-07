@@ -6,7 +6,6 @@ import {
 } from "next/server";
 import { geolocation, ipAddress } from "@vercel/functions";
 
-
 /* eslint-disable */
 
 export default async function middleware(req: NextRequest) {
@@ -18,7 +17,7 @@ export default async function middleware(req: NextRequest) {
 
   const url = req.nextUrl;
 
-  const qr = url.searchParams.get("qr") ?? "";
+  const qr = url.searchParams.get("qr") || "";
 
   const headers = req.headers;
 
@@ -127,6 +126,8 @@ export default async function middleware(req: NextRequest) {
   url.searchParams.set("region", regionVercel);
 
   url.searchParams.set("lat", latVercel);
+
+  url.searchParams.set("qr", qr);
 
   code ? url.searchParams.set("code", code) : null;
 

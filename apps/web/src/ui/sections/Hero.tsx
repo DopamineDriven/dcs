@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -15,21 +16,21 @@ import { EllipseTwo } from "@/ui/vectors/EllipseTwo";
 
 export function SubHero({ px }: { px?: string }) {
   return (
-    <section className={cn("bg-dcs-800 mb-4 max-w-9xl", px ? px : "")}>
+    <section className={cn("mb-4 max-w-9xl bg-dcs-800", px ? px : "")}>
       <div className='mx-auto max-w-9xl overflow-hidden pt-[2.5rem] lg:pr-0 lg:pt-0'>
         <div className='mx-auto justify-between gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center'>
           <div className='w-full px-6 sm:max-w-3xl lg:shrink-0 lg:pl-20'>
-            <h1 className='font-basis-grotesque-pro-medium pt-5 text-[2rem] leading-tight tracking-tight text-white lg:pt-0 lg:text-[2.375rem] lg:leading-normal'>
+            <h1 className='pt-5 font-basis-grotesque-pro-medium text-[2rem] leading-tight tracking-tight text-white lg:pt-0 lg:text-[2.375rem] lg:leading-normal'>
               {`Start Your Employee Journey Today`}
             </h1>
-            <p className='font-basis-grotesque-pro-regular relative mt-3 text-[1rem] leading-[1.5rem] text-white sm:max-w-md lg:mt-6 lg:max-w-xl'>
+            <p className='relative mt-3 font-basis-grotesque-pro-regular text-[1rem] leading-[1.5rem] text-white sm:max-w-md lg:mt-6 lg:max-w-xl'>
               {`Explore resources such as timesheets, device policies, paystubs, employee programs, and more.`}
             </p>
             <div className='mt-[1.04rem] flex items-center gap-x-6 lg:mt-[2.13rem]'>
               <Link
                 href='/consultants'
                 id='consultants'
-                className='font-basis-grotesque-pro-medium mx-auto flex w-full justify-center rounded-md bg-flirt-800 px-5 py-3 text-[1rem] tracking-[-0.01125rem] text-white shadow-sm hover:bg-flirt-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-flirt-800 lg:mx-0 lg:w-fit lg:flex-none lg:justify-start'>
+                className='mx-auto flex w-full justify-center rounded-md bg-flirt-800 px-5 py-3 font-basis-grotesque-pro-medium text-[1rem] tracking-[-0.01125rem] text-white shadow-sm hover:bg-flirt-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-flirt-800 lg:mx-0 lg:w-fit lg:flex-none lg:justify-start'>
                 {"Explore Employee Resources"}
               </Link>
             </div>

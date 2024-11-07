@@ -2,9 +2,8 @@ import { wpHeaders } from "@/lib/constants";
 
 export async function fetchWpAPI<const T>(
   query: string,
-  variables?: {[key: string]: unknown}
+  variables?: { [key: string]: unknown }
 ) {
-
   const body = JSON.stringify({
     query,
     variables: {

@@ -1,5 +1,5 @@
 .root {
-  @apply relative transition-transform transform-gpu bg-opacity-100 mx-auto w-full min-w-full overflow-x-hidden;
+  @apply relative mx-auto w-full min-w-full transform-gpu overflow-x-hidden bg-opacity-100 transition-transform;
 }
 .stickyNav {
   position: sticky;
@@ -17,5 +17,5 @@
 }
 
 .logo {
-  @apply block h-8 z-50 w-auto;
+  @apply z-50 block h-8 w-auto;
 }

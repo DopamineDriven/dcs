@@ -1,11 +1,13 @@
 "use server";
 
-import type { ExecuteContactFormSubmissionMutationProps, ExecuteEventFormSubmissionMutationProps } from "@/types/wp";
+import type {
+  ExecuteContactFormSubmissionMutationProps,
+  ExecuteEventFormSubmissionMutationProps
+} from "@/types/wp";
 import { ExecuteContactFormSubmissionMutation } from "@/mutations/contact-submission";
 import { ExecuteEventFormSubmissionMutation } from "@/mutations/event-submission";
 
 export async function contactUsAction(formData: FormData) {
-
   const derivedData = {
     firstName: (formData.get("first-name") as string) ?? "",
     lastName: (formData.get("last-name") as string) ?? "",
@@ -30,7 +32,6 @@ export async function contactUsAction(formData: FormData) {
 }
 
 export async function eventSubmissionAction(formData: FormData) {
-
   const derivedData = {
     firstName: (formData.get("first-name") as string) ?? "",
     lastName: (formData.get("last-name") as string) ?? "",
