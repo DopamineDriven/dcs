@@ -41,7 +41,6 @@ export function ContactForm({
   // const qr = qs.get("qr");
   // const obj = Object.fromEntries(qs.entries())
 
-  console.log(qr);
   async function formAction(formData: FormData) {
     try {
       await contactUsAction(formData);
