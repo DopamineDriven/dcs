@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { ParticleHeaderComponent } from "@/components/particle-header";
 import { QueryPageByIdWithChildren } from "@/queries/page-by-id-with-children";
 import { Cards } from "@/ui/about/Cards";
+import { Spinner } from "@/ui/loading/Spinner";
 
 export const metadata = {
   title: "Consultants"
 } satisfies Metadata;
+
+export const revalidate = 60;
 
 export default async function ConsultantsPage() {
   const [data] = await Promise.all([QueryPageByIdWithChildren("Consultants")]);
@@ -14,14 +18,18 @@ export default async function ConsultantsPage() {
   return (
     <>
       <div className='relative'>
-        <ParticleHeaderComponent
-          title={data.page.title}
-          target='CONSULTANTS'
-          content={data.page.content}
-        />
+        <Suspense fallback={<Spinner />}>
+          <ParticleHeaderComponent
+            title={data.page.title}
+            target='CONSULTANTS'
+            content={data.page.content}
+          />
+        </Suspense>
         <div className='absolute inset-0 overflow-hidden' />
       </div>
-      <Cards target='Consultants' edges={data.page.children.edges} />
+      <Suspense fallback={<Spinner />}>
+        <Cards target='Consultants' edges={data.page.children.edges} />
+      </Suspense>
     </>
   );
 }
