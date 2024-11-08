@@ -12,24 +12,24 @@ export const ResumeSubmission = {
     "errors": null,
     "__typename": "SubmitGfFormPayload",
     "entry": {
-      "dateCreated": "2024-11-08 14:33:59",
+      "dateCreated": "2024-11-08 15:31:49",
       "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0",
       "__typename": "GfSubmittedEntry",
       "ip": "73.209.222.239",
       "formId": "Z2ZfZm9ybToz",
       "isSubmitted": true,
       "sourceUrl": "https://www.dcs-headless.com/graphql",
-      "id": "Z2ZfZW50cnk6MjY=",
+      "id": "Z2ZfZW50cnk6Mjg=",
       "createdById": "dXNlcjoz",
       "createdByDatabaseId": 3,
-      "dateCreatedGmt": "2024-11-08 19:33:59",
+      "dateCreatedGmt": "2024-11-08 20:31:49",
       "form": {
         "cssClass": null,
         "databaseId": 3,
         "dateCreated": "2024-11-07 18:08:45",
         "description": "prospective consultants can submit a resume",
         "title": "resume",
-        "nextFieldId": 11,
+        "nextFieldId": 12,
         "__typename": "GfForm"
       },
       "formFields": {
@@ -111,18 +111,18 @@ export const ResumeSubmission = {
             }
           },
           {
-            "cursor": "YXJyYXljb25uZWN0aW9uOjEw",
+            "cursor": "YXJyYXljb25uZWN0aW9uOjEx",
             "__typename": "GfEntryToFormFieldConnectionEdge",
             "node": {
-              "databaseId": 10,
-              "displayOnly": true,
-              "inputType": "HTML",
+              "databaseId": 11,
+              "displayOnly": false,
+              "inputType": "TEXT",
               "layoutGridColumnSpan": 12,
               "layoutSpacerGridColumnSpan": null,
               "pageNumber": 1,
-              "type": "HTML",
+              "type": "TEXT",
               "visibility": "VISIBLE",
-              "__typename": "HtmlField"
+              "__typename": "TextField"
             }
           }
         ]

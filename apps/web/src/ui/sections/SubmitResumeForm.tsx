@@ -1,14 +1,38 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
 import type { TsxExclude } from "@/types/helpers";
 import { resumeSubmissionAction } from "@/app/actions";
-import { UseGetMeta } from "@/hooks/use-meta";
 import { cn } from "@/lib/utils";
-import { getBase64ValueFileOrBlob } from "@/utils/file";
+import useSWR from "swr";
+import type { ExpectedRes } from "@/types/next";
 
 // import { b64toBlob } from "@/utils/blobby";
+
+function fetcher<const T extends ExpectedRes | undefined>(
+  input: RequestInfo,
+  init?: RequestInit
+) {
+  return fetch(input, init).then(res => res.json() as Promise<T>);
+}
+
+function UseSwrSync({ hasData }: { hasData: boolean }) {
+  const { data, isValidating, isLoading, error } = useSWR<
+    ExpectedRes | undefined,
+    unknown
+  >(hasData === false ? "/api?code=yes" : null, fetcher, {
+    refreshInterval: 100000,
+    fetcher: fetcher
+  });
+
+  return {
+    data,
+    error,
+    isLoading,
+    isValidating
+  };
+}
 
 export function SendButton({
   className,
@@ -33,74 +57,74 @@ export function SendButton({
 
 export function SubmitResume() {
   const formRef = useRef<HTMLFormElement | null>(null);
-  const [_fileLoading, setFileLoading] = useState(false);
-  const [_fileList, setFileList] = useState<FileList | null>(null);
-  const [_fileBase64Value, setFileBase64Value] = useState<string | null>(null);
-  const [size, setSize] = useState<number>(0);
-  const [type, setType] = useState<string>("");
-  const [name, setName] = useState<string>("");
-  const [modified, setModified] = useState<number>(0);
-  const [fieldValueState, setFieldValueState] = useState<File | null>(null);
-  const fileValue = Array.of<File | null>();
-  const { ua: userAgent, ip, city, flag, lat, lng, tz } = UseGetMeta(true);
+  const [hasData, setHasData] = useState(false);
+  const [_hasQr, setHasQr] = useState(false);
+  const [_device, setDevice] = useState<string | undefined>();
+  const [_browser, setBrowser] = useState<string | undefined>();
+  const { data } = UseSwrSync({ hasData });
 
-  const handleFileUpload = useCallback((files: FileList | null) => {
-    if (!files) {
-      setFileLoading(true);
-      return;
-    }
-    const file = files.item(0);
-    setFileList(files);
-    if (file) {
-      console.log(file.webkitRelativePath);
-      setModified(file.lastModified);
-      setSize(file.size);
-      setType(file.type);
-      setName(file.name);
-      setFieldValueState(file);
-      return getBase64ValueFileOrBlob(file, fileBase64Val => {
-        setFileBase64Value(fileBase64Val);
-        setFileLoading(false);
-      });
+  const dataCb = useCallback((props: ExpectedRes) => {
+    const data = props.userAgentObject;
+    const qr = props.qr;
+    try {
+      if (data?.browser?.name && data?.device?.type) {
+        setBrowser(data.browser.name);
+        setDevice(data.device.type);
+        return data;
+      } else if (!data?.device?.type && data.browser.name) {
+        setBrowser(data.browser.name);
+        return data;
+      } else if (!data.browser.name && data.device.type) {
+        setDevice(data.device.type);
+        return data;
+      } else {
+        return data;
+      }
+    } catch (err) {
+      console.error(
+        typeof err === "string" ? err : JSON.stringify(err, null, 2)
+      );
+    } finally {
+      if (/true/gi.test(qr) === true) {
+        setHasQr(true);
+        return data;
+      } else {
+        return data;
+      }
     }
   }, []);
 
-  const handleUploadChangeEvent: (e: React.ChangeEvent<HTMLInputElement>) => {
-    fieldValue: {
-      fileUploadValues: (File | null)[];
-    };
-  } = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    // eslint-disable-next-line
-    let targetFiles = e?.currentTarget?.files;
-    if (targetFiles != null) {
-      handleFileUpload(targetFiles);
-      const targetFile = targetFiles.item(0);
-      setFieldValueState(targetFile);
-      fileValue.push(targetFile);
-      setFieldValueState(targetFile);
-    }
-    console.log({
-      filesize: size,
-      fileFieldValueState: fieldValueState,
-      fileLastModified: modified,
-      filename: name,
-      filetype: type
-    });
-    console.log({ ...(fileValue ?? "") });
-    return {
-      fieldValue: {
-        fileUploadValues:
-          e.currentTarget.files != null
-            ? [e.currentTarget.files?.item(0)]
-            : [null]
+  const useOnLoadCb = useCallback(
+    (e: React.SyntheticEvent<HTMLFormElement, Event>) => {
+      e.preventDefault();
+      if (typeof data !== "undefined") {
+        setHasData(true);
+        dataCb(data);
+      } else {
+        return;
       }
-    };
-  };
+    },
+    [data, dataCb]
+  );
+
+  const writeHTML = useCallback((props: HTMLFormElement | null) => {
+    if (!props) {
+      console.log("no props");
+    }
+    formRef.current = props;
+  }, []);
 
   async function formAction(formData: FormData) {
+    if (data) {
+      formData.append("user-agent", data.ua);
+      formData.append("ip", data.ip);
+      formData.append("lat", data.lat);
+      formData.append("lng", data.lng);
+      formData.append("tz", data.tz);
+      formData.append("city", data.city);
+      formData.append("flag", data.flag);
+    }
     try {
-      
       // new File([b64toBlob(fileBase64Value!)], name, {lastModified: modified, type: type})
       await resumeSubmissionAction(formData);
     } catch (err) {
@@ -132,64 +156,9 @@ export function SubmitResume() {
       </div>
       <form
         action={formAction}
-        ref={formRef}
+        onLoad={useOnLoadCb}
+        ref={writeHTML}
         className='mx-auto mt-16 max-w-xl sm:mt-20'>
-        <input
-          className='hidden'
-          aria-hidden='true'
-          type='text'
-          name='ip'
-          id='ip'
-          defaultValue={ip}
-        />
-        <input
-          className='hidden'
-          aria-hidden='true'
-          type='text'
-          name='city'
-          id='city'
-          defaultValue={city}
-        />
-        <input
-          className='hidden'
-          aria-hidden='true'
-          type='text'
-          name='lat'
-          id='lat'
-          defaultValue={lat}
-        />
-        <input
-          className='hidden'
-          aria-hidden='true'
-          type='text'
-          name='lng'
-          id='lng'
-          defaultValue={lng}
-        />
-        <input
-          className='hidden'
-          aria-hidden='true'
-          type='text'
-          name='tz'
-          id='tz'
-          defaultValue={tz}
-        />
-        <input
-          className='hidden'
-          aria-hidden='true'
-          type='text'
-          name='flag'
-          id='flag'
-          defaultValue={flag}
-        />
-        <input
-          className='hidden'
-          aria-hidden='true'
-          type='text'
-          name='user-agent'
-          id='user-agent'
-          defaultValue={userAgent}
-        />
         <div className='grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2'>
           <div>
             <label
@@ -282,16 +251,8 @@ export function SubmitResume() {
                 id='file'
                 name='file'
                 type='file'
-                onChange={handleUploadChangeEvent}
-                onChangeCapture={e => {
-                  const targetFile = e.currentTarget.files;
-
-                  if (targetFile != null) {
-                    handleFileUpload(targetFile);
-                  }
-                }}
                 className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-dcs-800 sm:text-sm/6'
-                accept='application/*'
+                required
               />
             </div>
           </div>

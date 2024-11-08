@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { ParticleHeaderComponent } from "@/components/particle-header";
 import { EventForm } from "@/ui/sections/EventForm";
-import { MetaHandler } from "@/ui/meta/Swr";
 
 export const metadata = {
   title: "Event"
@@ -20,9 +19,6 @@ export default function QrPage() {
       </div>
       <div className='relative'>
         <EventForm />
-      </div>
-      <div className="relative">
-        <MetaHandler />
       </div>
     </>
   );
