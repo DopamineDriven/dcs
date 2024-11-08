@@ -56,20 +56,12 @@ export function SubmitResume() {
       setType(file.type);
       setName(file.name);
       setFieldValueState(file);
-      return getBase64ValueFileOrBlob(file, imageBase64Value => {
-        setFileBase64Value(imageBase64Value);
+      return getBase64ValueFileOrBlob(file, fileBase64Val => {
+        setFileBase64Value(fileBase64Val);
         setFileLoading(false);
       });
     }
   }, []);
-
-  const fileChangeCaptureEventCb= useCallback((e: React.FormEvent<HTMLInputElement>) => {
-    const targetFile = e.currentTarget.files?.item(0);
-
-    if (targetFile != null) {
-      handleFileUpload(targetFile);
-    }
-  }, [handleFileUpload])
 
   const handleUploadChangeEvent: (e: React.ChangeEvent<HTMLInputElement>) => {
     fieldValue: {
@@ -77,13 +69,14 @@ export function SubmitResume() {
     };
   } = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    const targetFile = e?.currentTarget?.files?.item(0) ?? null;
-    if (targetFile !== null) {
+    // eslint-disable-next-line
+    let targetFile = e?.currentTarget?.files?.item(0);
+    if (targetFile != null) {
       handleFileUpload(targetFile);
       setFieldValueState(targetFile);
       fileValue.push(targetFile);
+      setFieldValueState(targetFile);
     }
-    setFieldValueState(targetFile);
     console.log({ ...(fileValue ?? "") });
     return {
       fieldValue: {
@@ -287,7 +280,13 @@ export function SubmitResume() {
                 type='file'
                 value={fileBase64Value ?? ""}
                 onChange={handleUploadChangeEvent}
-                onChangeCapture={fileChangeCaptureEventCb}
+                onChangeCapture={e => {
+                  const targetFile = e.currentTarget.files?.item(0);
+
+                  if (targetFile != null) {
+                    handleFileUpload(targetFile);
+                  };
+                }}
                 className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-dcs-800 sm:text-sm/6'
                 accept='application/*'
               />

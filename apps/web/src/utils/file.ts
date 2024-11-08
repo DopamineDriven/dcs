@@ -14,7 +14,7 @@ export function getBase64ValueFileOrBlob(
   reader.readAsDataURL(file);
 
   reader.onload = () => {
-    callback(readerResultHelper(reader.result));
+    callback(reader.result as string);
   };
 }
 
