@@ -16,9 +16,9 @@ export async function ExecuteResumeSubmissionMutation<
   return await fetchWpAPI<SubmissionPayloadProps>(print(SubmissionWorkup), {
     input: {
       clientMutationId: EncodeClientMutationId(firstName, lastName),
-      id: 2,
+      id: 3,
       entryMeta: {
-        createdById: 2,
+        createdById: 3,
         dateCreatedGmt: DateCreatedHelper(Date),
         ip: ip ?? "",
         userAgent: userAgent ?? ""
