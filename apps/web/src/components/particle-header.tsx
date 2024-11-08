@@ -142,7 +142,7 @@ export function ParticleHeaderComponent<
           <>
             <h1
               className={cn(
-                `mb-4 text-balance font-basis-grotesque-pro-bold text-4xl tracking-tight text-dcs-800 sm:text-5xl`
+                `mb-4 text-balance text-center font-basis-grotesque-pro-bold text-4xl tracking-tight text-dcs-800 sm:text-5xl`
               )}>
               {"Welcome to Drisdell Consulting!"}
             </h1>
@@ -168,7 +168,7 @@ export function ParticleHeaderComponent<
             <div
               dangerouslySetInnerHTML={{ __html: content }}
               className={cn(
-                "mx-auto mb-4 flex flex-col justify-center px-4 text-center font-basis-grotesque-pro-regular",
+                "mx-auto mb-4 flex flex-col justify-center max-w-xl text-center font-basis-grotesque-pro-regular",
                 css.content,
                 target === "HOME"
                   ? "text-white"
@@ -209,15 +209,6 @@ export function ParticleHeaderComponent<
               <Link href='/consultants'>
                 <Button variant='dcs' size='dcs'>
                   {"Consultants"}
-                </Button>
-              </Link>
-              <Link
-                href='/qr#get-in-touch'
-                scroll={true}
-                style={{ scrollBehavior: "smooth" }}
-                shallow={true}>
-                <Button variant='dcs' size='dcs'>
-                  {"Get in Touch"}
                 </Button>
               </Link>
               <Link href='/about-us'>
