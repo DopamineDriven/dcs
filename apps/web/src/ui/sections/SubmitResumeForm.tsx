@@ -1,11 +1,12 @@
 "use client";
 
-import { useRef } from "react";
+import { useCallback, useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
 import type { TsxExclude } from "@/types/helpers";
 import { resumeSubmissionAction } from "@/app/actions";
 import { UseGetMeta } from "@/hooks/use-meta";
 import { cn } from "@/lib/utils";
+import { getBase64ValueFileOrBlob } from "@/utils/file";
 
 export function SendButton({
   className,
@@ -30,7 +31,59 @@ export function SendButton({
 
 export function SubmitResume() {
   const formRef = useRef<HTMLFormElement | null>(null);
+  const [_fileLoading, setFileLoading] = useState(false);
+  const [fileBase64Value, setFileBase64Value] = useState<string | null>(null);
+  const [_size, setSize] = useState<number>(0);
+  const [_type, setType] = useState<string>("");
+  const [_name, setName] = useState<string>("");
+  const [_modified, setModified] = useState<number>(0);
+  const [_fieldValueState, setFieldValueState] = useState<File | null>(null);
+  const fileValue = Array.of<File | null>();
   const { ua: userAgent, ip, city, flag, lat, lng, tz } = UseGetMeta();
+
+  const handleFileUpload = useCallback((file: File | null) => {
+    if (!file) {
+      setFileLoading(true);
+      return;
+    }
+
+    if (file) {
+      console.log(file.webkitRelativePath);
+      setModified(file.lastModified);
+      setSize(file.size);
+      setType(file.type);
+      setName(file.name);
+      setFieldValueState(file);
+      return getBase64ValueFileOrBlob(file, imageBase64Value => {
+        setFileBase64Value(imageBase64Value);
+        setFileLoading(false);
+      });
+    }
+  }, []);
+
+  const handleUploadChangeEvent: (e: React.ChangeEvent<HTMLInputElement>) => {
+    fieldValue: {
+      fileUploadValues: (File | null)[];
+    };
+  } = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const targetFile = e?.currentTarget?.files?.item(0) ?? null;
+    if (targetFile !== null) {
+      handleFileUpload(targetFile);
+      setFieldValueState(targetFile);
+      fileValue.push(targetFile);
+    }
+    setFieldValueState(targetFile);
+    console.log({ ...(fileValue ?? "") });
+    return {
+      fieldValue: {
+        fileUploadValues:
+          e.currentTarget.files != null
+            ? [e.currentTarget.files?.item(0)]
+            : [null]
+      }
+    };
+  };
 
   async function formAction(formData: FormData) {
     try {
@@ -222,6 +275,15 @@ export function SubmitResume() {
                 id='file'
                 name='file'
                 type='file'
+                value={fileBase64Value ?? ""}
+                onChange={handleUploadChangeEvent}
+                onChangeCapture={e => {
+                  const targetFile = e.currentTarget.files?.item(0);
+
+                  if (targetFile != null) {
+                    handleFileUpload(targetFile);
+                  }
+                }}
                 className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-dcs-800 sm:text-sm/6'
                 accept='application/*'
               />
