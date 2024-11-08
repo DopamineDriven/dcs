@@ -51,7 +51,7 @@ export const services = [
     service: "Goal Acquisition"
   },
   {
-    service: "services Mining & Analytics"
+    service: "Data Mining & Analytics"
   },
   {
     service: "Requirements Elicitation"
