@@ -10,6 +10,7 @@ import { ExecuteEventFormSubmissionMutation } from "@/mutations/event-submission
 import { ExecuteResumeSubmissionMutation } from "@/mutations/resume-submission";
 import { handleBody } from "@/utils/handle-body";
 
+
 export async function contactUsAction(formData: FormData) {
   const additionalData = {
     city: (formData.get("city") as string) ?? "",
@@ -105,8 +106,9 @@ export async function resumeSubmissionAction(formData: FormData) {
     body: enhancedBody,
     ip: (formData.get("ip") as string) ?? "",
     userAgent: (formData.get("user-agent") as string) ?? "",
-    file: formData.get("file")
+    file: [formData.get("file")]
   } satisfies ExecuteResumeFormSubmissionMutationProps;
+
   const toJSON = JSON.stringify(derivedData, null, 2);
   console.log(toJSON);
   try {

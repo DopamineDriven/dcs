@@ -1,12 +1,49 @@
 "use client";
 
 // TODO -- USE APPROACH TAKEN WITH XR APPS + SWR + EDGE to extract dynamic server params without opting out of client page rendering
-import { useRef } from "react";
+import type { SyntheticEvent } from "react";
+import { useCallback, useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
+import useSWR from "swr";
 import type { TsxExclude } from "@/types/helpers";
 import { contactUsAction } from "@/app/actions";
-import { UseGetMeta } from "@/hooks/use-meta";
 import { cn } from "@/lib/utils";
+
+export type ExpectedRes = {
+  qr: string;
+  userAgentObject: globalThis.UserAgent;
+  ua: string;
+  ip: string;
+  tz: string;
+  city: string;
+  lat: string;
+  lng: string;
+  flag: string;
+};
+
+function fetcher<const T extends ExpectedRes | undefined>(
+  input: RequestInfo,
+  init?: RequestInit
+) {
+  return fetch(input, init).then(res => res.json() as Promise<T>);
+}
+
+function UseSwrSync({ hasData }: { hasData: boolean }) {
+  const { data, isValidating, isLoading, error } = useSWR<
+    ExpectedRes | undefined,
+    unknown
+  >(hasData === false ? "/api?code=yes" : null, fetcher, {
+    refreshInterval: 100000,
+    fetcher: fetcher
+  });
+
+  return {
+    data,
+    error,
+    isLoading,
+    isValidating
+  };
+}
 
 export function SendButton({
   className,
@@ -31,10 +68,84 @@ export function SendButton({
 
 export function ContactForm() {
   const formRef = useRef<HTMLFormElement | null>(null);
+  const [hasData, setHasData] = useState(false);
+  const [_hasQr, setHasQr] = useState(false);
+  const [_device, setDevice] = useState<string | undefined>();
+  const [_browser, setBrowser] = useState<string | undefined>();
+  const { data } = UseSwrSync({ hasData });
 
-  const { ua: userAgent, ip, city, tz, flag, lat, lng } = UseGetMeta();
+  const dataCb = useCallback((props: ExpectedRes) => {
+    const data = props.userAgentObject;
+    const qr = props.qr;
+    try {
+      if (data?.browser?.name && data?.device?.type) {
+        setBrowser(data.browser.name);
+        setDevice(data.device.type);
+        return data;
+      } else if (!data?.device?.type && data.browser.name) {
+        setBrowser(data.browser.name);
+        return data;
+      } else if (!data.browser.name && data.device.type) {
+        setDevice(data.device.type);
+        return data;
+      } else {
+        return data;
+      }
+    } catch (err) {
+      console.error(
+        typeof err === "string" ? err : JSON.stringify(err, null, 2)
+      );
+    } finally {
+      if (/true/gi.test(qr) === true) {
+        setHasQr(true);
+        return data;
+      } else {
+        return data;
+      }
+    }
+  }, []);
+
+  const useOnLoadCb = useCallback(
+    (e: SyntheticEvent<HTMLFormElement, Event>) => {
+      e.preventDefault();
+      if (typeof data !== "undefined") {
+        setHasData(true);
+        dataCb(data);
+      } else {
+        return;
+      }
+    },
+    [data, dataCb]
+  );
+
+  const writeHTML = useCallback((props: HTMLFormElement | null) => {
+    if (!props) {
+      console.log("no props");
+    }
+    formRef.current = props;
+    // props.style.width = "100%";
+    // props.style.height = props?.contentWindow?.document?.body?.scrollHeight ? props.contentWindow.document.body.scrollHeight?.toString() : "100%"
+    // if (
+    //   typeof device !== "undefined" &&
+    //   device.includes("mobile") &&
+    //   props.contentDocument?.getElementById("303")
+    // ) {
+    //   props.contentDocument?.getElementById("303")?.remove();
+    //   return props;
+    // }
+    console.log(props);
+  }, []);
 
   async function formAction(formData: FormData) {
+    if (data) {
+      formData.append("user-agent", data.ua);
+      formData.append("ip", data.ip);
+      formData.append("lat", data.lat);
+      formData.append("lng", data.lng);
+      formData.append("tz", data.tz);
+      formData.append("city", data.city);
+      formData.append("flag", data.flag);
+    }
     try {
       await contactUsAction(formData);
       formRef.current?.reset();
@@ -65,72 +176,10 @@ export function ContactForm() {
         </h2>
       </div>
       <form
+        onLoad={useOnLoadCb}
         action={formAction}
-        ref={formRef}
+        ref={writeHTML}
         className='mx-auto mt-16 max-w-xl sm:mt-20'>
-        <input
-          className='hidden'
-          aria-hidden='true'
-          type='text'
-          name='ip'
-          id='ip'
-          defaultValue={ip}
-          value={ip}
-        />
-        <input
-          className='hidden'
-          aria-hidden='true'
-          type='text'
-          name='city'
-          id='city'
-          defaultValue={city}
-          value={city}
-        />
-        <input
-          className='hidden'
-          aria-hidden='true'
-          type='text'
-          name='lat'
-          id='lat'
-          value={lat}
-          defaultValue={lat}
-        />
-        <input
-          className='hidden'
-          aria-hidden='true'
-          type='text'
-          name='lng'
-          id='lng'
-          value={lng}
-          defaultValue={lng}
-        />
-        <input
-          className='hidden'
-          aria-hidden='true'
-          type='text'
-          name='tz'
-          id='tz'
-          value={tz}
-          defaultValue={tz}
-        />
-        <input
-          className='hidden'
-          aria-hidden='true'
-          type='text'
-          name='flag'
-          id='flag'
-          value={flag}
-          defaultValue={flag}
-        />
-        <input
-          className='hidden'
-          aria-hidden='true'
-          type='text'
-          name='user-agent'
-          id='user-agent'
-          value={userAgent}
-          defaultValue={userAgent}
-        />
         <div className='grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2'>
           <div>
             <label

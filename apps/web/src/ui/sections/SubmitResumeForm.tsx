@@ -8,6 +8,8 @@ import { UseGetMeta } from "@/hooks/use-meta";
 import { cn } from "@/lib/utils";
 import { getBase64ValueFileOrBlob } from "@/utils/file";
 
+// import { b64toBlob } from "@/utils/blobby";
+
 export function SendButton({
   className,
   ...props
@@ -32,23 +34,23 @@ export function SendButton({
 export function SubmitResume() {
   const formRef = useRef<HTMLFormElement | null>(null);
   const [_fileLoading, setFileLoading] = useState(false);
-  const [fileBase64Value, setFileBase64Value] = useState<string | null>(null);
-  const [_size, setSize] = useState<number>(0);
-  const [_type, setType] = useState<string>("");
-  const [_name, setName] = useState<string>("");
-  const [_modified, setModified] = useState<number>(0);
-  const [_fieldValueState, setFieldValueState] = useState<File | null>(null);
+  const [_fileList, setFileList] = useState<FileList | null>(null);
+  const [_fileBase64Value, setFileBase64Value] = useState<string | null>(null);
+  const [size, setSize] = useState<number>(0);
+  const [type, setType] = useState<string>("");
+  const [name, setName] = useState<string>("");
+  const [modified, setModified] = useState<number>(0);
+  const [fieldValueState, setFieldValueState] = useState<File | null>(null);
   const fileValue = Array.of<File | null>();
-  const { ua: userAgent, ip, city, flag, lat, lng, tz } = UseGetMeta();
+  const { ua: userAgent, ip, city, flag, lat, lng, tz } = UseGetMeta(true);
 
-
-
-  const handleFileUpload = useCallback((file: File | null) => {
-    if (!file) {
+  const handleFileUpload = useCallback((files: FileList | null) => {
+    if (!files) {
       setFileLoading(true);
       return;
     }
-
+    const file = files.item(0);
+    setFileList(files);
     if (file) {
       console.log(file.webkitRelativePath);
       setModified(file.lastModified);
@@ -70,13 +72,21 @@ export function SubmitResume() {
   } = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     // eslint-disable-next-line
-    let targetFile = e?.currentTarget?.files?.item(0);
-    if (targetFile != null) {
-      handleFileUpload(targetFile);
+    let targetFiles = e?.currentTarget?.files;
+    if (targetFiles != null) {
+      handleFileUpload(targetFiles);
+      const targetFile = targetFiles.item(0);
       setFieldValueState(targetFile);
       fileValue.push(targetFile);
       setFieldValueState(targetFile);
     }
+    console.log({
+      filesize: size,
+      fileFieldValueState: fieldValueState,
+      fileLastModified: modified,
+      filename: name,
+      filetype: type
+    });
     console.log({ ...(fileValue ?? "") });
     return {
       fieldValue: {
@@ -90,8 +100,9 @@ export function SubmitResume() {
 
   async function formAction(formData: FormData) {
     try {
+      console.log(formRef.current?.querySelector("input"));
+      // new File([b64toBlob(fileBase64Value!)], name, {lastModified: modified, type: type})
       await resumeSubmissionAction(formData);
-      formRef.current?.reset();
     } catch (err) {
       console.error(
         typeof err === "string" ? err : JSON.stringify(err, null, 2)
@@ -130,7 +141,6 @@ export function SubmitResume() {
           name='ip'
           id='ip'
           defaultValue={ip}
-          value={ip}
         />
         <input
           className='hidden'
@@ -139,7 +149,6 @@ export function SubmitResume() {
           name='city'
           id='city'
           defaultValue={city}
-          value={city}
         />
         <input
           className='hidden'
@@ -147,7 +156,6 @@ export function SubmitResume() {
           type='text'
           name='lat'
           id='lat'
-          value={lat}
           defaultValue={lat}
         />
         <input
@@ -156,7 +164,6 @@ export function SubmitResume() {
           type='text'
           name='lng'
           id='lng'
-          value={lng}
           defaultValue={lng}
         />
         <input
@@ -165,7 +172,6 @@ export function SubmitResume() {
           type='text'
           name='tz'
           id='tz'
-          value={tz}
           defaultValue={tz}
         />
         <input
@@ -174,7 +180,6 @@ export function SubmitResume() {
           type='text'
           name='flag'
           id='flag'
-          value={flag}
           defaultValue={flag}
         />
         <input
@@ -183,7 +188,6 @@ export function SubmitResume() {
           type='text'
           name='user-agent'
           id='user-agent'
-          value={userAgent}
           defaultValue={userAgent}
         />
         <div className='grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2'>
@@ -278,14 +282,13 @@ export function SubmitResume() {
                 id='file'
                 name='file'
                 type='file'
-                value={fileBase64Value ?? ""}
                 onChange={handleUploadChangeEvent}
                 onChangeCapture={e => {
-                  const targetFile = e.currentTarget.files?.item(0);
+                  const targetFile = e.currentTarget.files;
 
                   if (targetFile != null) {
                     handleFileUpload(targetFile);
-                  };
+                  }
                 }}
                 className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-dcs-800 sm:text-sm/6'
                 accept='application/*'

@@ -318,5 +318,5 @@ export type ExecuteResumeFormSubmissionMutationProps = {
   body: string;
   userAgent?: string;
   ip?: string;
-  file: FormDataEntryValue | null;
+  file: (FormDataEntryValue | null)[] | FileList;
 }
