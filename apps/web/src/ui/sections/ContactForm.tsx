@@ -8,18 +8,7 @@ import useSWR from "swr";
 import type { TsxExclude } from "@/types/helpers";
 import { contactUsAction } from "@/app/actions";
 import { cn } from "@/lib/utils";
-
-export type ExpectedRes = {
-  qr: string;
-  userAgentObject: globalThis.UserAgent;
-  ua: string;
-  ip: string;
-  tz: string;
-  city: string;
-  lat: string;
-  lng: string;
-  flag: string;
-};
+import type { ExpectedRes } from "@/types/next";
 
 function fetcher<const T extends ExpectedRes | undefined>(
   input: RequestInfo,
@@ -123,16 +112,6 @@ export function ContactForm() {
       console.log("no props");
     }
     formRef.current = props;
-    // props.style.width = "100%";
-    // props.style.height = props?.contentWindow?.document?.body?.scrollHeight ? props.contentWindow.document.body.scrollHeight?.toString() : "100%"
-    // if (
-    //   typeof device !== "undefined" &&
-    //   device.includes("mobile") &&
-    //   props.contentDocument?.getElementById("303")
-    // ) {
-    //   props.contentDocument?.getElementById("303")?.remove();
-    //   return props;
-    // }
     console.log(props);
   }, []);
 

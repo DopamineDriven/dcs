@@ -1,26 +1,15 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
 import type { SyntheticEvent } from "react";
+import { useCallback, useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
+import useSWR from "swr";
 import type { TsxExclude } from "@/types/helpers";
+import type { ExpectedRes } from "@/types/next";
 import { eventSubmissionAction } from "@/app/actions";
 import { cn } from "@/lib/utils";
-import useSWR from "swr";
 
-export type ExpectedResponse = {
-  qr: string;
-  userAgentObject: globalThis.UserAgent;
-  ua: string;
-  ip: string;
-  tz: string;
-  city: string;
-  lat: string;
-  lng: string;
-  flag: string;
-};
-
-function fetcher<const T extends ExpectedResponse | undefined>(
+function fetcher<const T extends ExpectedRes | undefined>(
   input: RequestInfo,
   init?: RequestInit
 ) {
@@ -29,7 +18,7 @@ function fetcher<const T extends ExpectedResponse | undefined>(
 
 function UseSwrSync({ hasData }: { hasData: boolean }) {
   const { data, isValidating, isLoading, error } = useSWR<
-    ExpectedResponse | undefined,
+    ExpectedRes | undefined,
     unknown
   >(hasData === false ? "/api?code=yes" : null, fetcher, {
     refreshInterval: 100000,
@@ -73,7 +62,7 @@ export function EventForm() {
   const [_browser, setBrowser] = useState<string | undefined>();
   const { data } = UseSwrSync({ hasData });
 
-  const dataCb = useCallback((props: ExpectedResponse) => {
+  const dataCb = useCallback((props: ExpectedRes) => {
     const data = props.userAgentObject;
     const qr = props.qr;
     try {
@@ -122,17 +111,6 @@ export function EventForm() {
       console.log("no props");
     }
     formRef.current = props;
-    // props.style.width = "100%";
-    // props.style.height = props?.contentWindow?.document?.body?.scrollHeight ? props.contentWindow.document.body.scrollHeight?.toString() : "100%"
-    // if (
-    //   typeof device !== "undefined" &&
-    //   device.includes("mobile") &&
-    //   props.contentDocument?.getElementById("303")
-    // ) {
-    //   props.contentDocument?.getElementById("303")?.remove();
-    //   return props;
-    // }
-    console.log(props);
   }, []);
 
   async function formAction(formData: FormData) {

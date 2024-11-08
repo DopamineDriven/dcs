@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <script>
+      function DownloadDoc(doc, docName) {
+        var downloadLink = document.createElement("a");
+        downloadLink.href = doc;
+        downloadLink.download = docName;
+        downloadLink.click();
+      }
+    </script>
+    <button>
+      Download PDF
+    </button>
+  </body>
+</html>
