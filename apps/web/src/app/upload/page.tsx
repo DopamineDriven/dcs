@@ -4,7 +4,7 @@ import type { PutBlobResult } from '@vercel/blob';
 import { useState, useRef } from 'react';
 
 export default function AvatarUploadPage() {
-  const inputFileRef = useRef<HTMLInputElement>(null);
+  const inputFileRef = useRef<HTMLInputElement | null>(null);
   const [blob, setBlob] = useState<PutBlobResult | null>(null);
   return (
     <>
@@ -19,9 +19,9 @@ export default function AvatarUploadPage() {
           }
           // eslint-disable-next-line
           const file = inputFileRef.current.files[0]!;
-          
+
           const response = await fetch(
-            `/api/avatar/upload?filename=${file.name}`,
+            `/api/upload?filename=${file.name}`,
             {
               method: 'POST',
               body: file,
