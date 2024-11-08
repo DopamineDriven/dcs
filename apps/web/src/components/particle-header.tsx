@@ -206,7 +206,7 @@ export function ParticleHeaderComponent<
             </>
           ) : target === "QR" ? (
             <>
-              <Link href='/consultants'>
+              {/* <Link href='/consultants'>
                 <Button variant='dcs' size='dcs'>
                   {"Consultants"}
                 </Button>
@@ -215,7 +215,7 @@ export function ParticleHeaderComponent<
                 <Button variant='dcs' size='dcs'>
                   {"About Us"}
                 </Button>
-              </Link>
+              </Link> */}
             </>
           ) : target === "ABOUT" ? (
             <>
