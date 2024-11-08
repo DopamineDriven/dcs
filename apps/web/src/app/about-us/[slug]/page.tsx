@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import type { InferGSPRT } from "@/types/next";
 import { QueryChildPageBySlug } from "@/queries/page-by-uri";
 import { QueryChildPaths } from "@/queries/paths";
-import SubContent from "@/ui/about/SubContent";
+import { SubContent } from "@/ui/dynamic/SubContent";
 import { formatHelper } from "@/utils/format-helper";
 
 export async function generateStaticParams() {
