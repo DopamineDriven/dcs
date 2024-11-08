@@ -1,10 +1,9 @@
 "use client";
 
-// TODO -- USE APPROACH TAKEN WITH XR APPS + SWR + EDGE to extract dynamic server params without opting out of client page rendering
 import { useRef } from "react";
 import { useFormStatus } from "react-dom";
 import type { TsxExclude } from "@/types/helpers";
-import { contactUsAction } from "@/app/actions";
+import { resumeSubmissionAction } from "@/app/actions";
 import { UseGetMeta } from "@/hooks/use-meta";
 import { cn } from "@/lib/utils";
 
@@ -23,20 +22,19 @@ export function SendButton({
           className
         )}
         type='submit'>
-        {pending ? "Sending..." : "Send"}
+        {pending ? "Submitting..." : "Submit"}
       </button>
     </div>
   );
 }
 
-export function ContactForm() {
+export function SubmitResume() {
   const formRef = useRef<HTMLFormElement | null>(null);
-
-  const { ua: userAgent, ip, city, tz, flag, lat, lng } = UseGetMeta();
+  const { ua: userAgent, ip, city, flag, lat, lng, tz } = UseGetMeta();
 
   async function formAction(formData: FormData) {
     try {
-      await contactUsAction(formData);
+      await resumeSubmissionAction(formData);
       formRef.current?.reset();
     } catch (err) {
       console.error(
@@ -44,6 +42,7 @@ export function ContactForm() {
       );
     }
   }
+
   return (
     <div className='isolate bg-white px-6 py-8 font-basis-grotesque-pro-medium sm:py-16 lg:px-8'>
       <div
@@ -61,7 +60,7 @@ export function ContactForm() {
         <h2
           className='text-balance text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl'
           id='send-us-an-email'>
-          Send us an Email
+          Submit a Resume
         </h2>
       </div>
       <form
@@ -182,16 +181,16 @@ export function ContactForm() {
           </div>
           <div className='sm:col-span-2'>
             <label
-              htmlFor='subject'
+              htmlFor='phone-number'
               className='block text-sm/6 font-semibold text-gray-900'>
-              Subject
+              Phone Number
             </label>
             <div className='mt-2.5'>
               <input
-                id='subject'
-                name='subject'
-                type='text'
-                defaultValue={""}
+                id='phone-number'
+                name='phone-number'
+                type='tel'
+                autoComplete='tel'
                 className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-dcs-800 sm:text-sm/6'
               />
             </div>
@@ -209,6 +208,22 @@ export function ContactForm() {
                 rows={4}
                 className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-dcs-800 sm:text-sm/6'
                 defaultValue={""}
+              />
+            </div>
+          </div>
+          <div className='sm:col-span-2'>
+            <label
+              htmlFor='file'
+              className='block text-sm/6 font-semibold text-gray-900'>
+              Upload your Resume or CV
+            </label>
+            <div className='mt-2.5'>
+              <input
+                id='file'
+                name='file'
+                type='file'
+                className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-dcs-800 sm:text-sm/6'
+                accept='application/*'
               />
             </div>
           </div>

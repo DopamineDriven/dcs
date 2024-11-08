@@ -1,3 +1,4 @@
+import type { NextConfig } from "next";
 import withPWAInit from "@ducanh2912/next-pwa";
 
 export default withPWAInit({ dest: "public", register: true, scope: "/app" })({
@@ -40,8 +41,9 @@ export default withPWAInit({ dest: "public", register: true, scope: "/app" })({
       {
         hostname: "drisdell-dev.vercel.app",
         protocol: "https"
-      }
+      },
+      { hostname: "dev-to-uploads.s3.amazonaws.com", protocol: "https" }
     ]
   },
   productionBrowserSourceMaps: true
-});
+} satisfies NextConfig);

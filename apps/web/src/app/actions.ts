@@ -2,12 +2,27 @@
 
 import type {
   ExecuteContactFormSubmissionMutationProps,
-  ExecuteEventFormSubmissionMutationProps
+  ExecuteEventFormSubmissionMutationProps,
+  ExecuteResumeFormSubmissionMutationProps
 } from "@/types/wp";
 import { ExecuteContactFormSubmissionMutation } from "@/mutations/contact-submission";
 import { ExecuteEventFormSubmissionMutation } from "@/mutations/event-submission";
+import { ExecuteResumeSubmissionMutation } from "@/mutations/resume-submission";
+import { handleBody } from "@/utils/handle-body";
 
 export async function contactUsAction(formData: FormData) {
+  const additionalData = {
+    city: (formData.get("city") as string) ?? "",
+    lat: (formData.get("lat") as string) ?? "",
+    lng: (formData.get("lng") as string) ?? "",
+    flag: (formData.get("flag") as string) ?? "",
+    ip: (formData.get("ip") as string) ?? "",
+    tz: (formData.get("tz") as string) ?? "",
+    body: (formData.get("body") as string) ?? "",
+    ua: (formData.get("user-agent") as string) ?? ""
+  };
+
+  const enhancedBody = handleBody(additionalData);
   const derivedData = {
     firstName: (formData.get("first-name") as string) ?? "",
     lastName: (formData.get("last-name") as string) ?? "",
@@ -15,7 +30,7 @@ export async function contactUsAction(formData: FormData) {
     subject: formData.get("subject")
       ? (formData.get("subject") as string)
       : "No Subject",
-    body: (formData.get("body") as string) ?? "",
+    body: enhancedBody,
     ip: (formData.get("ip") as string) ?? "",
     userAgent: (formData.get("user-agent") as string) ?? ""
   } satisfies ExecuteContactFormSubmissionMutationProps;
@@ -32,6 +47,18 @@ export async function contactUsAction(formData: FormData) {
 }
 
 export async function eventSubmissionAction(formData: FormData) {
+  const additionalData = {
+    city: (formData.get("city") as string) ?? "",
+    lat: (formData.get("lat") as string) ?? "",
+    lng: (formData.get("lng") as string) ?? "",
+    flag: (formData.get("flag") as string) ?? "",
+    ip: (formData.get("ip") as string) ?? "",
+    tz: (formData.get("tz") as string) ?? "",
+    body: (formData.get("body") as string) ?? "",
+    ua: (formData.get("user-agent") as string) ?? ""
+  };
+
+  const enhancedBody = handleBody(additionalData);
   const derivedData = {
     firstName: (formData.get("first-name") as string) ?? "",
     lastName: (formData.get("last-name") as string) ?? "",
@@ -39,7 +66,7 @@ export async function eventSubmissionAction(formData: FormData) {
     phone: formData.get("phone-number")
       ? (formData.get("phone-number") as string)
       : "+15555555555",
-    body: (formData.get("body") as string) ?? "",
+    body: enhancedBody,
     ip: (formData.get("ip") as string) ?? "",
     userAgent: (formData.get("user-agent") as string) ?? ""
   } satisfies ExecuteEventFormSubmissionMutationProps;
@@ -53,4 +80,43 @@ export async function eventSubmissionAction(formData: FormData) {
     console.error(typeof err === "string" ? err : JSON.stringify(err, null, 2));
     return { res: JSON.stringify(err, null, 2) };
   }
+}
+
+export async function resumeSubmissionAction(formData: FormData) {
+  const additionalData = {
+    city: (formData.get("city") as string) ?? "",
+    lat: (formData.get("lat") as string) ?? "",
+    lng: (formData.get("lng") as string) ?? "",
+    flag: (formData.get("flag") as string) ?? "",
+    ip: (formData.get("ip") as string) ?? "",
+    tz: (formData.get("tz") as string) ?? "",
+    body: (formData.get("body") as string) ?? "",
+    ua: (formData.get("user-agent") as string) ?? ""
+  };
+
+  const enhancedBody = handleBody(additionalData);
+  const derivedData = {
+    firstName: (formData.get("first-name") as string) ?? "",
+    lastName: (formData.get("last-name") as string) ?? "",
+    email: (formData.get("email") as string) ?? "",
+    phone: formData.get("phone-number")
+      ? (formData.get("phone-number") as string)
+      : "+15555555555",
+    body: enhancedBody,
+    ip: (formData.get("ip") as string) ?? "",
+    userAgent: (formData.get("user-agent") as string) ?? "",
+    file: formData.get("file")
+  } satisfies ExecuteResumeFormSubmissionMutationProps;
+  const toJSON = JSON.stringify(derivedData, null, 2);
+  console.log(toJSON);
+  try {
+    const data = await ExecuteResumeSubmissionMutation(derivedData);
+    if (data.data.submitGfForm.errors != null) {
+      return { res: data.data.submitGfForm.errors };
+    } else return { res: data.data.submitGfForm.confirmation.message };
+  } catch (err) {
+    console.error(typeof err === "string" ? err : JSON.stringify(err, null, 2));
+    return { res: JSON.stringify(err, null, 2) };
+  }
+  return;
 }

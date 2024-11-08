@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { useFormStatus } from "react-dom";
 import type { TsxExclude } from "@/types/helpers";
 import { eventSubmissionAction } from "@/app/actions";
+import { UseGetMeta } from "@/hooks/use-meta";
 import { cn } from "@/lib/utils";
 
 export function SendButton({
@@ -27,14 +28,9 @@ export function SendButton({
   );
 }
 
-export function EventForm({
-  ip,
-  userAgent
-}: {
-  ip: string;
-  userAgent: string;
-}) {
+export function EventForm() {
   const formRef = useRef<HTMLFormElement | null>(null);
+  const { ua: userAgent, ip, city, flag, lat, lng, tz } = UseGetMeta();
 
   async function formAction(formData: FormData) {
     try {
@@ -46,6 +42,7 @@ export function EventForm({
       );
     }
   }
+
   return (
     <div className='isolate bg-white px-6 py-8 font-basis-grotesque-pro-medium sm:py-16 lg:px-8'>
       <div
@@ -70,12 +67,68 @@ export function EventForm({
         action={formAction}
         ref={formRef}
         className='mx-auto mt-16 max-w-xl sm:mt-20'>
-        <input type='hidden' name='ip' id='ip' value={ip} />
         <input
-          type='hidden'
+          className='hidden'
+          aria-hidden='true'
+          type='text'
+          name='ip'
+          id='ip'
+          defaultValue={ip}
+          value={ip}
+        />
+        <input
+          className='hidden'
+          aria-hidden='true'
+          type='text'
+          name='city'
+          id='city'
+          defaultValue={city}
+          value={city}
+        />
+        <input
+          className='hidden'
+          aria-hidden='true'
+          type='text'
+          name='lat'
+          id='lat'
+          value={lat}
+          defaultValue={lat}
+        />
+        <input
+          className='hidden'
+          aria-hidden='true'
+          type='text'
+          name='lng'
+          id='lng'
+          value={lng}
+          defaultValue={lng}
+        />
+        <input
+          className='hidden'
+          aria-hidden='true'
+          type='text'
+          name='tz'
+          id='tz'
+          value={tz}
+          defaultValue={tz}
+        />
+        <input
+          className='hidden'
+          aria-hidden='true'
+          type='text'
+          name='flag'
+          id='flag'
+          value={flag}
+          defaultValue={flag}
+        />
+        <input
+          className='hidden'
+          aria-hidden='true'
+          type='text'
           name='user-agent'
           id='user-agent'
           value={userAgent}
+          defaultValue={userAgent}
         />
         <div className='grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2'>
           <div>
