@@ -309,3 +309,14 @@ export type ExecuteEventFormSubmissionMutationProps = {
   userAgent?: string;
   ip?: string;
 };
+
+export type ExecuteResumeFormSubmissionMutationProps = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  body: string;
+  userAgent?: string;
+  ip?: string;
+  file: FormDataEntryValue | null;
+}

@@ -1,9 +1,9 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useFormStatus } from "react-dom";
 import type { TsxExclude } from "@/types/helpers";
-import { eventSubmissionAction } from "@/app/actions";
+import { resumeSubmissionAction } from "@/app/actions";
 import { UseGetMeta } from "@/hooks/use-meta";
 import { cn } from "@/lib/utils";
 
@@ -22,27 +22,19 @@ export function SendButton({
           className
         )}
         type='submit'>
-        {pending ? "Sending..." : "Send"}
+        {pending ? "Submitting..." : "Submit"}
       </button>
     </div>
   );
 }
 
 export function SubmitResume() {
-
-  const [fileBase64Value, setFileBase64Value] = useState<string | null>(null);
-  const [size, setSize] = useState<number>(0);
-  const [type, setType] = useState<string>("");
-  const [name, setName] = useState<string>("");
-  const [modified, setModified] = useState<number>(0);
   const formRef = useRef<HTMLFormElement | null>(null);
   const { ua: userAgent, ip, city, flag, lat, lng, tz } = UseGetMeta();
 
-
-
   async function formAction(formData: FormData) {
     try {
-      await eventSubmissionAction(formData);
+      await resumeSubmissionAction(formData);
       formRef.current?.reset();
     } catch (err) {
       console.error(
@@ -68,24 +60,75 @@ export function SubmitResume() {
         <h2
           className='text-balance text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl'
           id='send-us-an-email'>
-          Get in Touch
+          Submit a Resume
         </h2>
       </div>
       <form
         action={formAction}
         ref={formRef}
         className='mx-auto mt-16 max-w-xl sm:mt-20'>
-        <input type='hidden' name='ip' id='ip' value={ip} />
-        <input type='hidden' name='city' id='city' value={city} />
-        <input type='hidden' name='lat' id='lat' value={lat} />
-        <input type='hidden' name='lng' id='lng' value={lng} />
-        <input type='hidden' name='tz' id='tz' value={tz} />
-        <input type='hidden' name='flag' id='flag' value={flag} />
         <input
-          type='hidden'
+          className='hidden'
+          aria-hidden='true'
+          type='text'
+          name='ip'
+          id='ip'
+          defaultValue={ip}
+          value={ip}
+        />
+        <input
+          className='hidden'
+          aria-hidden='true'
+          type='text'
+          name='city'
+          id='city'
+          defaultValue={city}
+          value={city}
+        />
+        <input
+          className='hidden'
+          aria-hidden='true'
+          type='text'
+          name='lat'
+          id='lat'
+          value={lat}
+          defaultValue={lat}
+        />
+        <input
+          className='hidden'
+          aria-hidden='true'
+          type='text'
+          name='lng'
+          id='lng'
+          value={lng}
+          defaultValue={lng}
+        />
+        <input
+          className='hidden'
+          aria-hidden='true'
+          type='text'
+          name='tz'
+          id='tz'
+          value={tz}
+          defaultValue={tz}
+        />
+        <input
+          className='hidden'
+          aria-hidden='true'
+          type='text'
+          name='flag'
+          id='flag'
+          value={flag}
+          defaultValue={flag}
+        />
+        <input
+          className='hidden'
+          aria-hidden='true'
+          type='text'
           name='user-agent'
           id='user-agent'
           value={userAgent}
+          defaultValue={userAgent}
         />
         <div className='grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2'>
           <div>
@@ -172,15 +215,15 @@ export function SubmitResume() {
             <label
               htmlFor='file'
               className='block text-sm/6 font-semibold text-gray-900'>
-              Message
+              Upload your Resume or CV
             </label>
             <div className='mt-2.5'>
               <input
                 id='file'
                 name='file'
-                type="file"
+                type='file'
                 className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-dcs-800 sm:text-sm/6'
-
+                accept='application/*'
               />
             </div>
           </div>
