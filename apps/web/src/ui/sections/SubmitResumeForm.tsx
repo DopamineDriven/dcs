@@ -41,6 +41,8 @@ export function SubmitResume() {
   const fileValue = Array.of<File | null>();
   const { ua: userAgent, ip, city, flag, lat, lng, tz } = UseGetMeta();
 
+
+
   const handleFileUpload = useCallback((file: File | null) => {
     if (!file) {
       setFileLoading(true);
@@ -60,6 +62,14 @@ export function SubmitResume() {
       });
     }
   }, []);
+
+  const fileChangeCaptureEventCb= useCallback((e: React.FormEvent<HTMLInputElement>) => {
+    const targetFile = e.currentTarget.files?.item(0);
+
+    if (targetFile != null) {
+      handleFileUpload(targetFile);
+    }
+  }, [handleFileUpload])
 
   const handleUploadChangeEvent: (e: React.ChangeEvent<HTMLInputElement>) => {
     fieldValue: {
@@ -277,13 +287,7 @@ export function SubmitResume() {
                 type='file'
                 value={fileBase64Value ?? ""}
                 onChange={handleUploadChangeEvent}
-                onChangeCapture={e => {
-                  const targetFile = e.currentTarget.files?.item(0);
-
-                  if (targetFile != null) {
-                    handleFileUpload(targetFile);
-                  }
-                }}
+                onChangeCapture={fileChangeCaptureEventCb}
                 className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-dcs-800 sm:text-sm/6'
                 accept='application/*'
               />
