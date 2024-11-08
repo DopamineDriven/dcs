@@ -134,7 +134,7 @@ export function EventForm() {
   }
 
   return (
-    <div className='isolate bg-white px-6 py-8 font-basis-grotesque-pro-medium sm:py-16 lg:px-8'>
+    <div className='isolate bg-white px-6 py-8 font-basis-grotesque-pro-medium sm:py-12 lg:px-8'>
       <div
         aria-hidden='true'
         className='absolute inset-x-0 -top-32 -z-10 transform-gpu overflow-hidden blur-3xl'>
