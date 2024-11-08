@@ -38,7 +38,7 @@ export const data = [
 export function SubEventForm() {
   return (
     <div className='bg-white py-8 sm:py-12'>
-      <div className='mx-auto max-w-7xl px-6 lg:px-8'>
+      <div className='mx-auto max-w-7xl auto-rows-fr grid cols-1 gap-6 px-6 lg:px-8'>
           {data.map((v, i) => (
             <div
               key={v.title}
@@ -46,7 +46,7 @@ export function SubEventForm() {
               {i === 1 ? (
                 <>
                   <div className='lg:pr-4'>
-                    <div className='relative overflow-hidden rounded-3xl bg-gray-900 px-6 pb-9 pt-64 shadow-2xl sm:px-12 lg:max-w-lg lg:px-8 lg:pb-8 xl:px-10 xl:pb-10'>
+                    <div className='relative overflow-hidden rounded-3xl bg-dcs-900 px-6 pb-9 pt-64 shadow-2xl sm:px-12 lg:max-w-lg lg:px-8 lg:pb-8 xl:px-10 xl:pb-10'>
                       <Image
                         alt={v.image.url}
                         src={v.image.url}
@@ -87,7 +87,7 @@ export function SubEventForm() {
               ) : (
                 <>
                   <div className='lg:pr-4'>
-                    <div className='relative overflow-hidden rounded-3xl bg-gray-900 px-6 pb-9 pt-64 shadow-2xl sm:px-12 lg:max-w-lg lg:px-8 lg:pb-8 xl:px-10 xl:pb-10'>
+                    <div className='relative overflow-hidden rounded-3xl bg-dcs-900 px-6 pb-9 pt-64 shadow-2xl sm:px-12 lg:max-w-lg lg:px-8 lg:pb-8 xl:px-10 xl:pb-10'>
                       <Image
                         alt={v.image.url}
                         src={v.image.url}
