@@ -18,6 +18,7 @@ export default withPWAInit({ dest: "public", register: true, scope: "/app" })({
         hostname: "drisdell.com",
         protocol: "https"
       },
+      { hostname: "www.drisdell.com", protocol: "https" },
       {
         hostname: "email-smtp.us-east-1.amazonaws.com",
         protocol: "https"
