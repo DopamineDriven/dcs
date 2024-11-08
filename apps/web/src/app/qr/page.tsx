@@ -21,7 +21,9 @@ export default function QrPage() {
       <div className='relative'>
         <EventForm />
       </div>
-      <SubEventForm />
+      <div className='relative'>
+        <SubEventForm />
+      </div>
     </>
   );
 }
