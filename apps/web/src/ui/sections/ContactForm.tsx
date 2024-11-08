@@ -9,6 +9,7 @@ import type { TsxExclude } from "@/types/helpers";
 import { contactUsAction } from "@/app/actions";
 import { cn } from "@/lib/utils";
 import type { ExpectedRes } from "@/types/next";
+import { usePathname } from "next/navigation";
 
 function fetcher<const T extends ExpectedRes | undefined>(
   input: RequestInfo,
@@ -62,6 +63,7 @@ export function ContactForm() {
   const [_device, setDevice] = useState<string | undefined>();
   const [_browser, setBrowser] = useState<string | undefined>();
   const { data } = UseSwrSync({ hasData });
+  const path = usePathname();
 
   const dataCb = useCallback((props: ExpectedRes) => {
     const data = props.userAgentObject;
@@ -151,7 +153,7 @@ export function ContactForm() {
         <h2
           className='text-balance text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl'
           id='send-us-an-email'>
-          Send us an Email
+          {path === "/about-us/our-careers" ? "Inquire to learn more about Career Opportunities" : "Send us an Email"}
         </h2>
       </div>
       <form

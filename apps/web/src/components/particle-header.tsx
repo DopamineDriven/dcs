@@ -120,7 +120,7 @@ export function ParticleHeaderComponent<
   } satisfies ISourceOptions;
 
   return (
-    <div className='relative h-[50vh] sm:h-[33rem]'>
+    <div className='relative h-[75vh] sm:h-[33rem]'>
       <div className='absolute inset-0 flex flex-col' aria-hidden='true'>
         <div className='relative w-full flex-1'>
           <div className='absolute inset-0 overflow-hidden'>
@@ -138,33 +138,49 @@ export function ParticleHeaderComponent<
         <div className='inset-0 w-full bg-white' />
       </div>
       <div className='relative z-10 flex h-full w-full flex-col items-center justify-center'>
-        <h1
-          className={cn(
-            "mb-4 px-4 text-center font-basis-grotesque-pro-bold text-4xl md:text-6xl",
-            target === "HOME"
-              ? "text-white"
-              : target === "CONSULTANTS"
-                ? "text-white"
-                : target === "QR"
-                  ? "text-[#102a43]"
-                  : "text-[#102a43]"
-          )}>
-          {title}
-        </h1>
-        <div
-          dangerouslySetInnerHTML={{ __html: content }}
-          className={cn(
-            "mx-auto mb-4 flex flex-col justify-center px-4 text-center font-basis-grotesque-pro-regular",
-            css.content,
-            target === "HOME"
-              ? "text-white"
-              : target === "CONSULTANTS"
-                ? "text-white"
-                : target === "QR"
+        {target === "QR" ? (
+          <>
+            <h1
+              className={cn(
+                `mb-4 text-balance font-basis-grotesque-pro-bold text-4xl tracking-tight text-dcs-800 sm:text-5xl`
+              )}>
+              {"Welcome to Drisdell Consulting!"}
+            </h1>
+            <p className='mx-auto mb-4 max-w-xl text-pretty font-basis-grotesque-pro-regular text-lg/8 text-dcs-800'>
+              {`It was a pleasure to meet you and we look forward to the opportunity to continue to get to know you better. Please take a moment to let us know more about you. We want to help you address your HCM needs and goals.`}
+            </p>
+          </>
+        ) : (
+          <>
+            <h1
+              className={cn(
+                "mb-4 px-4 text-center font-basis-grotesque-pro-bold text-4xl md:text-6xl",
+                target === "HOME"
                   ? "text-white"
-                  : "text-[#102a43]"
-          )}
-        />
+                  : target === "CONSULTANTS"
+                    ? "text-white"
+                    : target === "QR"
+                      ? "text-[#102a43]"
+                      : "text-[#102a43]"
+              )}>
+              {title}
+            </h1>
+            <div
+              dangerouslySetInnerHTML={{ __html: content }}
+              className={cn(
+                "mx-auto mb-4 flex flex-col justify-center px-4 text-center font-basis-grotesque-pro-regular",
+                css.content,
+                target === "HOME"
+                  ? "text-white"
+                  : target === "CONSULTANTS"
+                    ? "text-white"
+                    : target === "QR"
+                      ? "text-white"
+                      : "text-[#102a43]"
+              )}
+            />
+          </>
+        )}
         <div className='flex flex-col gap-4 sm:flex-row'>
           {target === "CONTACT" ? (
             <>
