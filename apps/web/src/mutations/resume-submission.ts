@@ -49,7 +49,7 @@ export async function ExecuteResumeSubmissionMutation<
           id: 7,
           value: body
         },
-        { id: 9, fileUploadValues: file }
+        { id: 10, value: file }
       ]
     }
   }).then(data => data!);

@@ -1,10 +1,12 @@
-import { ExecuteContactFormSubmissionMutation } from "@/mutations/contact-submission";
 import { formatHelper } from "./format-helper";
 import { FsService } from "./fs";
-
+import { ExecuteResumeSubmissionMutation } from "@/mutations/resume-submission";
+import { toHtml } from "./to-html";
+import json from "./write/mutation-data.json";
 const fsHandler = new FsService(process.cwd());
+
 (async () => {
-  const data = await ExecuteContactFormSubmissionMutation({
+  const data = await ExecuteResumeSubmissionMutation({
     body: "THIS IS A TEST FROM THE CODE EDITOR",
     email: "andrew.simpson.ross@gmail.com",
     firstName: "Andrew",
@@ -12,7 +14,8 @@ const fsHandler = new FsService(process.cwd());
     ip: "73.209.222.239",
     userAgent:
       "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0",
-    subject: "Test Subject"
+    phone: "+15635809987",
+    file: toHtml({file: json.file, fileName: "Resume-2024.pdf" })
   });
 
   const s = JSON.stringify(data, null, 2);

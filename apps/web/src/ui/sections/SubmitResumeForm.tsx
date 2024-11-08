@@ -100,7 +100,7 @@ export function SubmitResume() {
 
   async function formAction(formData: FormData) {
     try {
-      console.log(formRef.current?.querySelector("input"));
+      
       // new File([b64toBlob(fileBase64Value!)], name, {lastModified: modified, type: type})
       await resumeSubmissionAction(formData);
     } catch (err) {

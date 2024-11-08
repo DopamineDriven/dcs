@@ -106,7 +106,7 @@ export async function resumeSubmissionAction(formData: FormData) {
     body: enhancedBody,
     ip: (formData.get("ip") as string) ?? "",
     userAgent: (formData.get("user-agent") as string) ?? "",
-    file: [formData.get("file")]
+    file: formData.get("file") as string
   } satisfies ExecuteResumeFormSubmissionMutationProps;
 
   const toJSON = JSON.stringify(derivedData, null, 2);
