@@ -22,7 +22,7 @@ export function SubContentSwitch({ pathname, page }: SubContentSwitchProps) {
             <Image
               className='my-2 rounded-3xl object-cover'
               alt='dcs project delivery'
-              src='https://www.dcs-headless.com/wp-content/uploads/2024/11/DCS_Project_Delivery.png'
+              src='https://dev-to-uploads.s3.amazonaws.com/uploads/articles/y7u16hd3wssgmrrwa1jq.png'
               width='2132'
               height='1707'
               blurDataURL={shimmer({ w: 2132, h: 1707 })}
