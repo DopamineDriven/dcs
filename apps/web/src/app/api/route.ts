@@ -16,8 +16,8 @@ export async function GET(request: NextRequest) {
   const qr = searchParams.get("qr") ?? "";
   const ip = reqHeaders.get("X-Forwarded-For") ?? "";
   const tz = reqHeaders.get("x-vercel-ip-timezone") ?? "";
-  const city = reqHeaders.get("X-Vercel-IP-City") ?? "";
-  const cityExpanded = city.concat(` geoCity: ${geo.city ?? ""}`);
+  const city = reqHeaders.get("X-Vercel-IP-City") ?? geo.city ?? "";
+
 
   if (searchParams.has("code")) {
     return NextResponse.json(
@@ -27,7 +27,7 @@ export async function GET(request: NextRequest) {
         ua,
         ip,
         tz,
-        city: cityExpanded,
+        city,
         lat,
         lng,
         flag
@@ -54,7 +54,7 @@ export async function GET(request: NextRequest) {
       ua,
       ip,
       tz,
-      city: cityExpanded,
+      city,
       lat,
       lng,
       flag
