@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
   const tz = reqHeaders.get("x-vercel-ip-timezone") ?? "";
   const city = reqHeaders.get("X-Vercel-IP-City") ?? "";
   const cityExpanded = city.concat(` geoCity: ${geo.city ?? ""}`);
-  
+
   if (searchParams.has("code")) {
     return NextResponse.json(
       {

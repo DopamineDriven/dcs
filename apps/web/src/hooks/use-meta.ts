@@ -1,6 +1,4 @@
 "use client";
-
-import { useEffect, useState } from "react";
 import useSWR from "swr";
 
 export type ExpectedRes = {
@@ -40,14 +38,8 @@ export function UseSwrSync({ hasData }: { hasData: boolean }) {
 }
 
 export function UseGetMeta() {
-  const [hasData, setHasData] = useState(false);
-  const { data } = UseSwrSync({ hasData });
+  const { data } = UseSwrSync({ hasData: true });
 
-  useEffect(() => {
-    if (data) {
-      setHasData(true);
-    }
-  }, [data]);
 
   if (data) {
     return {
