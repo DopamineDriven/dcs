@@ -5,7 +5,7 @@ import { geolocation } from "@vercel/functions";
 export const runtime = "edge";
 
 export async function GET(request: NextRequest) {
-  const { searchParams } = new URL(request.nextUrl);
+  const { searchParams } = new URL(request.url);
   const geo = geolocation(request);
   const lat = geo?.latitude ?? "";
   const lng = geo?.longitude ?? "";

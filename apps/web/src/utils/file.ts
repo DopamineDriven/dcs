@@ -1,3 +1,11 @@
+export function readerResultHelper(result: string | ArrayBuffer | null) {
+  return result != null
+    ? typeof result === "string"
+      ? result
+      : Buffer.from(Buffer.from(result).toJSON().data).toString()
+    : "";
+}
+
 export function getBase64ValueFileOrBlob(
   file: File | Blob,
   callback: (fileBase64Value: string) => void
@@ -6,7 +14,7 @@ export function getBase64ValueFileOrBlob(
   reader.readAsDataURL(file);
 
   reader.onload = () => {
-    callback(reader.result as string);
+    callback(readerResultHelper(reader.result));
   };
 }
 

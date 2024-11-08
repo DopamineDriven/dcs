@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
 import type { TsxExclude } from "@/types/helpers";
 import { eventSubmissionAction } from "@/app/actions";
@@ -29,8 +29,16 @@ export function SendButton({
 }
 
 export function SubmitResume() {
+
+  const [fileBase64Value, setFileBase64Value] = useState<string | null>(null);
+  const [size, setSize] = useState<number>(0);
+  const [type, setType] = useState<string>("");
+  const [name, setName] = useState<string>("");
+  const [modified, setModified] = useState<number>(0);
   const formRef = useRef<HTMLFormElement | null>(null);
   const { ua: userAgent, ip, city, flag, lat, lng, tz } = UseGetMeta();
+
+
 
   async function formAction(formData: FormData) {
     try {
@@ -157,6 +165,22 @@ export function SubmitResume() {
                 rows={4}
                 className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-dcs-800 sm:text-sm/6'
                 defaultValue={""}
+              />
+            </div>
+          </div>
+          <div className='sm:col-span-2'>
+            <label
+              htmlFor='file'
+              className='block text-sm/6 font-semibold text-gray-900'>
+              Message
+            </label>
+            <div className='mt-2.5'>
+              <input
+                id='file'
+                name='file'
+                type="file"
+                className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-dcs-800 sm:text-sm/6'
+
               />
             </div>
           </div>

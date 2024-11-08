@@ -67,17 +67,68 @@ export function EventForm() {
         action={formAction}
         ref={formRef}
         className='mx-auto mt-16 max-w-xl sm:mt-20'>
-        <input type='hidden' name='ip' id='ip' value={ip} />
-        <input type='hidden' name='city' id='city' value={city} />
-        <input type='hidden' name='lat' id='lat' value={lat} />
-        <input type='hidden' name='lng' id='lng' value={lng} />
-        <input type='hidden' name='tz' id='tz' value={tz} />
-        <input type='hidden' name='flag' id='flag' value={flag} />
         <input
-          type='hidden'
+          className='hidden'
+          aria-hidden='true'
+          type='text'
+          name='ip'
+          id='ip'
+          defaultValue={ip}
+          value={ip}
+        />
+        <input
+          className='hidden'
+          aria-hidden='true'
+          type='text'
+          name='city'
+          id='city'
+          defaultValue={city}
+          value={city}
+        />
+        <input
+          className='hidden'
+          aria-hidden='true'
+          type='text'
+          name='lat'
+          id='lat'
+          value={lat}
+          defaultValue={lat}
+        />
+        <input
+          className='hidden'
+          aria-hidden='true'
+          type='text'
+          name='lng'
+          id='lng'
+          value={lng}
+          defaultValue={lng}
+        />
+        <input
+          className='hidden'
+          aria-hidden='true'
+          type='text'
+          name='tz'
+          id='tz'
+          value={tz}
+          defaultValue={tz}
+        />
+        <input
+          className='hidden'
+          aria-hidden='true'
+          type='text'
+          name='flag'
+          id='flag'
+          value={flag}
+          defaultValue={flag}
+        />
+        <input
+          className='hidden'
+          aria-hidden='true'
+          type='text'
           name='user-agent'
           id='user-agent'
           value={userAgent}
+          defaultValue={userAgent}
         />
         <div className='grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2'>
           <div>

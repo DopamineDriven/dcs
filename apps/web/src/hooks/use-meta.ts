@@ -37,10 +37,8 @@ export function UseSwrSync({ hasData }: { hasData: boolean }) {
   };
 }
 
-export function UseGetMeta() {
-  const { data } = UseSwrSync({ hasData: true });
-
-
+export function UseGetMeta(hasData=false) {
+  const { data } = UseSwrSync({ hasData });
   if (data) {
     return {
       ua: data.ua,
