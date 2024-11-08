@@ -38,7 +38,7 @@ export const data = [
 export function SubEventForm() {
   return (
     <div className='bg-white py-8 sm:py-12'>
-      <div className='mx-auto max-w-7xl auto-rows-fr grid cols-1 gap-6 px-6 lg:px-8 divide-y-2 divide-dcs-800'>
+      <div className='mx-auto max-w-7xl auto-rows-fr grid cols-1 gap-6 px-6 lg:px-8 lg:space-y-12'>
           {data.map((v, i) => (
             <div
               key={v.title}
