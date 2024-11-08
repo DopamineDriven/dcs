@@ -45,7 +45,7 @@ export function SubEventForm() {
               className='mx-auto grid max-w-2xl grid-cols-1 items-start gap-x-8 gap-y-16 sm:gap-y-24 lg:mx-0 lg:max-w-none lg:grid-cols-2'>
               {i === 1 ? (
                 <>
-                  <div className='lg:pr-4'>
+                  <div className={'lg:pr-4 lg:order-last'}>
                     <div className='relative overflow-hidden rounded-3xl bg-dcs-900 px-6 pb-9 pt-64 shadow-2xl sm:px-12 lg:max-w-lg lg:px-8 lg:pb-8 xl:px-10 xl:pb-10'>
                       <Image
                         alt={v.image.url}
@@ -74,7 +74,7 @@ export function SubEventForm() {
                     </div>
                   </div>
                   <div>
-                    <div className='text-base/7 text-gray-700 lg:max-w-lg'>
+                    <div className='text-base/7 text-gray-700 lg:max-w-lg lg:order-first'>
                       <h2 className='mt-2 text-pretty font-basis-grotesque-pro-medium text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl'>
                         {v.title}
                       </h2>
