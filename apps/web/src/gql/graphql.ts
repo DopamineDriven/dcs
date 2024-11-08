@@ -14,6 +14,8 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
+  /** The `Upload` special type represents a file to be uploaded in the same HTTP request as specified by [graphql-multipart-request-spec](https://github.com/jaydenseric/graphql-multipart-request-spec). */
+  Upload: { input: any; output: any; }
 };
 
 export type Acfe_AdvancedLink = {
@@ -3895,8 +3897,12 @@ export type FormFieldValuesInput = {
   checkboxValues?: InputMaybe<Array<InputMaybe<CheckboxFieldInput>>>;
   /** The form field values for Email fields. */
   emailValues?: InputMaybe<EmailFieldInput>;
+  /** The form field values for file upload fields. */
+  fileUploadValues?: InputMaybe<Array<InputMaybe<Scalars['Upload']['input']>>>;
   /** The field id. */
   id: Scalars['Int']['input'];
+  /** The form field values for post image fields. */
+  imageValues?: InputMaybe<ImageInput>;
   /** The form field values for List fields. */
   listValues?: InputMaybe<Array<InputMaybe<ListFieldInput>>>;
   /** The form field values for Name fields. */
@@ -6025,6 +6031,20 @@ export type ImageFieldValue = {
   title?: Maybe<Scalars['String']['output']>;
   /** The url to the file. */
   url?: Maybe<Scalars['String']['output']>;
+};
+
+/** Input fields for a single post Image. */
+export type ImageInput = {
+  /** The image alt text. */
+  altText?: InputMaybe<Scalars['String']['input']>;
+  /** The image caption. */
+  caption?: InputMaybe<Scalars['String']['input']>;
+  /** The image description. */
+  description?: InputMaybe<Scalars['String']['input']>;
+  /** The image to be uploaded. */
+  image: Scalars['Upload']['input'];
+  /** The image title. */
+  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** A Gravity Forms list field. */

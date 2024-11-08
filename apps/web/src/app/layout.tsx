@@ -16,9 +16,12 @@ import {
 import "./global.css";
 import { Footer } from "@/ui/sections/Footer";
 import { Nav } from "@/ui/sections/Nav";
+import * as myGtag from "@/utils/analytics";
+import Script from "next/script";
 
 export const viewport = {
   colorScheme: "dark light",
+  userScalable: true,
   themeColor: "#234670",
   viewportFit: "auto",
   initialScale: 1,
@@ -30,7 +33,7 @@ export const metadata = {
   metadataBase: new URL(getSiteUrl(process.env.NODE_ENV)),
   title: {
     default: "Drisdell Consulting Services",
-    template: "Drisdell Consulting Services | %s"
+    template: "%s | Drisdell Consulting Services"
   },
   // Since 1995, we have provided quality services and custom application development solutions to our customers.  And as hard as it is to accomplish in this day and age, we have realized a 100% on time, on budget project completion record on all of our client projects. We successfully manage projects, implement systems and solve business problems—just ask any of our clients!
   description:
@@ -77,10 +80,18 @@ export const metadata = {
   robots: {
     googleBot: {
       follow: true,
-      index: true
+      index: true,
+      indexifembedded: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1
     },
     follow: true,
-    index: true
+    index: true,
+    indexifembedded: true,
+    "max-video-preview": -1,
+    "max-image-preview": "large",
+    "max-snippet": -1
   }
 } satisfies Metadata;
 
@@ -99,6 +110,28 @@ export default function RootLayout({
         <main>{children}</main>
         <Footer />
       </body>
+      <Script
+        async
+        strategy='afterInteractive'
+        id='gtag-init'
+        dangerouslySetInnerHTML={{
+          __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${myGtag.GA_TRACKING_ID}', {
+            page_path: window.location.pathname,
+          });
+         `
+        }}
+      />
+      <Script
+        async
+        id={myGtag.GA_TRACKING_ID}
+        data-test={myGtag.GA_TRACKING_ID}
+        strategy='afterInteractive'
+        src={`https://www.googletagmanager.com/gtag/js?id=${myGtag.GA_TRACKING_ID}`}
+      />
     </html>
   );
 }

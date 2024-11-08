@@ -5706,8 +5706,14 @@ input FormFieldValuesInput {
   """The form field values for Email fields."""
   emailValues: EmailFieldInput
 
+  """The form field values for file upload fields."""
+  fileUploadValues: [Upload]
+
   """The field id."""
   id: Int!
+
+  """The form field values for post image fields."""
+  imageValues: ImageInput
 
   """The form field values for List fields."""
   listValues: [ListFieldInput]
@@ -8743,6 +8749,24 @@ type ImageFieldValue {
 
   """The url to the file."""
   url: String
+}
+
+"""Input fields for a single post Image."""
+input ImageInput {
+  """The image alt text."""
+  altText: String
+
+  """The image caption."""
+  caption: String
+
+  """The image description."""
+  description: String
+
+  """The image to be uploaded."""
+  image: Upload!
+
+  """The image title."""
+  title: String
 }
 
 """A Gravity Forms list field."""
@@ -27274,6 +27298,11 @@ type UpdateUserPayload {
   """The User object mutation type."""
   user: User
 }
+
+"""
+The `Upload` special type represents a file to be uploaded in the same HTTP request as specified by [graphql-multipart-request-spec](https://github.com/jaydenseric/graphql-multipart-request-spec).
+"""
+scalar Upload
 
 """A User object"""
 type User implements Commenter & DatabaseIdentifier & Node & UniformResourceIdentifiable {

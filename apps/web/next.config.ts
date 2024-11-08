@@ -42,7 +42,12 @@ export default withPWAInit({ dest: "public", register: true, scope: "/app" })({
         hostname: "drisdell-dev.vercel.app",
         protocol: "https"
       },
-      { hostname: "dev-to-uploads.s3.amazonaws.com", protocol: "https" }
+      { hostname: "dev-to-uploads.s3.amazonaws.com", protocol: "https" },
+      {
+        hostname: "ypuktmwmnilhirdf.public.blob.vercel-storage.com",
+        protocol: "https",
+        port: ""
+      }
     ]
   },
   productionBrowserSourceMaps: true

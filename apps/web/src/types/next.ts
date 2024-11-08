@@ -15,3 +15,15 @@ export type InferIt<T, V extends "RT" | "P" | "B"> = T extends (
 export type InferGSPRT<V extends (...args: any) => any> = {
   params: Promise<Unenumerate<InferIt<V, "RT">>>;
 };
+
+export type ExpectedRes = {
+  qr: string;
+  userAgentObject: globalThis.UserAgent;
+  ua: string;
+  ip: string;
+  tz: string;
+  city: string;
+  lat: string;
+  lng: string;
+  flag: string;
+};
