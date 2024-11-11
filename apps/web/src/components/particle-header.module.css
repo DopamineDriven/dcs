@@ -2,4 +2,7 @@
   & > p {
     @apply px-1 self-center font-basis-grotesque-pro-regular text-[1rem] leading-normal;
   }
+  & > audio {
+    @apply rounded-full;
+  }
 }

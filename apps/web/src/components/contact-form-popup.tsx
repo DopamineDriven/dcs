@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { eventSubmissionAction } from "@/app/actions";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/contact-form-button";
 import {
   Dialog,
   DialogContent,

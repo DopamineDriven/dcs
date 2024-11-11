@@ -5,7 +5,7 @@ import css from "./children-scaffold.module.css";
 
 export function ChildrenScaffold({ page }: PageByUriProps) {
   return (
-    <div className='mx-auto grid max-w-2xl grid-cols-1 items-start gap-x-8 gap-y-16 sm:gap-y-24 lg:mx-0 lg:max-w-none lg:grid-cols-2'>
+    <div className='mx-auto grid max-w-2xl grid-cols-1 items-start gap-x-8 gap-y-8 sm:gap-y-24 lg:mx-0 lg:max-w-none lg:grid-cols-2'>
       <div className='lg:pr-4'>
         <div className='relative overflow-hidden rounded-3xl bg-gray-900 px-6 pb-9 pt-64 shadow-2xl sm:px-12 lg:max-w-lg lg:px-8 lg:pb-8 xl:px-10 xl:pb-10'>
           <Image
@@ -36,7 +36,7 @@ export function ChildrenScaffold({ page }: PageByUriProps) {
       </div>
       <div>
         <div className='text-base/7 text-gray-700 lg:max-w-lg'>
-          <h1 className='mt-2 text-pretty text-4xl font-semibold font-basis-grotesque-pro-medium tracking-tight text-gray-900 sm:text-5xl'>
+          <h1 className='mt-2 text-pretty text-3xl font-semibold font-basis-grotesque-pro-medium tracking-tight text-gray-900 sm:text-5xl'>
             {page.title}
           </h1>
           <div

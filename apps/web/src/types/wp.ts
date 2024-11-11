@@ -319,4 +319,8 @@ export type ExecuteResumeFormSubmissionMutationProps = {
   userAgent?: string;
   ip?: string;
   file: string;
-}
+};
+
+export type CardsProps<T extends keyof typeof parentPagesById> = {
+  target: T;
+} & PageByIdWithChildrenProps["page"]["children"];

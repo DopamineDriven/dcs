@@ -63,6 +63,14 @@ export function Nav() {
   const [hasScrolled, setHasScrolled] = useState(false);
 
   useEffect(() => {
+    if (mobileMenuOpen === true) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+  }, [mobileMenuOpen]);
+
+  useEffect(() => {
     const handleScroll = throttle(() => {
       const offset = 0;
       const { scrollTop } = document.documentElement;
@@ -165,7 +173,7 @@ export function Nav() {
                     variant='ghost'
                     className='flex w-full items-center justify-between px-3 py-2 text-base font-medium text-dcs-800 hover:bg-dcs-200 hover:text-dcs-900'
                     onClick={() => toggleExpanded(item.name)}>
-                    {item.name}
+                    <Link href={item.href}>{item.name}</Link>
                     {expandedItems.includes(item.name) ? (
                       <ChevronUp className='ml-1 h-4 w-4' />
                     ) : (

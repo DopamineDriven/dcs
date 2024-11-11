@@ -132,6 +132,7 @@ const config = {
         refinement: "0px 2px 5px 0px #d7d7d7",
         testimonial: "5px 5px 5px 0px rgba(0, 0, 0, 0.35)",
         titleShadow: "0 1px 0 0 rgb(35 38 59 / 5%)",
+        embla: "inset 0 0 0 0.2rem rgb(54 49 61 / 1)",
         magical:
           "rgba(0, 0, 0, 0.02) 0px 30px 30px, rgba(0, 0, 0, 0.03) 0px 0px 8px, rgba(0, 0, 0, 0.05) 0px 1px 0px",
         cardHover:
@@ -162,6 +163,7 @@ const config = {
           "100%": { opacity: "0" }
         }
       }),
+
       animation: {
         wiggle: "wiggle 10s ease-in-out infinite",
         hero: "hero 1s ease-in-out infinite",
@@ -180,7 +182,8 @@ const config = {
     require("tailwindcss-animate"),
     forms,
     require("@headlessui/tailwindcss"),
-    typography
+    typography,
+    require("@xpd/tailwind-3dtransforms")
   ]
 } satisfies TailwindConfig;
 export default config;

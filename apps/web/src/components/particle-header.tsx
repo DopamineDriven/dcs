@@ -120,7 +120,7 @@ export function ParticleHeaderComponent<
   } satisfies ISourceOptions;
 
   return (
-    <div className='relative h-[75vh] sm:h-[33rem]'>
+    <div className={cn("relative sm:h-[33rem]",target==="QR" ?'h-[75vh]' : target==="HOME" ? "h-[75vh]" : "h-[50vh]")}>
       <div className='absolute inset-0 flex flex-col' aria-hidden='true'>
         <div className='relative w-full flex-1'>
           <div className='absolute inset-0 overflow-hidden'>
