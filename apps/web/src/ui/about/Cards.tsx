@@ -4,6 +4,7 @@ import type { PageByIdWithChildrenProps } from "@/types/wp";
 import { shimmer } from "@/lib/shimmer";
 import { cn } from "@/lib/utils";
 import { parentPagesById } from "@/types/wp";
+import { CarouselCards } from "../dynamic/CarouselCards";
 
 export type CardsProps<T extends keyof typeof parentPagesById> = {
   target: T;
@@ -14,9 +15,9 @@ export function Cards<const T extends keyof typeof parentPagesById>({
   edges
 }: CardsProps<T>) {
   return (
-    <div className='bg-white py-24 sm:py-32'>
-      <div className='mx-auto max-w-7xl px-6 lg:px-8'>
-        <div className='mx-auto max-w-3xl text-center'>
+    <div className='bg-white py-12 sm:py-32'>
+      <div className='mx-auto max-w-7xl px-0 lg:px-8'>
+        <div className='mx-auto max-w-3xl text-center pb-10'>
           <h2 className='text-balance text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl'>
             {target === "About_Us"
               ? "About Drisdell Consulting Services"
@@ -25,7 +26,7 @@ export function Cards<const T extends keyof typeof parentPagesById>({
         </div>
         <div
           className={cn(
-            "mx-auto mt-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-6 sm:mt-20 lg:mx-0 lg:max-w-none",
+            "hidden lg:mx-0 lg:mt-20 lg:grid lg:max-w-none lg:auto-rows-fr lg:gap-6",
             target === "About_Us" ? "lg:grid-cols-3" : "lg:grid-cols-2"
           )}>
           {edges.map(post => (
@@ -56,6 +57,7 @@ export function Cards<const T extends keyof typeof parentPagesById>({
             </article>
           ))}
         </div>
+        <CarouselCards target={target} edges={edges} />
       </div>
     </div>
   );

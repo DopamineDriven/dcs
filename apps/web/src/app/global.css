@@ -12,13 +12,42 @@
   max-width: 2780px !important;
 } */
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
 body {
   max-width: 2780px !important;
   margin: auto;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 @layer base {
   :root {
     --radius: 0.5rem;
+    --slide-height: 19rem;
+    --slide-spacing: 1rem;
+    --slide-size: 70%;
   }
+}
+
+#root, #__next {
+  isolation: isolate;
+}
+
+.no-scroll {
+  overflow: hidden !important;
 }

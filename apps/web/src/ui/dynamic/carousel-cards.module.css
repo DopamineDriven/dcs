@@ -1,0 +1,66 @@
+.embla {
+  @apply max-w-[48rem] m-auto bg-white pb-10;
+}
+
+.embla__viewport {
+  @apply overflow-hidden;
+}
+
+.embla__container {
+  @apply flex ml-[calc(var(--slide-spacing)*-1)] touch-pan-y touch-pinch-zoom;
+}
+
+.embla__slide {
+  @apply flex-[0_0_var(--slide-size)] [transform:translate3d(0,0,0)] min-w-0 pl-[var(--slide-spacing)];
+}
+
+.embla__slide__img {
+  @apply rounded-[1.8rem] block h-[var(--slide-height)] w-full object-cover inset-0 -z-10;
+}
+
+.embla__controls {
+  @apply grid grid-cols-[auto_1fr] justify-between gap-[1.2rem] mt-[1.8rem];
+}
+
+.embla__buttons {
+  @apply grid grid-cols-[repeat(2,1fr)] gap-[0.6rem] items-center;
+}
+
+.embla__button {
+  @apply appearance-none bg-transparent touch-manipulation inline-flex [text-decoration:none] cursor-pointer border-0 p-0 m-0
+  [box-shadow:inset_0_0_0_0.2rem_rgba(234,234,234,1)] w-[3.6rem] h-[3.6rem] z-[1] rounded-[50%] text-[#36313d] items-center
+  justify-center [-webkit-tap-highlight-color:rgba(49,49,49,0.5)] [-webkit-appearance:none];
+}
+
+.embla__button:disabled {
+  @apply text-[rgba(192,192,192,1)];
+}
+
+.embla__button__svg {
+  @apply w-[35%] h-[35%];
+}
+
+.embla__dots {
+  @apply flex flex-wrap justify-end items-center mr-[calc((2.6rem-1.4rem)/2*-1)];
+}
+
+.embla__dot {
+  @apply [-webkit-tap-highlight-color:rgba(49,49,49,0.5)] [-webkit-appearance:none] bg-transparent appearance-none touch-manipulation
+  inline-flex items-center justify-center rounded-[50%] w-[2.6rem] h-[2.6rem] m-0 p-0 border-0 cursor-pointer [text-decoration:none];
+}
+
+.embla__dot:after {
+  @apply w-[1.4rem] h-[1.4rem] rounded-[50%] flex items-center [content:''] [box-shadow:inset_0_0_0_0.2rem_rgba(249,249,249,1)];
+}
+
+.embla__dot--selected:after {
+  @apply [box-shadow:inset_0_0_0_0.2rem_rgba(49,49,49,1)];
+}
+
+.embla__slide {
+  @apply [transition:opacity_0.2s_ease-in-out];
+}
+
+.embla__slide:not(.is-snapped) {
+  @apply opacity-[1];
+}
