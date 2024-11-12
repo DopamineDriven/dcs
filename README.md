@@ -6,8 +6,8 @@
 
 - Uses a Pnpm Workspace + Turborepo 💙
 - The website is housed in the `/apps/web` directory
-- Reusable tooling configurations (eslint, prettier, typescript, etc) are housed in the `/tooling/*` subdirectories
-- The `/app/web` repo uses nextjs, typescript, tailwindcss, headless wordpress via WpGraphQL, and the beta release of `@vercel/blob` to handle file storage to avoid configuring file uploads with a headless graphql setup
+- Reusable tooling configurations (eslint, prettier, typescript, etc) are housed in the `/tooling/*` directories
+- The `/apps/web` repo uses nextjs, typescript, tailwindcss, headless wordpress via WpGraphQL, and the beta release of `@vercel/blob` to handle file storage to avoid configuring file uploads with a headless graphql setup
 - The project is deployed on a vercel pro account
 - The wordpress instance is hosted on AWS with the Cloudfront CDN wrapping it
 - Email notifications are automatically sent on form submission events via an aws ses address tied to the headless wordpress backend
