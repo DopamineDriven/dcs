@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import useSWR from "swr";
 import type { ExpectedRes } from "@/types/next";
 
-// import { b64toBlob } from "@/utils/blobby";
+// TODO - style the file upload input element -- https://stackoverflow.com/a/70528034/13243520
 
 function fetcher<const T extends ExpectedRes | undefined>(
   input: RequestInfo,
@@ -125,7 +125,6 @@ export function SubmitResume() {
       formData.append("flag", data.flag);
     }
     try {
-      // new File([b64toBlob(fileBase64Value!)], name, {lastModified: modified, type: type})
       await resumeSubmissionAction(formData);
     } catch (err) {
       console.error(
