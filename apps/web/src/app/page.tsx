@@ -4,7 +4,7 @@ import { ParticleHeaderComponent } from "@/components/particle-header";
 import { QueryPageByUri } from "@/queries/page-by-uri";
 
 export const metadata = {
-  title: "Home"
+  title: "Drisdell Consulting Services"
 } satisfies Metadata;
 
 export default async function HomePage() {

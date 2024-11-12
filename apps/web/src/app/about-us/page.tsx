@@ -7,7 +7,7 @@ import { Cards } from "@/ui/dynamic/Cards";
 import { Spinner } from "@/ui/loading/Spinner";
 
 export const metadata = {
-  title: "About Us"
+  title: "About Us",
 } satisfies Metadata;
 
 export const revalidate = 60;
