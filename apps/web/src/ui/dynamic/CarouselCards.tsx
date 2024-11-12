@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import ClassNames from "embla-carousel-class-names";
 import useEmblaCarousel from "embla-carousel-react";
-// import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { CardsProps, parentPagesById } from "@/types/wp";
 import { CarouselButton } from "@/components/ui/carousel-button";
 import { shimmer } from "@/lib/shimmer";
@@ -18,6 +17,7 @@ export function CarouselCards<const T extends keyof typeof parentPagesById>({
 }: CardsProps<T>) {
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
+      dragFree: true,
       loop: false,
       align: "start"
     },

@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { ParticleHeaderComponent } from "@/components/particle-header";
 import { QueryPageByIdWithChildren } from "@/queries/page-by-id-with-children";
-import { Cards } from "@/ui/about/Cards";
+import { Cards } from "@/ui/dynamic/Cards";
 import { Spinner } from "@/ui/loading/Spinner";
 
 export const metadata = {

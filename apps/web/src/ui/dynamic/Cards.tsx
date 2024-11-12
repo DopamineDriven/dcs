@@ -1,14 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { PageByIdWithChildrenProps } from "@/types/wp";
+import type { CardsProps } from "@/types/wp";
 import { shimmer } from "@/lib/shimmer";
 import { cn } from "@/lib/utils";
 import { parentPagesById } from "@/types/wp";
-import { CarouselCards } from "../dynamic/CarouselCards";
-
-export type CardsProps<T extends keyof typeof parentPagesById> = {
-  target: T;
-} & PageByIdWithChildrenProps["page"]["children"];
+import { CarouselCards } from "@/ui/dynamic/CarouselCards";
 
 export function Cards<const T extends keyof typeof parentPagesById>({
   target,
@@ -17,13 +13,14 @@ export function Cards<const T extends keyof typeof parentPagesById>({
   return (
     <div className='bg-white py-12 sm:py-32'>
       <div className='mx-auto max-w-7xl px-0 lg:px-8'>
-        <div className='mx-auto max-w-3xl text-center pb-10'>
+        <div className='mx-auto max-w-3xl pb-10 text-center'>
           <h2 className='text-balance text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl'>
             {target === "About_Us"
               ? "About Drisdell Consulting Services"
               : "Consultants"}
           </h2>
         </div>
+        {/* viewports lg or bigger render Classic Cards (below) */}
         <div
           className={cn(
             "hidden lg:mx-0 lg:mt-20 lg:grid lg:max-w-none lg:auto-rows-fr lg:gap-6",
@@ -57,6 +54,7 @@ export function Cards<const T extends keyof typeof parentPagesById>({
             </article>
           ))}
         </div>
+        {/* viewports md or smaller render Carousel Cards */}
         <CarouselCards target={target} edges={edges} />
       </div>
     </div>
