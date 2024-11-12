@@ -14,10 +14,10 @@ import {
   BasisGrotesqueProRegular
 } from "@/styles/fonts";
 import "./global.css";
+import Script from "next/script";
 import { Footer } from "@/ui/sections/Footer";
 import { Nav } from "@/ui/sections/Nav";
 import * as myGtag from "@/utils/analytics";
-import Script from "next/script";
 
 export const viewport = {
   colorScheme: "dark light",
@@ -46,6 +46,10 @@ export const metadata = {
     startupImage: [{ url: "/apple-icon.png" }]
   },
   authors: [{ name: "Andrew Ross", url: "https://github.com/DopamineDriven" }],
+  verification: {
+    google: "6_NmtOALI6hPXwpk9CJpLaFcVUqzxBVv56tYxFYqGvA",
+    
+  },
   icons: [
     {
       type: "image/png",
