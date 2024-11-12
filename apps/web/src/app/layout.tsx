@@ -48,7 +48,8 @@ export const metadata = {
   authors: [{ name: "Andrew Ross", url: "https://github.com/DopamineDriven" }],
   verification: {
     google: "6_NmtOALI6hPXwpk9CJpLaFcVUqzxBVv56tYxFYqGvA",
-    
+    yandex: "b77e0eafbd48ddd5"
+
   },
   icons: [
     {

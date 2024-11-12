@@ -8,6 +8,7 @@
     "build": "next build",
     "format": "prettier --write \"**/*.{ts,tsx,cts,mts,js,jsx,mjs,cjs,json,yaml,yml,css,html,md,mdx,graphql,gql}\" --ignore-unknown --cache",
     "prebuild": "graphql-codegen --config codegen.ts",
+    "postbuild": "next-sitemap --config next-sitemap.mjs",
     "start": "next start",
     "lint": "eslint"
   },
