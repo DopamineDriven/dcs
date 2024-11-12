@@ -200,3 +200,22 @@ export type TsxIncludeExp<
   K extends keyof React.JSX.IntrinsicElements,
   J extends keyof TsxTargetedExp<K, I>
 > = RemoveFields<TsxTargetedExp<K, I>, Exclude<keyof TsxTargetedExp<K, I>, J>>;
+
+export type IsOptional<T, K extends keyof T> = undefined extends T[K]
+  ? object extends Pick<T, K>
+    ? true
+    : false
+  : false;
+
+export type OnlyOptional<T> = {
+  [K in keyof T as IsOptional<T, K> extends true ? K : never]: T[K];
+};
+
+export type OnlyRequired<T> = {
+  [K in keyof T as IsOptional<T, K> extends false ? K : never]: T[K];
+};
+
+export type FilterOptionalOrRequired<
+  V,
+  T extends "conditional" | "required"
+> = T extends "conditional" ? OnlyOptional<V> : OnlyRequired<V>;
