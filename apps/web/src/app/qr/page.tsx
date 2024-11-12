@@ -4,7 +4,7 @@ import { EventForm } from "@/ui/sections/EventForm";
 import { SubEventForm } from "@/ui/sections/SubEventForm";
 
 export const metadata = {
-  title: "Event"
+  title: "Welcome to Drisdell Consulting Services"
 } satisfies Metadata;
 
 export default function QrPage() {
