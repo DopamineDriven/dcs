@@ -2,9 +2,10 @@ import type { VariantProps } from "class-variance-authority";
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
+import type { TsxTargeted } from "@/types/helpers";
 import { cn } from "@/lib/utils";
 
-const defaultVariant = {
+const rootClassName = {
   default: `inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none
   focus-visible:ring-1 focus-visible:ring-neutral-950 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4
   [&_svg]:shrink-0 dark:focus-visible:ring-neutral-300`
@@ -36,7 +37,7 @@ const variants = {
   }
 };
 
-const buttonVariants = cva(defaultVariant.default, {
+const buttonVariants = cva(rootClassName.default, {
   variants,
   defaultVariants: {
     variant: "default",
@@ -44,17 +45,17 @@ const buttonVariants = cva(defaultVariant.default, {
   }
 });
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+export interface ParticleButtonProps
+  extends TsxTargeted<"button">,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+const ParticleButton = React.forwardRef<HTMLButtonElement, ParticleButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : "button";
+    const ParticleButton = asChild ? Slot : "button";
     return (
-      <Comp
+      <ParticleButton
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...props}
@@ -62,6 +63,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     );
   }
 );
-Button.displayName = "Button";
+ParticleButton.displayName = "ParticleButton";
 
-export { Button, buttonVariants };
+export { ParticleButton, buttonVariants };

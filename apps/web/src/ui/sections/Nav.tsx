@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import throttle from "lodash.throttle";
 import { ChevronDown, ChevronUp, Menu, X } from "lucide-react";
 import {
@@ -10,8 +11,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/nav-button";
 import { cn } from "@/lib/utils";
+import { NavButton } from "@/ui/buttons/NavButton";
 import { DrisdellIcon } from "@/ui/icons/DrisdellIcon";
 import css from "./navbar.module.css";
 
@@ -61,6 +62,7 @@ export function Nav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
   const [hasScrolled, setHasScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     if (mobileMenuOpen === true) {
@@ -69,6 +71,12 @@ export function Nav() {
       document.body.classList.remove("no-scroll");
     }
   }, [mobileMenuOpen]);
+
+  useEffect(() => {
+    // effect only fires on pathname change
+    console.info(`route changed to ${pathname}`);
+    setMobileMenuOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
     const handleScroll = throttle(() => {
@@ -120,11 +128,11 @@ export function Nav() {
                       </Link>
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                          <Button
+                          <NavButton
                             variant='ghost'
                             className='h-auto rounded-full px-1 py-1 text-sm font-medium text-dcs-800 hover:text-dcs-900'>
                             <ChevronDown className='h-4 w-4' />
-                          </Button>
+                          </NavButton>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align='start'>
                           {item.children.map(child => (
@@ -147,7 +155,7 @@ export function Nav() {
             </div>
           </div>
           <div className='-mr-2 flex items-center sm:hidden'>
-            <Button
+            <NavButton
               variant='ghost'
               className='inline-flex items-center justify-center rounded-md p-2 text-dcs-800 hover:bg-dcs-200 hover:text-dcs-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-dcs-800'
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
@@ -157,7 +165,7 @@ export function Nav() {
               ) : (
                 <Menu className='block h-6 w-6' aria-hidden='true' />
               )}
-            </Button>
+            </NavButton>
           </div>
         </div>
       </div>
@@ -166,33 +174,41 @@ export function Nav() {
       <div className={`sm:hidden ${mobileMenuOpen ? "block" : "hidden"}`}>
         <div className='space-y-1 pb-3 pt-2'>
           {navigation.map(item => (
-            <div key={item.name} className='px-2 py-1'>
+            <div key={item.name} className=''>
               {item.children ? (
-                <div>
-                  <Button
-                    variant='ghost'
-                    className='flex w-full items-center justify-between px-3 py-2 text-base font-medium text-dcs-800 hover:bg-dcs-200 hover:text-dcs-900'
-                    onClick={() => toggleExpanded(item.name)}>
-                    <Link href={item.href}>{item.name}</Link>
-                    {expandedItems.includes(item.name) ? (
-                      <ChevronUp className='ml-1 h-4 w-4' />
-                    ) : (
-                      <ChevronDown className='ml-1 h-4 w-4' />
+                <>
+                  <div className='flex w-full min-w-full flex-row justify-between px-3 py-2'>
+                    <Link
+                      className='z-50 inline-flex justify-between text-base font-medium text-dcs-800 hover:bg-dcs-200 hover:text-dcs-900'
+                      href={item.href}>
+                      {item.name}
+                    </Link>
+                    <NavButton
+                      variant='ghost'
+                      className='-mt-2 inline-flex items-end justify-between align-top text-base font-medium text-dcs-800 hover:bg-dcs-200 hover:text-dcs-900'
+                      onClick={() => toggleExpanded(item.name)}>
+                      {expandedItems.includes(item.name) ? (
+                        <ChevronUp className='ml-1 h-4 w-4' />
+                      ) : (
+                        <ChevronDown className='ml-1 h-4 w-4' />
+                      )}
+                    </NavButton>
+                  </div>
+                  <div className=''>
+                    {expandedItems.includes(item.name) && (
+                      <div className='ml-4 mt-2 space-y-2'>
+                        {item.children.map(child => (
+                          <Link
+                            key={child.name}
+                            href={child.href}
+                            className='block px-3 py-2 text-base font-medium text-dcs-800 hover:bg-dcs-200 hover:text-dcs-900'>
+                            {child.name}
+                          </Link>
+                        ))}
+                      </div>
                     )}
-                  </Button>
-                  {expandedItems.includes(item.name) && (
-                    <div className='ml-4 mt-2 space-y-2'>
-                      {item.children.map(child => (
-                        <Link
-                          key={child.name}
-                          href={child.href}
-                          className='block px-3 py-2 text-base font-medium text-dcs-800 hover:bg-dcs-200 hover:text-dcs-900'>
-                          {child.name}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                  </div>
+                </>
               ) : (
                 <Link
                   href={item.href}

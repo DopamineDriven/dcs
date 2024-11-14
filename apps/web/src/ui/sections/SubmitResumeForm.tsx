@@ -9,6 +9,7 @@ import useSWR from "swr";
 import type { ExpectedRes } from "@/types/next";
 
 // TODO - style the file upload input element -- https://stackoverflow.com/a/70528034/13243520
+// TODO SUPPORT DRAG AND DROP https://github.com/vercel/examples/blob/main/storage/blob-starter/components/uploader.tsx
 
 function fetcher<const T extends ExpectedRes | undefined>(
   input: RequestInfo,

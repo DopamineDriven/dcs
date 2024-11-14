@@ -57,7 +57,8 @@
     "rootClassName",
     ".*Variant.*",
     ".*variant.*",
-    ".*Styles.*"
+    ".*Styles.*",
+    ".*ClassName.*"
   ],
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.tsserver.web.typeAcquisition.enabled": true,

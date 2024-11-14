@@ -5,7 +5,7 @@ import Link from "next/link";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadFull } from "tsparticles";
 import type { Container, ISourceOptions } from "@tsparticles/engine";
-import { Button } from "@/components/ui/particles-button";
+import { ParticleButton } from "@/ui/particles/ParticleButton";
 import { cn } from "@/lib/utils";
 import css from "./particle-header.module.css";
 
@@ -120,7 +120,15 @@ export function ParticleHeaderComponent<
   } satisfies ISourceOptions;
 
   return (
-    <div className={cn("relative sm:h-[33rem]",target==="QR" ?'h-[75vh]' : target==="HOME" ? "h-[75vh]" : "h-[50vh]")}>
+    <div
+      className={cn(
+        "relative sm:h-[33rem]",
+        target === "QR"
+          ? "h-[75vh]"
+          : target === "HOME"
+            ? "h-[75vh]"
+            : "h-[50vh]"
+      )}>
       <div className='absolute inset-0 flex flex-col' aria-hidden='true'>
         <div className='relative w-full flex-1'>
           <div className='absolute inset-0 overflow-hidden'>
@@ -146,7 +154,7 @@ export function ParticleHeaderComponent<
               )}>
               {"Welcome to Drisdell Consulting!"}
             </h1>
-            <p className='mx-auto px-1 mb-4 max-w-xl sm:max-w-2xl text-pretty text-center font-basis-grotesque-pro-medium text-[1.25rem] leading-[1.5rem] tracking-tight text-dcs-800'>
+            <p className='mx-auto mb-4 max-w-xl text-pretty px-1 text-center font-basis-grotesque-pro-medium text-[1.25rem] leading-[1.5rem] tracking-tight text-dcs-800 sm:max-w-2xl'>
               {`It was a pleasure to meet you and we look forward to the opportunity to continue to get to know you better. Please take a moment to let us know more about you. We want to help you address your HCM needs and goals.`}
             </p>
           </>
@@ -168,7 +176,7 @@ export function ParticleHeaderComponent<
             <div
               dangerouslySetInnerHTML={{ __html: content }}
               className={cn(
-                "mx-auto mb-4 flex flex-col justify-center max-w-xl sm:max-w-2xl text-center font-basis-grotesque-pro-regular",
+                "mx-auto mb-4 flex max-w-xl flex-col justify-center text-center font-basis-grotesque-pro-regular sm:max-w-2xl",
                 css.content,
                 target === "HOME"
                   ? "text-white"
@@ -185,23 +193,23 @@ export function ParticleHeaderComponent<
           {target === "CONTACT" ? (
             <>
               <Link href='/consultants'>
-                <Button variant='dcs' size='dcs'>
+                <ParticleButton variant='dcs' size='dcs'>
                   {"Consultants"}
-                </Button>
+                </ParticleButton>
               </Link>
               <Link
                 href='/contact-us#send-us-an-email'
                 scroll={true}
                 style={{ scrollBehavior: "smooth" }}
                 shallow={true}>
-                <Button variant='dcs' size='dcs'>
+                <ParticleButton variant='dcs' size='dcs'>
                   {"Send an Email"}
-                </Button>
+                </ParticleButton>
               </Link>
               <Link href='/consultants/skills-and-positions'>
-                <Button variant='dcs' size='dcs'>
+                <ParticleButton variant='dcs' size='dcs'>
                   {"Skills & Positions"}
-                </Button>
+                </ParticleButton>
               </Link>
             </>
           ) : target === "QR" ? (
@@ -220,27 +228,27 @@ export function ParticleHeaderComponent<
           ) : target === "ABOUT" ? (
             <>
               <Link href='/consultants'>
-                <Button variant='dcs' size='dcs'>
+                <ParticleButton variant='dcs' size='dcs'>
                   {"Consultants"}
-                </Button>
+                </ParticleButton>
               </Link>
               <Link href='/contact-us'>
-                <Button variant='dcs' size='dcs'>
+                <ParticleButton variant='dcs' size='dcs'>
                   {"Contact Us"}
-                </Button>
+                </ParticleButton>
               </Link>
             </>
           ) : (
             <>
               <Link href='/about-us'>
-                <Button variant='dcs_dark' size='dcs'>
+                <ParticleButton variant='dcs_dark' size='dcs'>
                   {"About Us"}
-                </Button>
+                </ParticleButton>
               </Link>
               <Link href='/contact-us'>
-                <Button variant='dcs_dark' size='dcs'>
+                <ParticleButton variant='dcs_dark' size='dcs'>
                   {"Contact Us"}
-                </Button>
+                </ParticleButton>
               </Link>
             </>
           )}

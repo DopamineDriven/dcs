@@ -1,4 +1,5 @@
 import type React from "react";
+import clsx from "clsx";
 
 export type Unenumerate<T> = T extends readonly (infer U)[] | (infer U)[]
   ? U
@@ -219,3 +220,63 @@ export type FilterOptionalOrRequired<
   V,
   T extends "conditional" | "required"
 > = T extends "conditional" ? OnlyOptional<V> : OnlyRequired<V>;
+
+export type StringToBoolean<T> = T extends "true" | "false" ? boolean : T;
+
+export type ClassValue =
+  | ClassArray
+  | ClassDictionary
+  | string
+  | number
+  | null
+  | boolean
+  | undefined;
+
+export type ClassDictionary = Record<string, any>;
+
+export type ClassArray = ClassValue[];
+export type ClassPropKey = "class" | "className";
+export type ClassProp =
+  | {
+      class: ClassValue;
+      className?: never;
+    }
+  | {
+      class?: never;
+      className: ClassValue;
+    }
+  | {
+      class?: never;
+      className?: never;
+    };
+export type OmitUndefined<T> = T extends undefined ? never : T;
+
+export type VariantProps<Component extends (...args: any) => any> = Omit<
+  OmitUndefined<Parameters<Component>[0]>,
+  "class" | "className"
+>;
+export type CxOptions = Parameters<typeof clsx>;
+export type CxReturn = ReturnType<typeof clsx>;
+
+export type ConfigSchema = Record<string, Record<string, ClassValue>>;
+export type ConfigVariants<T extends ConfigSchema> = {
+  [Variant in keyof T]?: StringToBoolean<keyof T[Variant]> | null | undefined;
+};
+export type ConfigVariantsMulti<T extends ConfigSchema> = {
+  [Variant in keyof T]?:
+    | StringToBoolean<keyof T[Variant]>
+    | StringToBoolean<keyof T[Variant]>[]
+    | undefined;
+};
+export type CvaConfig<T> = T extends ConfigSchema
+  ? {
+      variants?: T;
+      defaultVariants?: ConfigVariants<T>;
+      compoundVariants?: (T extends ConfigSchema
+        ? (ConfigVariants<T> | ConfigVariantsMulti<T>) & ClassProp
+        : ClassProp)[];
+    }
+  : never;
+export type CvaProps<T> = T extends ConfigSchema
+  ? ConfigVariants<T> & ClassProp
+  : ClassProp;
