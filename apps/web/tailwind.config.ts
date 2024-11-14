@@ -109,6 +109,7 @@ const config = {
           "950": "#16253b"
         }
       },
+
       ringWidth: {
         "3": "3px",
         "5": "5px",
@@ -141,6 +142,13 @@ const config = {
           "inset 0 1px 4px 0 rgb(119 122 175 / 40%), inset 0 1px 1px 0 rgb(119 122 175 / 40%), 0 1px 0 0 rgb(35 38 59 / 5%)"
       },
       keyframes: ({ theme: _theme }) => ({
+        blink: {
+          "0%": {
+            opacity: "0.2"
+          },
+          "20%": { opacity: "1" },
+          "100%": { opacity: "0.2" }
+        },
         wiggle: {
           "0%, 100%": { transform: "rotate(-3deg)" },
           "50%": { transform: "rotate(3deg)" }
@@ -163,13 +171,16 @@ const config = {
           "100%": { opacity: "0" }
         }
       }),
-
+      transitionDelay: {
+        "400": "400ms"
+      },
       animation: {
         wiggle: "wiggle 10s ease-in-out infinite",
         hero: "hero 1s ease-in-out infinite",
         slowPing: "pulse 10s cubic-bezier(0, 0, 0.2, 1) infinite",
         slowWave: "wave 10s ease-in-out",
-        wave: "wave 560ms ease-in-out"
+        wave: "wave 560ms ease-in-out",
+        blink: "blink 1.4s ease-in-out infinite"
       },
       borderRadius: {
         lg: "var(--radius)",

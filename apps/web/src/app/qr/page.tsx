@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ParticleHeaderComponent } from "@/components/particle-header";
+import { ParticleHeaderComponent } from "@/ui/particles/ParticleHeader";
 import { EventForm } from "@/ui/sections/EventForm";
 import { SubEventForm } from "@/ui/sections/SubEventForm";
 

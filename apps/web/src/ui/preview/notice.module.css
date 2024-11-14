@@ -1,0 +1,7 @@
+.preview {
+  @apply fixed left-0 right-0 top-0 mx-auto my-0 flex w-[17.5rem] max-w-full justify-between whitespace-nowrap rounded-bl-[0.3125rem] rounded-br-[0.3125rem] bg-black px-[0.9375rem] py-[0.3125rem] text-center font-basis-grotesque-pro-medium text-white;
+}
+
+.preview a {
+  @apply ml-[0.625rem] appearance-none;
+}
