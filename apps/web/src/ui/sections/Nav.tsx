@@ -100,129 +100,140 @@ export function Nav() {
   };
 
   return (
-    <header className='static appearance-none'>
-      <nav
-        className={cn(
-          "bg-white font-basis-grotesque-pro-medium shadow will-change-scroll",
-          css.stickyNav,
-          hasScrolled === false ? "bg-opacity-100" : "bg-opacity-95"
-        )}>
-        <div className={"mx-auto max-w-8xl px-4 sm:px-6 lg:px-8"}>
-          <div className='flex h-16 justify-between'>
-            <div className='flex'>
-              <div className='flex flex-shrink-0 items-center'>
-                <Link
-                  href='/'
-                  className='z-[100] text-xl font-bold text-gray-800'>
-                  <DrisdellIcon width={50} />
-                </Link>
-              </div>
-              <div className='hidden sm:ml-6 sm:flex sm:space-x-8'>
-                {navigation.map(item => (
-                  <div key={item.name} className='relative flex items-center'>
-                    {item.children ? (
-                      <>
-                        <Link
-                          className='inline-flex items-center border-b-2 border-transparent px-1 py-2 text-sm font-medium text-dcs-800 hover:border-dcs-800 hover:text-dcs-900'
-                          href={item.href}>
-                          {item.name}
-                        </Link>
-                        <DropdownMenu>
-                          <DropdownMenuTrigger asChild>
-                            <NavButton
-                              variant='ghost'
-                              className='h-auto rounded-full px-1 py-1 text-sm font-medium text-dcs-800 hover:text-dcs-900'>
-                              <ChevronDown className='h-4 w-4' />
-                            </NavButton>
-                          </DropdownMenuTrigger>
-                          <DropdownMenuContent align='start'>
-                            {item.children.map(child => (
-                              <DropdownMenuItem key={child.name} asChild>
-                                <Link href={child.href}>{child.name}</Link>
-                              </DropdownMenuItem>
-                            ))}
-                          </DropdownMenuContent>
-                        </DropdownMenu>
-                      </>
-                    ) : (
-                      <Link
-                        href={item.href}
-                        className='inline-flex items-center border-b-2 border-transparent px-1 py-2 text-sm font-medium text-dcs-800 hover:border-dcs-800 hover:text-dcs-900'>
-                        {item.name}
-                      </Link>
-                    )}
-                  </div>
-                ))}
-              </div>
+    <nav
+      className={cn(
+        "bg-white font-basis-grotesque-pro-medium shadow will-change-scroll",
+        css.stickyNav,
+        hasScrolled === false ? "bg-opacity-100" : "bg-opacity-95"
+      )}>
+      <div className={"mx-auto max-w-8xl px-4 sm:px-6 lg:px-8"}>
+        <div className='flex h-16 justify-between'>
+          <div className='flex'>
+            <div className='flex flex-shrink-0 items-center'>
+              <Link
+                scroll={false}
+                href='/'
+                className='z-[100] text-xl font-bold text-gray-800'>
+                <DrisdellIcon width={50} />
+              </Link>
             </div>
-            <div className='-mr-2 flex items-center sm:hidden'>
-              <NavButton
-                variant='ghost'
-                className='inline-flex items-center justify-center rounded-md p-2 text-dcs-800 hover:bg-dcs-200 hover:text-dcs-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-dcs-800'
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-                <span className='sr-only'>Open main menu</span>
-                {mobileMenuOpen ? (
-                  <X className='block h-6 w-6' aria-hidden='true' />
-                ) : (
-                  <Menu className='block h-6 w-6' aria-hidden='true' />
-                )}
-              </NavButton>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile menu */}
-        <div className={`sm:hidden ${mobileMenuOpen ? "block" : "hidden"}`}>
-          <div className='space-y-1 pb-3 pt-2'>
-            {navigation.map(item => (
-              <div key={item.name} className=''>
-                {item.children ? (
-                  <>
-                    <div className='flex w-full min-w-full flex-row justify-between px-3 py-2'>
+            {/* Desktop/Tablet Menu */}
+            <div className='hidden sm:ml-6 sm:flex sm:space-x-8'>
+              {navigation.map(item => (
+                <div key={item.name} className='relative flex items-center'>
+                  {item.children ? (
+                    <>
                       <Link
-                        className='z-50 inline-flex justify-between text-base font-medium text-dcs-800 hover:bg-dcs-200 hover:text-dcs-900'
+                        scroll={false}
+                        className='inline-flex items-center border-b-2 border-transparent px-1 py-2 text-sm font-medium text-dcs-800 hover:border-dcs-800 hover:text-dcs-900'
                         href={item.href}>
                         {item.name}
                       </Link>
-                      <NavButton
-                        variant='ghost'
-                        className='-mt-2 inline-flex items-end justify-between align-top text-base font-medium text-dcs-800 hover:bg-dcs-200 hover:text-dcs-900'
-                        onClick={() => toggleExpanded(item.name)}>
-                        {expandedItems.includes(item.name) ? (
-                          <ChevronUp className='ml-1 h-4 w-4' />
-                        ) : (
-                          <ChevronDown className='ml-1 h-4 w-4' />
-                        )}
-                      </NavButton>
-                    </div>
-                    <div className=''>
-                      {expandedItems.includes(item.name) && (
-                        <div className='ml-4 mt-2 space-y-2'>
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <NavButton
+                            variant='ghost'
+                            className='h-auto rounded-full px-1 py-1 text-sm font-medium text-dcs-800 hover:text-dcs-900'>
+                            <ChevronDown className='h-4 w-4' />
+                          </NavButton>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align='start'>
                           {item.children.map(child => (
-                            <Link
-                              scroll={false}
-                              key={child.name}
-                              href={child.href}
-                              className='block px-3 py-2 text-base font-medium text-dcs-800 hover:bg-dcs-200 hover:text-dcs-900'>
-                              {child.name}
-                            </Link>
+                            <DropdownMenuItem key={child.name} asChild>
+                              <Link scroll={false} href={child.href}>
+                                {child.name}
+                              </Link>
+                            </DropdownMenuItem>
                           ))}
-                        </div>
-                      )}
-                    </div>
-                  </>
-                ) : (
-                  <Link
-                    href={item.href}
-                    className='block px-3 py-2 text-base font-medium text-dcs-800 hover:bg-dcs-200 hover:text-dcs-900'>
-                    {item.name}
-                  </Link>
-                )}
-              </div>
-            ))}
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </>
+                  ) : (
+                    <Link
+                      scroll={false}
+                      href={item.href}
+                      className='inline-flex items-center border-b-2 border-transparent px-1 py-2 text-sm font-medium text-dcs-800 hover:border-dcs-800 hover:text-dcs-900'>
+                      {item.name}
+                    </Link>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* Hamburger Menu for Mobile; Hidden on Tablet/Desktop */}
+          <div className='-mr-2 flex items-center sm:hidden'>
+            <NavButton
+              variant='ghost'
+              className='inline-flex items-center justify-center rounded-md p-2 text-dcs-800 hover:bg-dcs-200 hover:text-dcs-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-dcs-800'
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              <span className='sr-only'>Open main menu</span>
+              {mobileMenuOpen ? (
+                <X className='block h-6 w-6' aria-hidden='true' />
+              ) : (
+                <Menu className='block h-6 w-6' aria-hidden='true' />
+              )}
+            </NavButton>
           </div>
         </div>
-      </nav>
-    </header>
+      </div>
+
+      {/* Mobile menu */}
+      <div className={cn(`sm:hidden`, mobileMenuOpen ? "block" : "hidden")}>
+        <div
+          className={cn(
+            "basis-grotesque-pro-medium absolute flow-root w-full min-w-full space-y-1 bg-white pb-3 pt-2 will-change-scroll",
+            hasScrolled === false ? "bg-opacity-100" : "bg-opacity-95",
+            css.navMobile
+          )}>
+          {navigation.map(item => (
+            <div key={item.name} className='relative'>
+              {item.children ? (
+                <>
+                  <div className='flex w-full min-w-full flex-row justify-between px-3 py-2'>
+                    <Link
+                      scroll={false}
+                      className='z-50 inline-flex justify-between text-base font-medium text-dcs-800 hover:bg-dcs-200 hover:text-dcs-900'
+                      href={item.href}>
+                      {item.name}
+                    </Link>
+                    <NavButton
+                      variant='ghost'
+                      className='-my-2.5 inline-flex items-end justify-between align-top text-base font-medium text-dcs-800 hover:bg-dcs-200 hover:text-dcs-900'
+                      onClick={() => toggleExpanded(item.name)}>
+                      {expandedItems.includes(item.name) ? (
+                        <ChevronUp className='ml-1 h-4 w-4' />
+                      ) : (
+                        <ChevronDown className='ml-1 h-4 w-4' />
+                      )}
+                    </NavButton>
+                  </div>
+                  <div className=''>
+                    {expandedItems.includes(item.name) && (
+                      <div className='ml-4 mt-2 space-y-2'>
+                        {item.children.map(child => (
+                          <Link
+                            scroll={false}
+                            key={child.name}
+                            href={child.href}
+                            className='block px-3 py-2 text-base font-medium text-dcs-800 hover:bg-dcs-200 hover:text-dcs-900'>
+                            {child.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </>
+              ) : (
+                <Link
+                  href={item.href}
+                  className='block px-3 py-2 text-base font-medium text-dcs-800 hover:bg-dcs-200 hover:text-dcs-900'>
+                  {item.name}
+                </Link>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </nav>
   );
 }
