@@ -76,7 +76,6 @@ export function Nav() {
     // effect only fires on pathname change which closes the menu in mobile view
     console.info(`route changed to ${pathname}`);
     setMobileMenuOpen(false);
-    window.scrollTo(0, 0);
   }, [pathname]);
 
   useEffect(() => {
@@ -201,6 +200,7 @@ export function Nav() {
                         <div className='ml-4 mt-2 space-y-2'>
                           {item.children.map(child => (
                             <Link
+                              scroll={false}
                               key={child.name}
                               href={child.href}
                               className='block px-3 py-2 text-base font-medium text-dcs-800 hover:bg-dcs-200 hover:text-dcs-900'>
