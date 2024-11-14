@@ -9,17 +9,14 @@ export const metadata = {
 export default function ContactUsPage() {
   return (
     <>
-      <div className='relative'>
+      <div className='isolate relative flow-root'>
         <ParticleHeaderComponent
           title='Contact Us'
           content=''
           target='CONTACT'
         />
-        <div className='absolute inset-0 overflow-hidden' />
       </div>
-      <div className='relative'>
-        <ContactForm />
-      </div>
+      <ContactForm />
     </>
   );
 }

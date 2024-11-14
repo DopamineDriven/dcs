@@ -10,20 +10,15 @@ export const metadata = {
 export default function QrPage() {
   return (
     <>
-      <div className='relative'>
+      <div className='isolate relative flow-root'>
         <ParticleHeaderComponent
           title='Event Form Placeholder'
           content=''
           target='QR'
         />
-        <div className='absolute inset-0 overflow-hidden' />
       </div>
-      <div className='relative'>
-        <EventForm />
-      </div>
-      <div className='relative'>
-        <SubEventForm />
-      </div>
+      <EventForm />
+      <SubEventForm />
     </>
   );
 }
