@@ -8,6 +8,6 @@
     @apply rounded-full;
   }
   & > p {
-    @apply my-2 text-base/6 text-gray-700 lg:max-w-3xl;
+    @apply mt-2 text-base/6 text-pretty text-gray-700 lg:max-w-3xl;
   }
 }
