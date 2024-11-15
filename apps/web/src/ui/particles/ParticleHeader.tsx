@@ -154,7 +154,7 @@ export function ParticleHeaderComponent<
               )}>
               {"Welcome to Drisdell Consulting!"}
             </h1>
-            <p className='mx-auto mb-4 max-w-xl text-pretty px-1 text-center font-basis-grotesque-pro-medium text-[1.25rem] leading-[1.5rem] tracking-tight text-dcs-800 sm:max-w-2xl'>
+            <p className='mx-auto mb-4 max-w-xl text-pretty px-2 text-center font-basis-grotesque-pro-medium text-[1.25rem] leading-[1.5rem] tracking-tight text-dcs-800 sm:max-w-2xl'>
               {`It was a pleasure to meet you and we look forward to the opportunity to continue to get to know you better. Please take a moment to let us know more about you. We want to help you address your HCM needs and goals.`}
             </p>
           </>

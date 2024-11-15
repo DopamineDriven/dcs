@@ -137,7 +137,7 @@ export function EventForm() {
     <div className='isolate bg-white px-6 py-8 font-basis-grotesque-pro-medium sm:py-12 lg:px-8'>
       <div
         aria-hidden='true'
-        className='absolute inset-x-0 -top-32 -z-10 transform-gpu overflow-hidden blur-3xl'>
+        className='absolute inset-x-0 -z-10 transform-gpu overflow-hidden blur-3xl'>
         <div
           style={{
             clipPath:

@@ -25,7 +25,7 @@ export default async function ConsultantsPage() {
             content={data.page.content}
           />
         </Suspense>
-        {/* <div className='absolute inset-0 overflow-hidden' /> */}
+        <div className='absolute inset-0 overflow-hidden' />
       </div>
       <Suspense fallback={<Spinner />}>
         <Cards target='Consultants' edges={data.page.children.edges} />

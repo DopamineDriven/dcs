@@ -44,7 +44,7 @@ body {
   }
 }
 
-#root, #__next {
+#__next {
   isolation: isolate;
 }
 
