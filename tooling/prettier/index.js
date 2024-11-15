@@ -2,6 +2,10 @@
 /** @typedef {import("prettier-plugin-tailwindcss").PluginOptions} TailwindConfig */
 /** @typedef {import("@ianvs/prettier-plugin-sort-imports").PluginConfig} SortImportsConfig */
 
+import { relative } from "path";
+
+const tailwindConfig = relative(process.cwd(), "tailwind.config.ts");
+
 /** @type { PrettierConfig | SortImportsConfig | TailwindConfig } */
 const config = {
   plugins: [
@@ -10,7 +14,7 @@ const config = {
   ],
   importOrder: [
     "<TYPES>",
-    "<TYPES>^@takeda-digital",
+    "<TYPES>^@dcs",
     "^@dcs/(.*)$",
     "^(react/(.*)$)|^(react$)",
     "^(next/(.*)$)|^(next$)",
@@ -21,6 +25,8 @@ const config = {
     "^[../]",
     "^[./]"
   ],
+  tailwindConfig,
+  tailwindFunctions: ["cn", "cva"],
   importOrderParserPlugins: [
     "typescript",
     "jsx",

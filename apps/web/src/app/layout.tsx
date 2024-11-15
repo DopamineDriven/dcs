@@ -15,6 +15,7 @@ import {
 } from "@/styles/fonts";
 import "./global.css";
 import Script from "next/script";
+import { ViewTransitions } from "next-view-transitions";
 import { Footer } from "@/ui/sections/Footer";
 import { Nav } from "@/ui/sections/Nav";
 import * as myGtag from "@/utils/analytics";
@@ -105,23 +106,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      suppressHydrationWarning
-      lang='en'
-      className={`h-full ${BasisGrotesqueProBlack.variable} ${BasisGrotesqueProBlackItalic.variable} ${BasisGrotesqueProBold.variable} ${BasisGrotesqueProBoldItalic.variable} ${BasisGrotesqueProItalic.variable} ${BasisGrotesqueProLight.variable} ${BasisGrotesqueProLightItalic.variable} ${BasisGrotesqueProMedium.variable} ${BasisGrotesqueProMediumItalic.variable} ${BasisGrotesqueProRegular.variable}`}>
-      <body className='antialiased'>
-        <div className='m-0 flex min-h-screen flex-col justify-between p-0 bg-white'>
-          <Nav />
-          <main className=''>{children}</main>
-          <Footer />
-        </div>
-      </body>
-      <Script
-        async
-        strategy='afterInteractive'
-        id='gtag-init'
-        dangerouslySetInnerHTML={{
-          __html: `
+    <ViewTransitions>
+      <html
+        suppressHydrationWarning
+        lang='en'
+        className={`h-full ${BasisGrotesqueProBlack.variable} ${BasisGrotesqueProBlackItalic.variable} ${BasisGrotesqueProBold.variable} ${BasisGrotesqueProBoldItalic.variable} ${BasisGrotesqueProItalic.variable} ${BasisGrotesqueProLight.variable} ${BasisGrotesqueProLightItalic.variable} ${BasisGrotesqueProMedium.variable} ${BasisGrotesqueProMediumItalic.variable} ${BasisGrotesqueProRegular.variable}`}>
+        <body className='antialiased'>
+          <div className='m-0 flex min-h-screen flex-col justify-between bg-white p-0'>
+            <Nav />
+            <main className=''>{children}</main>
+            <Footer />
+          </div>
+        </body>
+        <Script
+          async
+          strategy='afterInteractive'
+          id='gtag-init'
+          dangerouslySetInnerHTML={{
+            __html: `
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
@@ -129,15 +131,16 @@ export default function RootLayout({
             page_path: window.location.pathname,
           });
          `
-        }}
-      />
-      <Script
-        async
-        id={myGtag.GA_TRACKING_ID}
-        data-test={myGtag.GA_TRACKING_ID}
-        strategy='afterInteractive'
-        src={`https://www.googletagmanager.com/gtag/js?id=${myGtag.GA_TRACKING_ID}`}
-      />
-    </html>
+          }}
+        />
+        <Script
+          async
+          id={myGtag.GA_TRACKING_ID}
+          data-test={myGtag.GA_TRACKING_ID}
+          strategy='afterInteractive'
+          src={`https://www.googletagmanager.com/gtag/js?id=${myGtag.GA_TRACKING_ID}`}
+        />
+      </html>
+    </ViewTransitions>
   );
 }
