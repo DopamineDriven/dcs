@@ -16,7 +16,12 @@ export default async function HomePage() {
   }
   return (
     <div className='relative'>
-      <Suspense fallback={<LoadingDots />}>
+      <Suspense
+        fallback={
+          <div className='mx-auto my-auto flex h-screen w-screen justify-center bg-white align-middle'>
+            <LoadingDots color='#234670' />
+          </div>
+        }>
         <ParticleHeaderComponent
           title={data.page.title}
           target='HOME'

@@ -110,7 +110,7 @@ export default function RootLayout({
       lang='en'
       className={`h-full ${BasisGrotesqueProBlack.variable} ${BasisGrotesqueProBlackItalic.variable} ${BasisGrotesqueProBold.variable} ${BasisGrotesqueProBoldItalic.variable} ${BasisGrotesqueProItalic.variable} ${BasisGrotesqueProLight.variable} ${BasisGrotesqueProLightItalic.variable} ${BasisGrotesqueProMedium.variable} ${BasisGrotesqueProMediumItalic.variable} ${BasisGrotesqueProRegular.variable}`}>
       <body className='antialiased'>
-        <div className='m-0 flex min-h-screen flex-col justify-between p-0'>
+        <div className='m-0 flex min-h-screen flex-col justify-between p-0 bg-white'>
           <Nav />
           <main className=''>{children}</main>
           <Footer />

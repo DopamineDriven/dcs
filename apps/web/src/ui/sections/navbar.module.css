@@ -1,6 +1,6 @@
 .stickyNav {
   position: sticky;
-  z-index: 200;
+  z-index: 50;
   top: 0;
   backdrop-filter: saturate(180%) blur(20px);
   transition: background-color 0.1 ease-in-out;
