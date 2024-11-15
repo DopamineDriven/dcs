@@ -122,7 +122,7 @@ export function ParticleHeaderComponent<
   return (
     <div
       className={cn(
-        "relative sm:h-[60vh]",
+        "relative sm:h-[33rem] 2xl:h-[90vh]",
         target === "QR"
           ? "h-[75vh]"
           : target === "HOME"
