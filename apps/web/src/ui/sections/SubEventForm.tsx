@@ -9,8 +9,8 @@ export const data = [
   {
     image: {
       url: "https://www.dcs-headless.com/wp-content/uploads/2024/10/our-world.webp",
-      width: 640,
-      height: 427
+      width: 1280,
+      height: 854
     },
     content: `We’ve got you covered. Whether you need onsite services or would prefer the remote delivery model that we have been using for the last 15 years, we always ensure full uninterrupted continuity for our customers. Out of the gate, we have used standard video conferencing platforms, secure VPN networking infrastructure, and cloud-based services to provide seamless continuity to our entire customer base. We have been able to leverage all of our technologies for mobile WFM utilization. Our implementation model is platform independent and easily adapts to technology changes. Simply stated, we recognize the challenges and we have the tools and methodologies to meet those challenges together.`,
     title: "Our World"
@@ -18,8 +18,8 @@ export const data = [
   {
     image: {
       url: "https://www.dcs-headless.com/wp-content/uploads/2024/10/our-organization.webp",
-      width: 1000,
-      height: 667
+      width: 1280,
+      height: 854
     },
     content: `Drisdell Consulting Services, Inc. provides expert professional services for all areas of Human Capital and Workforce Management IT system implementation and support. Since 1995, we have provided quality services and custom application development solutions to our customers. As hard as it is to accomplish in this day and age, we have realized a 100% on time, on budget project completion record on all of our client projects. We successfully manage projects, implement systems, and solve business problems-just ask any of our clients!`,
     title: "Our Organization"
@@ -39,13 +39,13 @@ export const data = [
 export function SubEventForm() {
   return (
     <div className='bg-white py-8 sm:py-12'>
-      <div className='cols-1 mx-auto grid max-w-7xl auto-rows-fr gap-6 px-6 lg:space-y-12 lg:px-8'>
+      <div className='grid-cols-1 mx-auto grid max-w-7xl auto-rows-fr gap-6 px-6 lg:space-y-12 lg:px-8'>
         {data.map((v, i) => (
           <div
             key={v.title}
             className='mx-auto grid max-w-2xl grid-cols-1 items-start gap-x-8 gap-y-6 sm:gap-y-24 lg:mx-0 lg:max-w-none lg:grid-cols-2'>
             <div className={cn("lg:pr-4", i === 1 ? "lg:order-last" : "")}>
-              <div className='relative overflow-hidden rounded-3xl bg-dcs-900 px-6 pb-9 pt-64 shadow-2xl sm:px-12 lg:max-w-lg lg:px-8 lg:pb-8 xl:px-10 xl:pb-10'>
+              <div className='relative overflow-hidden rounded-3xl bg-dcs-900 pb-9 px-6 pt-64 shadow-2xl sm:px-12 lg:max-w-lg lg:px-8 lg:pb-8 xl:px-10 xl:pb-10'>
                 <Image
                   alt={v.image.url}
                   src={v.image.url}
@@ -78,11 +78,11 @@ export function SubEventForm() {
                   "text-base/7 text-gray-700 lg:max-w-lg",
                   i === 1 ? "lg:order-first" : ""
                 )}>
-                <h2 className='mt-2 text-pretty font-basis-grotesque-pro-medium text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl'>
+                <h2 className='text-pretty font-basis-grotesque-pro-medium text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl'>
                   {v.title}
                 </h2>
                 <div className={css.inner_wp_content}>
-                  <p>{v.content}</p>
+                  <p className="text-pretty">{v.content}</p>
                 </div>
               </div>
             </div>

@@ -35,7 +35,6 @@ export const metadata = {
     default: "Drisdell Consulting Services",
     template: "%s | Drisdell Consulting Services"
   },
-
   // Since 1995, we have provided quality services and custom application development solutions to our customers.  And as hard as it is to accomplish in this day and age, we have realized a 100% on time, on budget project completion record on all of our client projects. We successfully manage projects, implement systems and solve business problems—just ask any of our clients!
   description:
     "Exceptional Human Capital and Workforce Management IT System Support",
@@ -50,7 +49,6 @@ export const metadata = {
   verification: {
     google: "6_NmtOALI6hPXwpk9CJpLaFcVUqzxBVv56tYxFYqGvA",
     yandex: "b77e0eafbd48ddd5"
-
   },
   icons: [
     {
@@ -111,10 +109,12 @@ export default function RootLayout({
       suppressHydrationWarning
       lang='en'
       className={`h-full ${BasisGrotesqueProBlack.variable} ${BasisGrotesqueProBlackItalic.variable} ${BasisGrotesqueProBold.variable} ${BasisGrotesqueProBoldItalic.variable} ${BasisGrotesqueProItalic.variable} ${BasisGrotesqueProLight.variable} ${BasisGrotesqueProLightItalic.variable} ${BasisGrotesqueProMedium.variable} ${BasisGrotesqueProMediumItalic.variable} ${BasisGrotesqueProRegular.variable}`}>
-      <body className=''>
-        <Nav />
-        <main className="">{children}</main>
-        <Footer />
+      <body className='antialiased'>
+        <div className='m-0 flex min-h-screen flex-col justify-between p-0'>
+          <Nav />
+          <main className=''>{children}</main>
+          <Footer />
+        </div>
       </body>
       <Script
         async
