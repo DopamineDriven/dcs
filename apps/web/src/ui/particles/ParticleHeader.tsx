@@ -176,7 +176,7 @@ export function ParticleHeaderComponent<
             <div
               dangerouslySetInnerHTML={{ __html: content }}
               className={cn(
-                "mx-auto mb-4 flex max-w-xl flex-col justify-center text-center font-basis-grotesque-pro-regular sm:max-w-2xl",
+                "mx-auto mb-4 px-2 flex max-w-xl flex-col justify-center text-center font-basis-grotesque-pro-regular sm:max-w-2xl",
                 css.content,
                 target === "HOME"
                   ? "text-white"
