@@ -18,6 +18,17 @@ const customGrays = {
   "950": "#09090b"
 } as const;
 
+// screens: {
+//   xs: "375px",
+//   smxs: "507px",
+//   sm: "640px",
+//   md: "768px",
+//   mdlg: "896px",
+//   lg: "1024px",
+//   xl: "1280px",
+//   "2xl": "1536px"
+// },
+
 const config = {
   content: ["src/**/*.{js,ts,jsx,tsx}"],
   // darkMode: ["class", 'html[class~="dark"]'],
