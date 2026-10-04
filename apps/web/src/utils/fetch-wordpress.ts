@@ -13,11 +13,7 @@ export async function fetchWpAPI<const T>(
   const res = await fetch("https://www.dcs-headless.com/graphql", {
     headers: wpHeaders,
     method: "POST",
-    body,
-    cache: "default",
-    next: {
-      tags: ["wordpress"]
-    }
+    body
   });
 
   const json = (await res.json()) as Record<string, T>;
