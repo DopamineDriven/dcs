@@ -2,7 +2,7 @@
 
 export function b64toBlob(b64Data: string) {
   const sliceSize = 512;
-  // eslint-disable-next-line
+  // eslint-disable-next-line @typescript-eslint/prefer-regexp-exec
   const typeMatch = b64Data.match(/data:(.*);/);
   const type = typeMatch?.[1];
   console.log(type ?? "");

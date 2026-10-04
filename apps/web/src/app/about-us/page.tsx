@@ -22,7 +22,7 @@ export default async function AboutUsPage() {
           <ParticleHeaderComponent
             title={data.page.title}
             target='ABOUT'
-            content={data.page.content}
+            content='<audio controls preload="metadata" aria-label="About Us"><source src="/about-us.mp3" type="audio/mpeg" /></audio>'
           />
         </Suspense>
         <div className='absolute inset-0 overflow-hidden' />
