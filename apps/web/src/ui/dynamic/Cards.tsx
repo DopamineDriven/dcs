@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { CardsProps } from "@/types/wp";
-import { shimmer } from "@/lib/shimmer";
+import { shimmer } from "@dcs/ui";
 import { cn } from "@/lib/utils";
 import { parentPagesById } from "@/types/wp";
 import { CarouselCards } from "@/ui/dynamic/CarouselCards";
@@ -43,7 +43,7 @@ export function Cards<const T extends keyof typeof parentPagesById>({
                 className='absolute inset-0 -z-10 h-full w-full object-cover group-hover:opacity-75'
                 style={{ objectFit: "cover" }}
               />
-              <div className='absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40' />
+              <div className='absolute inset-0 -z-10 bg-linear-to-t from-gray-900 via-gray-900/40' />
               <div className='absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10' />
               <h3 className='mt-3 font-basis-grotesque-pro-regular text-lg/6 font-semibold text-white'>
                 <Link href={post.node.uri}>

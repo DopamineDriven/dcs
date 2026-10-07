@@ -1,0 +1,66 @@
+{
+  "name": "@dcs/vitest-config",
+  "version": "0.1.0",
+  "type": "module",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist/**/*.{js,cjs,mjs,d.ts,d.cts,d.mts}"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "typesVersions": {
+      "*": {
+        "*": [
+          "dist/index.d.ts"
+        ]
+      }
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/index.d.ts"
+      ]
+    }
+  },
+  "source": "index.ts",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --config tsdown-dev.config.ts",
+    "lint": "eslint",
+    "clean": "git clean -xdf .cache .turbo node_modules dist",
+    "format": "prettier --write \"src/**/*.{ts,cts,mts,js,mjs,cjs,json,yaml,yml}\" --ignore-unknown --cache",
+    "typecheck": "tsgo --noEmit"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "catalog:vite",
+    "@vitest/coverage-istanbul": "catalog:vitest",
+    "@vitest/ui": "catalog:vitest",
+    "vite": "catalog:vite",
+    "vitest": "catalog:vitest"
+  },
+  "devDependencies": {
+    "@dcs/eslint-config": "workspace:*",
+    "@dcs/prettier-config": "workspace:*",
+    "@dcs/tsconfig": "workspace:*",
+    "@typescript/native-preview": "catalog:tsgo",
+    "@types/node": "catalog:node",
+    "typescript": "catalog:ts",
+    "eslint": "catalog:eslint",
+    "glob": "catalog:glob",
+    "jiti": "catalog:jiti",
+    "nyc": "catalog:nyc",
+    "prettier": "catalog:prettier",
+    "tsdown": "catalog:tsdown",
+    "tslib": "catalog:tslib",
+    "tsx": "catalog:tsx",
+    "typescript-eslint": "catalog:tseslint"
+  },
+  "prettier": "@dcs/prettier-config"
+}

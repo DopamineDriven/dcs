@@ -4,15 +4,13 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import throttle from "lodash.throttle";
-import { ChevronDown, ChevronUp, Menu, X } from "lucide-react";
-import {
-  DropdownMenu,
+import {BaseButton,
+  DropdownMenu,ChevronDown, ChevronUp, Menu, X,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger
-} from "@/components/ui/dropdown-menu";
+} from "@dcs/ui";
 import { cn } from "@/lib/utils";
-import { NavButton } from "@/ui/buttons/NavButton";
 import { DrisdellIcon } from "@/ui/icons/DrisdellIcon";
 import css from "./navbar.module.css";
 
@@ -75,6 +73,7 @@ export function Nav() {
   useEffect(() => {
     // effect only fires on pathname change which closes the menu in mobile view
     console.info(`route changed to ${pathname}`);
+    // eslint-disable-next-line
     setMobileMenuOpen(false);
   }, [pathname]);
 
@@ -110,11 +109,11 @@ export function Nav() {
         <div className={"mx-auto max-w-8xl px-4 sm:px-6 lg:px-8"}>
           <div className='flex h-16 justify-between'>
             <div className='flex'>
-              <div className='flex flex-shrink-0 items-center'>
+              <div className='flex shrink-0 items-center'>
                 <Link
                   scroll={false}
                   href='/'
-                  className='z-[100] text-xl font-bold text-gray-800'>
+                  className='z-100 text-xl font-bold text-gray-800'>
                   <DrisdellIcon width={50} />
                 </Link>
               </div>
@@ -132,11 +131,11 @@ export function Nav() {
                         </Link>
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
-                            <NavButton
+                            <BaseButton
                               variant='ghost'
                               className='h-auto rounded-full px-1 py-1 text-sm font-medium text-dcs-800 hover:text-dcs-900'>
-                              <ChevronDown className='h-4 w-4' />
-                            </NavButton>
+                              <ChevronDown className='size-4' />
+                            </BaseButton>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align='start'>
                             {item.children.map(child => (
@@ -163,17 +162,17 @@ export function Nav() {
             </div>
             {/* Hamburger Menu for Mobile; Hidden on Tablet/Desktop */}
             <div className='-mr-2 flex items-center sm:hidden'>
-              <NavButton
+              <BaseButton
                 variant='ghost'
                 className='inline-flex items-center justify-center rounded-md p-2 text-dcs-800 hover:bg-dcs-200 hover:text-dcs-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-dcs-800'
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
                 <span className='sr-only'>Open main menu</span>
                 {mobileMenuOpen ? (
-                  <X className='block h-6 w-6' aria-hidden='true' />
+                  <X className='block size-6' aria-hidden='true' />
                 ) : (
-                  <Menu className='block h-6 w-6' aria-hidden='true' />
+                  <Menu className='block size-6' aria-hidden='true' />
                 )}
-              </NavButton>
+              </BaseButton>
             </div>
           </div>
         </div>
@@ -182,7 +181,7 @@ export function Nav() {
         <div className={cn(`sm:hidden`, mobileMenuOpen ? "block" : "hidden")}>
           <div
             className={cn(
-              "basis-grotesque-pro-medium absolute flow-root w-full min-w-full space-y-1 bg-white pb-3 pt-2 will-change-scroll",
+              "font-basis-grotesque-pro-medium absolute flow-root w-full min-w-full space-y-1 bg-white pb-3 pt-2 will-change-scroll",
               hasScrolled === false ? "bg-opacity-100" : "bg-opacity-95",
               css.navMobile
             )}>
@@ -197,16 +196,16 @@ export function Nav() {
                         href={item.href}>
                         {item.name}
                       </Link>
-                      <NavButton
+                      <BaseButton
                         variant='ghost'
                         className='-my-2.5 inline-flex items-end justify-between align-top text-base font-medium text-dcs-800 hover:bg-dcs-200 hover:text-dcs-900'
                         onClick={() => toggleExpanded(item.name)}>
                         {expandedItems.includes(item.name) ? (
-                          <ChevronUp className='ml-1 h-4 w-4' />
+                          <ChevronUp className='ml-1 size-4' />
                         ) : (
-                          <ChevronDown className='ml-1 h-4 w-4' />
+                          <ChevronDown className='ml-1 size-4' />
                         )}
-                      </NavButton>
+                      </BaseButton>
                     </div>
                     <div className=''>
                       {expandedItems.includes(item.name) && (

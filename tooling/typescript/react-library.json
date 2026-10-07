@@ -5,18 +5,17 @@
     "alwaysStrict": true,
     "jsx": "react-jsx",
     "lib": ["DOM", "DOM.Iterable", "ESNext", "ScriptHost"],
-    "jsxImportSource": "react",
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "target": "ESNext",
     "incremental": false,
     "sourceMap": true,
     "useDefineForClassFields": true,
-    "disableSourceOfProjectReferenceRedirect": false,
     "allowSyntheticDefaultImports": true,
     "declaration": true,
     "declarationMap": true,
+    "emitDeclarationOnly": true,
     "importHelpers": false,
-    "noEmit": true
+    "noEmit": false
   }
 }

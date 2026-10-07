@@ -74,7 +74,6 @@ export function omitFields<
   const Target extends { [record: string | symbol | number]: unknown },
   const Key extends keyof Target
 >(target: Target, keys: Key[]): RemoveFields<Target, Unenumerate<Key>> {
-  // eslint-disable-next-line
   let obj = target;
   keys.forEach(t => {
     if (t in obj) {

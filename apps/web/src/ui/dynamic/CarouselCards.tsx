@@ -1,15 +1,14 @@
 "use client";
 
+import { BaseButton, shimmer } from "@dcs/ui";
 import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import ClassNames from "embla-carousel-class-names";
 import useEmblaCarousel from "embla-carousel-react";
 import type { CardsProps, parentPagesById } from "@/types/wp";
-import { CarouselButton } from "@/components/ui/carousel-button";
-import { shimmer } from "@/lib/shimmer";
 import { cn } from "@/lib/utils";
-import css from "./carousel-cards.module.css";
+import css from "@/ui/dynamic/carousel-cards.module.css";
 
 export function CarouselCards<const T extends keyof typeof parentPagesById>({
   edges,
@@ -66,27 +65,32 @@ export function CarouselCards<const T extends keyof typeof parentPagesById>({
                 css.embla__slide,
                 "embla__class-names relative isolate flex flex-col"
               )}>
-              <Link className='appearance-none' href={post.node.uri}>
+              <Link className="appearance-none" href={post.node.uri}>
                 <Image
                   alt={post.node.featuredImage.node.altText}
                   src={post.node.featuredImage.node.sourceUrl}
                   height={post.node.featuredImage.node.mediaDetails.height}
                   width={post.node.featuredImage.node.mediaDetails.width}
-                  placeholder='blur'
-                  blurDataURL={shimmer({
-                    w: post.node.featuredImage.node.mediaDetails.width,
-                    h: post.node.featuredImage.node.mediaDetails.height
-                  })}
+                  placeholder="blur"
+                  blurDataURL={shimmer([
+                    post.node.featuredImage.node.mediaDetails.width,
+                    post.node.featuredImage.node.mediaDetails.height
+                  ])}
                   className={cn(css.embla__slide__img)}
                   style={{ objectFit: "cover" }}
                 />
 
-                <h3 className={cn('mt-3 font-basis-grotesque-pro-medium font-semibold text-[1.25rem] leading-[1.75rem] tracking-tight')}>
-                  <span className='absolute -translate-y-20 translate-x-3 appearance-none'>
-                    <span className='z-[100] mx-1 my-2 bg-black/50 bg-clip-text text-white'>
-                      {post.node.title === "Why Drisdell Consulting Services?" ? "Why DCS?" : post.node.title}
+                <h3
+                  className={cn(
+                    "font-basis-grotesque-pro-medium mt-3 text-[1.25rem] leading-7 font-semibold tracking-tight"
+                  )}>
+                  <span className="absolute translate-x-3 -translate-y-20 appearance-none">
+                    <span className="z-100 mx-1 my-2 bg-black/50 bg-clip-text text-white">
+                      {post.node.title === "Why Drisdell Consulting Services?"
+                        ? "Why DCS?"
+                        : post.node.title}
                     </span>
-                    <div className='absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40' />{" "}
+                    <div className="absolute inset-0 -z-10 bg-linear-to-t from-gray-900 via-gray-900/40" />
                   </span>
                 </h3>
               </Link>
@@ -94,34 +98,18 @@ export function CarouselCards<const T extends keyof typeof parentPagesById>({
           ))}
         </div>
       </div>
-      {/* <CarouselButton
-        variant='outline'
-        size='icon'
-        className='absolute left-2 top-1/2 -translate-y-1/2 rounded-full'
-        onClick={scrollPrev}>
-        <ChevronLeft className='h-4 w-4' />
-        <span className='sr-only'>Previous slide</span>
-      </CarouselButton>
-      <CarouselButton
-        variant='outline'
-        size='icon'
-        className='absolute right-2 top-1/2 -translate-y-1/2 rounded-full'
-        onClick={scrollNext}>
-        <ChevronRight className='h-4 w-4' />
-        <span className='sr-only'>Next slide</span>
-      </CarouselButton> */}
-      <div className='mt-4 flex justify-center'>
+      <div className="mt-4 flex justify-center">
         {edges.map((_, index) => (
-          <CarouselButton
+          <BaseButton
             key={index}
-            variant='ghost'
-            size='sm'
+            variant="ghost"
+            size="sm"
             className={`mx-1 h-2 w-2 rounded-full p-0 ${
               index === selectedIndex ? "bg-[#18181b]" : "bg-gray-300"
             }`}
             onClick={() => scrollTo(index)}>
-            <span className='sr-only'>Go to slide {index + 1}</span>
-          </CarouselButton>
+            <span className="sr-only">Go to slide {index + 1}</span>
+          </BaseButton>
         ))}
       </div>
     </div>

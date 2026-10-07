@@ -9,7 +9,7 @@ export default function robots() {
         allow: ["/*"]
       }
     ],
-    sitemap: `${getSiteUrl(process.env.NODE_ENV)}/sitemap.xml` as const,
-    host: getSiteUrl(process.env.NODE_ENV)
+    sitemap: `${getSiteUrl(process.env.VERCEL_ENV)}/sitemap.xml` as const,
+    host: getSiteUrl(process.env.VERCEL_ENV)
   };
 }

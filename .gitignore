@@ -40,3 +40,4 @@ notes.md
 .env*.local
 
 schema.graphql
+.npmrc
