@@ -10,6 +10,8 @@ import { ExecuteEventFormSubmissionMutation } from "@/mutations/event-submission
 import { ExecuteResumeSubmissionMutation } from "@/mutations/resume-submission";
 import { handleBody } from "@/utils/handle-body";
 import { put } from '@vercel/blob';
+import type { SubmissionResult } from "@/utils/submission-result";
+import { submissionFailure, submissionResult } from "@/utils/submission-result";
 
 
 export async function contactUsAction(formData: FormData) {
@@ -48,7 +50,9 @@ export async function contactUsAction(formData: FormData) {
   }
 }
 
-export async function eventSubmissionAction(formData: FormData) {
+export async function eventSubmissionAction(
+  formData: FormData
+): Promise<SubmissionResult> {
   const additionalData = {
     city: (formData.get("city") as string) ?? "",
     lat: (formData.get("lat") as string) ?? "",
@@ -75,12 +79,10 @@ export async function eventSubmissionAction(formData: FormData) {
 
   try {
     const data = await ExecuteEventFormSubmissionMutation(derivedData);
-    if (data.data.submitGfForm.errors != null) {
-      return { res: data.data.submitGfForm.errors };
-    } else return { res: data.data.submitGfForm.confirmation.message };
+    return submissionResult(data);
   } catch (err) {
     console.error(typeof err === "string" ? err : JSON.stringify(err, null, 2));
-    return { res: JSON.stringify(err, null, 2) };
+    return submissionFailure(err);
   }
 }
 

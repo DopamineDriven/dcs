@@ -1,26 +1,30 @@
 import type { Metadata, Viewport } from "next";
-import React from "react";
+import type { ReactNode } from "react";
 import { GeistMono } from "geist/font/mono";
-import { GeistPixelSquare } from "geist/font/pixel";
 import { GeistSans } from "geist/font/sans";
 import { CookieProvider } from "@/context/cookie-context";
 import { getSiteUrl } from "@/lib/site-url";
-import "./global.css";
-import { Inter } from "next/font/google";
-import Script from "next/script";
-import { Footer } from "@/ui/sections/Footer";
-import { Nav } from "@/ui/sections/Nav";
-import * as myGtag from "@/utils/analytics";
 import "@dcs/ui/globals.css";
+import "./global.css";
 import { ToastProvider } from "@dcs/ui";
+import { DM_Sans, Inter } from "next/font/google";
+import Script from "next/script";
+import { LayoutScaffold } from "@/ui/layout";
+import * as myGtag from "@/utils/analytics";
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin", "latin-ext"]
 });
 
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
+  subsets: ["latin"],
+  display: "swap"
+});
+
 export const viewport = {
-  colorScheme: "normal",
+  colorScheme: "light",
   userScalable: false,
   themeColor: "#234670",
   viewportFit: "cover",
@@ -108,44 +112,16 @@ export const metadata: Metadata = {
   }
 } satisfies Metadata;
 
-export default function RootLayout({
-  children
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
-      suppressHydrationWarning
       lang="en"
       data-scroll-behavior="smooth"
-      className={`h-full ${inter.variable} ${GeistSans.variable} ${GeistMono.variable} ${GeistPixelSquare.variable}`}>
-      <head>
-        <Script
-          async
-          strategy="beforeInteractive"
-          id="prevent-flash-of-wrong-theme"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  if (prefersDark) {
-                    document.documentElement.classList.add('dark');
-                  }
-                } catch (e) {}
-              })();
-            `
-          }}
-        />
-      </head>
-      <body className="antialiased">
+      className={`bg-background smaller:scroll-pt-28 scroll-pt-22 scroll-smooth ${dmSans.variable} ${inter.variable} ${GeistSans.variable} ${GeistMono.variable}`}>
+      <body className="bg-background text-foreground font-sans leading-[1.55] antialiased">
         <CookieProvider>
           <ToastProvider>
-            <div className="m-0 flex min-h-full flex-col justify-between bg-white p-0">
-              <Nav />
-              <main className="">{children}</main>
-              <Footer />
-            </div>
+            <LayoutScaffold>{children}</LayoutScaffold>
           </ToastProvider>
         </CookieProvider>
       </body>

@@ -77,7 +77,7 @@ export function CarouselImage({
     <motion.img
       key={index}
       draggable={false}
-      className="h-75 justify-self-center rounded-xl object-cover [@media(max-width<=600px)]:h-37.5"
+      className="h-75 justify-self-center rounded-xl object-cover [@media(width<=600px)]:h-37.5"
       src={src}
       alt={alt}
       style={{

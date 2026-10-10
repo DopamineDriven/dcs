@@ -57,6 +57,7 @@ export {
   baseInputGroupButtonVariants
 } from "@/base/input-group";
 export { BaseKbd, BaseKbdGroup } from "@/base/kbd";
+export { BaseLabel } from "@/base/label";
 export {
   BasePopover,
   BasePopoverContent,
@@ -126,6 +127,11 @@ export type {
   WpFeaturedImage
 } from "@/carousel/offset-linked";
 export { CarouselImage, CarouselItemOffset } from "@/carousel/offset-linked";
+export type {
+  CoverflowCarouselProps,
+  CoverflowItemProps
+} from "@/carousel/coverflow";
+export { CoverflowCarousel, CoverflowItem } from "@/carousel/coverflow";
 
 export { useAspectCh } from "@/hooks/use-aspect-ch";
 export { useAutoDismiss } from "@/hooks/use-auto-dismiss";
@@ -152,39 +158,45 @@ export type { BaseSVGProps, IconName } from "@/icons/index";
 export { AICoalesce } from "@/icons/aicoalesce";
 export { AnonymousIcon } from "@/icons/anonymous";
 export { AnthropicIcon } from "@/icons/anthropic";
+export { ArrowDown } from "@/icons/arrow-down";
 export { ArrowDownCircle } from "@/icons/arrow-down-circle";
 export { ArrowLeft } from "@/icons/arrow-left";
+export { ArrowLeftRight } from "@/icons/arrow-left-right";
 export { ArrowRight } from "@/icons/arrow-right";
+export { ArrowUpRight } from "@/icons/arrow-up-right";
 export { AudioLines } from "@/icons/audio-lines";
+export { Blocks } from "@/icons/blocks";
 export { BookOpen } from "@/icons/book-open";
 export { Bot } from "@/icons/bot";
 export { Camera } from "@/icons/camera";
 export { Check } from "@/icons/check";
 export { ChevronDown } from "@/icons/chevron-down";
+export { ChevronLeft } from "@/icons/chevron-left";
 export { ChevronRight } from "@/icons/chevron-right";
 export { ChevronUp } from "@/icons/chevron-up";
+export { Circle } from "@/icons/circle";
 export { CircleAlert } from "@/icons/circle-alert";
 export { CircleCheck } from "@/icons/circle-check";
 export { CirclePlus } from "@/icons/circle-plus";
-export { Circle } from "@/icons/circle";
 export { ClaudeIcon } from "@/icons/claude";
 export { Clipboard } from "@/icons/clipboard";
 export { Code } from "@/icons/code";
 export { CohereIcon, CohereIconCurrentColor } from "@/icons/cohere";
-export { Compass } from "@/icons/compass";
+export { Compass, CompassEnhanced } from "@/icons/compass";
 export { Copy } from "@/icons/copy";
 export { Cross2 } from "@/icons/cross2";
 export { DeepSeek } from "@/icons/deepseek";
 export { Download } from "@/icons/download";
+export { DrisdellIcon } from "@/icons/drisdell";
 export { Edit } from "@/icons/edit";
 export { EditIcon } from "@/icons/edit-icon";
 export { EllipsisHorizontal } from "@/icons/ellipsis-horizontal";
 export { EmptyChatHistory } from "@/icons/empty-chat-history";
 export { Expand } from "@/icons/expand";
 export { ExternalLink } from "@/icons/external-link";
+export { Eye } from "@/icons/eye";
 export { EyeClosed } from "@/icons/eye-closed";
 export { EyeOff } from "@/icons/eye-off";
-export { Eye } from "@/icons/eye";
 export { FileText } from "@/icons/file-text";
 export { Folder } from "@/icons/folder";
 export { GeminiIcon } from "@/icons/gemini";
@@ -192,17 +204,20 @@ export { Github } from "@/icons/github";
 export { Globe } from "@/icons/globe";
 export { GoogleIcon } from "@/icons/google";
 export { GripVertical } from "@/icons/grip-vertical";
+export { Handshake } from "@/icons/handshake";
+export { Headphones } from "@/icons/headphones";
 export { History } from "@/icons/history";
 export { ImageGen } from "@/icons/image-gen";
 export { ImageIcon } from "@/icons/image-icon";
 export { Info } from "@/icons/info";
-export { KeyRound } from "@/icons/key-round";
 export { Key } from "@/icons/key";
+export { KeyRound } from "@/icons/key-round";
 export { Kimi } from "@/icons/kimi";
 export { Layers } from "@/icons/layers";
+export { LinkedIn } from "@/icons/linkedin";
+export { Loader } from "@/icons/loader";
 export { LoaderCircle } from "@/icons/loader-circle";
 export { LoaderPinwheel } from "@/icons/loader-pinwheel";
-export { Loader } from "@/icons/loader";
 export { LogOut } from "@/icons/log-out";
 export { Mail } from "@/icons/mail";
 export { Menu } from "@/icons/menu";
@@ -254,6 +269,7 @@ export { TrashSimple } from "@/icons/trash-simple";
 export { TriangleAlert } from "@/icons/triangle-alert";
 export { Upload } from "@/icons/upload";
 export { User } from "@/icons/user";
+export { UsersRound } from "@/icons/users-round";
 export { VercelIcon } from "@/icons/vercel";
 export { Voice } from "@/icons/voice";
 export { Volume } from "@/icons/volume";

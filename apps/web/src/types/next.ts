@@ -1,4 +1,4 @@
-import type { Unenumerate } from "./helpers";
+import type { Unenumerate, UserAgentProps } from "./helpers";
 
 export type InferIt<T, V extends "RT" | "P" | "B"> = T extends (
   ...args: infer P
@@ -18,7 +18,7 @@ export type InferGSPRT<V extends (...args: any) => any> = {
 
 export type ExpectedRes = {
   qr: string;
-  userAgentObject: globalThis.UserAgent;
+  userAgentObject: UserAgentProps;
   ua: string;
   ip: string;
   tz: string;

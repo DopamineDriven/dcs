@@ -1,10 +1,10 @@
 "use client";
 
 import type { ComponentPropsWithRef } from "react";
+import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
 import { BaseButton } from "@/base/button";
 import { X } from "@/icons/x";
 import { cn } from "@/lib/utils";
-import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
 
 function BaseDialog({ ...props }: DialogPrimitive.Root.Props) {
   return <DialogPrimitive.Root data-slot="dialog" {...props} />;

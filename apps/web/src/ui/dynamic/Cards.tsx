@@ -36,10 +36,10 @@ export function Cards<const T extends keyof typeof parentPagesById>({
                 height={post.node.featuredImage.node.mediaDetails.height}
                 width={post.node.featuredImage.node.mediaDetails.width}
                 placeholder='blur'
-                blurDataURL={shimmer({
-                  w: post.node.featuredImage.node.mediaDetails.width,
-                  h: post.node.featuredImage.node.mediaDetails.height
-                })}
+                blurDataURL={shimmer([
+                post.node.featuredImage.node.mediaDetails.width,
+                  post.node.featuredImage.node.mediaDetails.height
+                ])}
                 className='absolute inset-0 -z-10 h-full w-full object-cover group-hover:opacity-75'
                 style={{ objectFit: "cover" }}
               />
@@ -55,7 +55,7 @@ export function Cards<const T extends keyof typeof parentPagesById>({
           ))}
         </div>
         {/* viewports md or smaller render Carousel Cards */}
-        <CarouselCards target={target} edges={edges} />
+        <CarouselCards edges={edges} target={target} />
       </div>
     </div>
   );

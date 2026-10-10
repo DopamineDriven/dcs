@@ -2,15 +2,20 @@ import type { ComponentPropsWithRef } from "react";
 import { AICoalesce } from "@/icons/aicoalesce";
 import { AnonymousIcon } from "@/icons/anonymous";
 import { AnthropicIcon } from "@/icons/anthropic";
+import { ArrowDown } from "@/icons/arrow-down";
 import { ArrowDownCircle } from "@/icons/arrow-down-circle";
 import { ArrowLeft } from "@/icons/arrow-left";
+import { ArrowLeftRight } from "@/icons/arrow-left-right";
 import { ArrowRight } from "@/icons/arrow-right";
+import { ArrowUpRight } from "@/icons/arrow-up-right";
 import { AudioLines } from "@/icons/audio-lines";
+import { Blocks } from "@/icons/blocks";
 import { BookOpen } from "@/icons/book-open";
 import { Bot } from "@/icons/bot";
 import { Camera } from "@/icons/camera";
 import { Check } from "@/icons/check";
 import { ChevronDown } from "@/icons/chevron-down";
+import { ChevronLeft } from "@/icons/chevron-left";
 import { ChevronRight } from "@/icons/chevron-right";
 import { ChevronUp } from "@/icons/chevron-up";
 import { Circle } from "@/icons/circle";
@@ -21,11 +26,12 @@ import { ClaudeIcon } from "@/icons/claude";
 import { Clipboard } from "@/icons/clipboard";
 import { Code } from "@/icons/code";
 import { CohereIcon, CohereIconCurrentColor } from "@/icons/cohere";
-import { Compass } from "@/icons/compass";
+import { Compass, CompassEnhanced } from "@/icons/compass";
 import { Copy } from "@/icons/copy";
 import { Cross2 } from "@/icons/cross2";
 import { DeepSeek } from "@/icons/deepseek";
 import { Download } from "@/icons/download";
+import { DrisdellIcon } from "@/icons/drisdell";
 import { Edit } from "@/icons/edit";
 import { EditIcon } from "@/icons/edit-icon";
 import { EllipsisHorizontal } from "@/icons/ellipsis-horizontal";
@@ -42,6 +48,8 @@ import { Github } from "@/icons/github";
 import { Globe } from "@/icons/globe";
 import { GoogleIcon } from "@/icons/google";
 import { GripVertical } from "@/icons/grip-vertical";
+import { Handshake } from "@/icons/handshake";
+import { Headphones } from "@/icons/headphones";
 import { History } from "@/icons/history";
 import { ImageGen } from "@/icons/image-gen";
 import { ImageIcon } from "@/icons/image-icon";
@@ -50,6 +58,7 @@ import { Key } from "@/icons/key";
 import { KeyRound } from "@/icons/key-round";
 import { Kimi } from "@/icons/kimi";
 import { Layers } from "@/icons/layers";
+import { LinkedIn } from "@/icons/linkedin";
 import { Loader } from "@/icons/loader";
 import { LoaderCircle } from "@/icons/loader-circle";
 import { LoaderPinwheel } from "@/icons/loader-pinwheel";
@@ -104,6 +113,7 @@ import { TrashSimple } from "@/icons/trash-simple";
 import { TriangleAlert } from "@/icons/triangle-alert";
 import { Upload } from "@/icons/upload";
 import { User } from "@/icons/user";
+import { UsersRound } from "@/icons/users-round";
 import { VercelIcon } from "@/icons/vercel";
 import { Voice } from "@/icons/voice";
 import { Volume } from "@/icons/volume";
@@ -117,15 +127,20 @@ const IconComponents = {
   AICoalesce,
   AnonymousIcon,
   AnthropicIcon,
+  ArrowDown,
   ArrowDownCircle,
   ArrowLeft,
+  ArrowLeftRight,
   ArrowRight,
+  ArrowUpRight,
   AudioLines,
+  Blocks,
   BookOpen,
   Bot,
   Camera,
   Check,
   ChevronDown,
+  ChevronLeft,
   ChevronRight,
   ChevronUp,
   CircleAlert,
@@ -138,10 +153,12 @@ const IconComponents = {
   CohereIcon,
   CohereIconCurrentColor,
   Compass,
+  CompassEnhanced,
   Copy,
   Cross2,
   DeepSeek,
   Download,
+  DrisdellIcon,
   Edit,
   EditIcon,
   EllipsisHorizontal,
@@ -158,6 +175,8 @@ const IconComponents = {
   Globe,
   GoogleIcon,
   GripVertical,
+  Handshake,
+  Headphones,
   History,
   ImageGen,
   ImageIcon,
@@ -166,6 +185,7 @@ const IconComponents = {
   KeyRound,
   Kimi,
   Layers,
+  LinkedIn,
   LoaderCircle,
   LoaderPinwheel,
   Loader,
@@ -220,6 +240,7 @@ const IconComponents = {
   TriangleAlert,
   Upload,
   User,
+  UsersRound,
   VercelIcon,
   Voice,
   Volume,
@@ -261,15 +282,20 @@ export {
   AICoalesce,
   AnonymousIcon,
   AnthropicIcon,
+  ArrowDown,
   ArrowDownCircle,
   ArrowLeft,
+  ArrowLeftRight,
   ArrowRight,
+  ArrowUpRight,
   AudioLines,
+  Blocks,
   BookOpen,
   Bot,
   Camera,
   Check,
   ChevronDown,
+  ChevronLeft,
   ChevronRight,
   ChevronUp,
   CircleAlert,
@@ -282,10 +308,12 @@ export {
   CohereIcon,
   CohereIconCurrentColor,
   Compass,
+  CompassEnhanced,
   Copy,
   Cross2,
   DeepSeek,
   Download,
+  DrisdellIcon,
   Edit,
   EditIcon,
   EllipsisHorizontal,
@@ -302,6 +330,8 @@ export {
   Globe,
   GoogleIcon,
   GripVertical,
+  Handshake,
+  Headphones,
   History,
   ImageGen,
   ImageIcon,
@@ -310,6 +340,7 @@ export {
   KeyRound,
   Kimi,
   Layers,
+  LinkedIn,
   LoaderCircle,
   LoaderPinwheel,
   Loader,
@@ -364,6 +395,7 @@ export {
   TriangleAlert,
   Upload,
   User,
+  UsersRound,
   VercelIcon,
   Voice,
   Volume,

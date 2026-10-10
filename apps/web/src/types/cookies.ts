@@ -6,9 +6,11 @@ export const COOKIES = {
   hostname: "hostname",
   viewport: "viewport",
   ios: "ios",
+  arch: "arch",
   latlng: "latlng",
   tz: "tz",
   ip: "ip",
+  qr_access: "qr_access",
   ua: "ua",
   country: "country",
   city: "city",
@@ -27,7 +29,9 @@ export function isValidCookieKey(c: string) {
     c === "ios" ||
     c === "latlng" ||
     c === "tz" ||
+    c === "arch" ||
     c === "ip" ||
+    c === "qr_access" ||
     c === "ua" ||
     c === "country" ||
     c === "city" ||
@@ -37,6 +41,18 @@ export function isValidCookieKey(c: string) {
     c === "locale"
   );
 }
+
+export type ArchUnion =
+  | "arm"
+  | "arm64"
+  | "ia32"
+  | "loong64"
+  | "mips"
+  | "mipsel"
+  | "ppc64"
+  | "riscv64"
+  | "s390x"
+  | "x64";
 
 export type CookieValue = {
   hostname: string;
@@ -49,6 +65,8 @@ export type CookieValue = {
   latlng: string;
   tz: string;
   region: string;
+  qr_access: "true" | "false" | (string & {});
+  arch: ArchUnion | (string & {});
   postalCode: string;
   country: string;
   city: string;

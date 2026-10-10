@@ -1,117 +1,49 @@
 "use client";
 
-import { BaseButton, shimmer } from "@dcs/ui";
-import { useCallback, useEffect, useState } from "react";
+import { CoverflowCarousel, CoverflowItem, shimmer } from "@dcs/ui";
 import Image from "next/image";
 import Link from "next/link";
-import ClassNames from "embla-carousel-class-names";
-import useEmblaCarousel from "embla-carousel-react";
 import type { CardsProps, parentPagesById } from "@/types/wp";
-import { cn } from "@/lib/utils";
-import css from "@/ui/dynamic/carousel-cards.module.css";
 
 export function CarouselCards<const T extends keyof typeof parentPagesById>({
   edges,
   target: _target
 }: CardsProps<T>) {
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    {
-      dragFree: true,
-      loop: false,
-      align: "start"
-    },
-    [ClassNames()]
-  );
-
-  const [selectedIndex, setSelectedIndex] = useState(0);
-
-  // const scrollPrev = useCallback(() => {
-  //   if (emblaApi) emblaApi.scrollPrev();
-  // }, [emblaApi]);
-
-  // const scrollNext = useCallback(() => {
-  //   if (emblaApi) emblaApi.scrollNext();
-  // }, [emblaApi]);
-
-  const scrollTo = useCallback(
-    (index: number) => {
-      if (emblaApi) emblaApi.scrollTo(index);
-    },
-    [emblaApi]
-  );
-
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setSelectedIndex(emblaApi.selectedScrollSnap());
-  }, [emblaApi, setSelectedIndex]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    onSelect();
-    emblaApi.on("select", onSelect);
-    return () => {
-      emblaApi.off("select", onSelect);
-    };
-  }, [emblaApi, onSelect]);
-
   return (
-    <div className={cn("relative lg:hidden", css.embla)}>
-      <div className={css.embla__viewport} ref={emblaRef}>
-        <div className={css.embla__container}>
-          {edges.map((post, i) => (
-            <div
-              key={i}
-              className={cn(
-                css.embla__slide,
-                "embla__class-names relative isolate flex flex-col"
-              )}>
-              <Link className="appearance-none" href={post.node.uri}>
+    <div className="py-6 lg:hidden">
+      <CoverflowCarousel
+        items={edges.map(post => {
+          const image = post.node.featuredImage.node;
+          return (
+            <CoverflowItem key={post.cursor}>
+              <article className="group relative isolate flex size-full flex-col justify-end bg-gray-900 p-6">
                 <Image
-                  alt={post.node.featuredImage.node.altText}
-                  src={post.node.featuredImage.node.sourceUrl}
-                  height={post.node.featuredImage.node.mediaDetails.height}
-                  width={post.node.featuredImage.node.mediaDetails.width}
+                  alt={image.altText}
+                  src={image.sourceUrl}
+                  fill
+                  sizes="(max-width: 640px) 250px, 350px"
                   placeholder="blur"
                   blurDataURL={shimmer([
-                    post.node.featuredImage.node.mediaDetails.width,
-                    post.node.featuredImage.node.mediaDetails.height
+                    image.mediaDetails.width,
+                    image.mediaDetails.height
                   ])}
-                  className={cn(css.embla__slide__img)}
-                  style={{ objectFit: "cover" }}
+                  draggable={false}
+                  className="-z-10 object-cover group-hover:opacity-75"
                 />
-
-                <h3
-                  className={cn(
-                    "font-basis-grotesque-pro-medium mt-3 text-[1.25rem] leading-7 font-semibold tracking-tight"
-                  )}>
-                  <span className="absolute translate-x-3 -translate-y-20 appearance-none">
-                    <span className="z-100 mx-1 my-2 bg-black/50 bg-clip-text text-white">
-                      {post.node.title === "Why Drisdell Consulting Services?"
-                        ? "Why DCS?"
-                        : post.node.title}
-                    </span>
-                    <div className="absolute inset-0 -z-10 bg-linear-to-t from-gray-900 via-gray-900/40" />
-                  </span>
+                <div className="absolute inset-0 -z-10 bg-linear-to-t from-gray-900 via-gray-900/40" />
+                <h3 className="font-basis-grotesque-pro-regular text-lg/6 font-semibold text-white">
+                  <Link href={post.node.uri} draggable={false}>
+                    <span className="absolute inset-0" />
+                    {post.node.title === "Why Drisdell Consulting Services?"
+                      ? "Why DCS?"
+                      : post.node.title}
+                  </Link>
                 </h3>
-              </Link>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="mt-4 flex justify-center">
-        {edges.map((_, index) => (
-          <BaseButton
-            key={index}
-            variant="ghost"
-            size="sm"
-            className={`mx-1 h-2 w-2 rounded-full p-0 ${
-              index === selectedIndex ? "bg-[#18181b]" : "bg-gray-300"
-            }`}
-            onClick={() => scrollTo(index)}>
-            <span className="sr-only">Go to slide {index + 1}</span>
-          </BaseButton>
-        ))}
-      </div>
+              </article>
+            </CoverflowItem>
+          );
+        })}
+      />
     </div>
   );
 }

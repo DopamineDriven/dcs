@@ -1,3 +1,4 @@
+@reference "../../app/global.css";
 .inner_wp_content {
   @apply font-basis-grotesque-pro-regular;
   & > h1,

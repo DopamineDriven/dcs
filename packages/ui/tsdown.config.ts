@@ -31,7 +31,16 @@ export default defineConfig(
         "src/carousel/*.tsx",
         "src/toast/*.tsx",
         "src/ui/*.tsx",
-        "!src/services/postbuild.ts"
+        "!src/services/postbuild.ts",
+        "!src/test/*.ts",
+        "!src/test/*.tsx"
+      ],
+      copy: [
+        {
+          from: "src/globals.css",
+          to: "dist",
+          rename: "tailwind.css"
+        }
       ],
       dts: { tsgo: { path } },
       external: ["react"],

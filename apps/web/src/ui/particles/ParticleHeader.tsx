@@ -1,32 +1,26 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import type { Container, Engine, ISourceOptions } from "@tsparticles/engine";
+import { useMemo } from "react";
 import Link from "next/link";
-import Particles, { initParticlesEngine } from "@tsparticles/react";
-import { loadFull } from "tsparticles";
-import type { Container, ISourceOptions } from "@tsparticles/engine";
+import Particles, { ParticlesProvider } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
 import { ParticleButton } from "@/ui/particles/ParticleButton";
 import { cn } from "@/lib/utils";
 import css from "./particle-header.module.css";
 
+/** Must stay referentially stable: ParticlesProvider throws if `init` changes between renders. */
+async function initParticles(engine: Engine) {
+  await loadSlim(engine);
+}
+
+async function particlesLoaded(container?: Container) {
+  console.log(container);
+}
+
 export function ParticleHeaderComponent<
   const T extends "HOME" | "ABOUT" | "CONSULTANTS" | "CONTACT" | "QR"
 >({ content, title, target }: { content: string; title: string; target: T }) {
-  const [init, setInit] = useState(false);
-
-  useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    initParticlesEngine(async engine => {
-      await loadFull(engine);
-    }).then(() => {
-      setInit(true);
-    });
-  }, []);
-
-  const particlesLoaded = async (container?: Container): Promise<void> => {
-    console.log(container);
-  };
-
   const tsTheme = useMemo(() => {
     return target === "CONTACT"
       ? "#ffffff"
@@ -47,82 +41,86 @@ export function ParticleHeaderComponent<
           : "#ffffff";
   }, [target]);
 
-  const options = {
-    background: {
-      color: {
-        value: tsTheme
-      }
-    },
-    fpsLimit: 120,
-    fullScreen: { enable: false },
-    interactivity: {
-      events: {
-        onClick: {
-          enable: true,
-          mode: "push"
+  const options = useMemo(
+    () =>
+      ({
+        background: {
+          color: {
+            value: tsTheme
+          }
         },
-        onHover: {
-          enable: true,
-          mode: "repulse"
+        fpsLimit: 120,
+        fullScreen: { enable: false },
+        interactivity: {
+          events: {
+            onClick: {
+              enable: true,
+              mode: "push"
+            },
+            onHover: {
+              enable: true,
+              mode: "repulse"
+            },
+            resize: { enable: true }
+          },
+          modes: {
+            push: {
+              quantity: 4
+            },
+            repulse: {
+              distance: 200,
+              duration: 0.4
+            }
+          }
         },
-        resize: { enable: true }
-      },
-      modes: {
-        push: {
-          quantity: 4
+        particles: {
+          color: {
+            value: tsParticle
+          },
+          links: {
+            color: tsParticle,
+            distance: 150,
+            enable: true,
+            opacity: 0.5,
+            width: 1
+          },
+          move: {
+            direction: "none",
+            enable: true,
+            outModes: {
+              default: "bounce"
+            },
+            random: false,
+            speed: 2,
+            straight: false
+          },
+          number: {
+            density: {
+              enable: true,
+              height: 800,
+              width: 800
+            },
+            value: 80
+          },
+          opacity: {
+            value: 0.5
+          },
+          shape: {
+            type: "circle"
+          },
+          size: {
+            value: { min: 1, max: 5 }
+          }
         },
-        repulse: {
-          distance: 200,
-          duration: 0.4
-        }
-      }
-    },
-    particles: {
-      color: {
-        value: tsParticle
-      },
-      links: {
-        color: tsParticle,
-        distance: 150,
-        enable: true,
-        opacity: 0.5,
-        width: 1
-      },
-      move: {
-        direction: "none",
-        enable: true,
-        outModes: {
-          default: "bounce"
-        },
-        random: false,
-        speed: 2,
-        straight: false
-      },
-      number: {
-        density: {
-          enable: true,
-          height: 800,
-          width: 800
-        },
-        value: 80
-      },
-      opacity: {
-        value: 0.5
-      },
-      shape: {
-        type: "circle"
-      },
-      size: {
-        value: { min: 1, max: 5 }
-      }
-    },
-    detectRetina: true
-  } satisfies ISourceOptions;
+        detectRetina: true
+      }) satisfies ISourceOptions,
+    [tsTheme, tsParticle]
+  );
 
   return (
     <div
       className={cn(
-        "relative sm:h-[33rem] 2xl:h-[90vh]",
+        "relative sm:h-132 2xl:h-[90vh]",
         target === "QR"
           ? "h-[75vh]"
           : target === "HOME"
@@ -132,14 +130,14 @@ export function ParticleHeaderComponent<
       <div className='absolute inset-0 flex flex-col' aria-hidden='true'>
         <div className='relative w-full flex-1'>
           <div className='absolute inset-0 overflow-hidden'>
-            {init && (
+            <ParticlesProvider init={initParticles}>
               <Particles
                 id='tsparticles'
                 particlesLoaded={particlesLoaded}
                 options={options}
                 className='h-full w-full object-cover object-center'
               />
-            )}
+            </ParticlesProvider>
           </div>
           <div className='absolute inset-0 opacity-50' />
         </div>
@@ -154,7 +152,7 @@ export function ParticleHeaderComponent<
               )}>
               {"Welcome to Drisdell Consulting!"}
             </h1>
-            <p className='mx-auto mb-4 max-w-xl text-pretty px-2 text-center font-basis-grotesque-pro-medium text-[1.25rem] leading-[1.5rem] tracking-tight text-dcs-800 sm:max-w-2xl'>
+            <p className='mx-auto mb-4 max-w-xl text-pretty px-2 text-center font-basis-grotesque-pro-medium text-[1.25rem] leading-6 tracking-tight text-dcs-800 sm:max-w-2xl'>
               {`It was a pleasure to meet you and we look forward to the opportunity to continue to get to know you better. Please take a moment to let us know more about you. We want to help you address your HCM needs and goals.`}
             </p>
           </>

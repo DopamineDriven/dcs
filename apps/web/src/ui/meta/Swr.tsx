@@ -1,12 +1,13 @@
 "use client";
 
+import { UserAgentProps } from "@/types/helpers";
 import type { SyntheticEvent } from "react";
 import { useCallback, useRef, useState } from "react";
 import useSWR from "swr";
 
 export type ExpectedRes = {
   qr: string;
-  userAgentObject: globalThis.UserAgent;
+  userAgentObject:UserAgentProps;
   ua: string;
   ip: string;
   tz: string;

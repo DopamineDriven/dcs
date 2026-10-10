@@ -64,14 +64,8 @@
   "files.autoSave": "afterDelay",
   "openInDefaultBrowser.run.openWithLocalHttpServer": false,
   "tailwindCSS.experimental.classRegex": [
-    [
-      "cva\\(([^)]*)\\)",
-      "[\"'`]([^\"'`]*).*?[\"'`]"
-    ],
-    [
-      "cx\\(([^)]*)\\)",
-      "(?:'|\"|`)([^']*)(?:'|\"|`)"
-    ]
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
   ],
   "tailwindCSS.classAttributes": [
     "class",
@@ -91,8 +85,8 @@
   "js/ts.locale": "en",
   "js/ts.referencesCodeLens.enabled": true,
   "js/ts.referencesCodeLens.showOnAllFunctions": true,
-  "js/ts.experimental.useTsgo": false,
-  "js/ts.tsdk.path": "node_modules/typescript/lib",
+  "js/ts.experimental.useTsgo": true,
+  "js/ts.tsdk.path": "node_modules/@typescript/native-preview",
   "yaml.hover": true,
   "yaml.validate": true,
   "workbench.editor.autoLockGroups": {

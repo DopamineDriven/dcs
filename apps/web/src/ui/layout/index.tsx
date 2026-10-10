@@ -1,20 +1,14 @@
 "use client";
 
 import type { ReactNode } from "react";
-import dynamic from "next/dynamic";
 import { Footer } from "@/ui/sections/Footer";
-import { Nav } from "@/ui/sections/Nav";
+import { SiteHeader } from "@/ui/sections/SiteHeader";
 
-const ThemeToggle = dynamic(
-  () => import("@/ui/theme/index").then(d => d.ThemeToggle),
-  { ssr: false }
-);
-
-export function Layout({ children }: { children: ReactNode }) {
+export function LayoutScaffold({ children }: { children: ReactNode }) {
   return (
     <div className="m-0 flex min-h-full flex-col justify-between bg-white p-0">
-      <Nav />
-      <main className="">{children}</main>
+      <SiteHeader />
+      <main id="main-content">{children}</main>
       <Footer />
     </div>
   );

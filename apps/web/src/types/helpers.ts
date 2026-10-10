@@ -30,10 +30,10 @@ export type TsxExclude<
   J extends keyof TsxTargeted<T>
 > = RemoveFields<TsxTargeted<T>, J>;
 
-export type TsxInclude<
-  T extends keyof React.JSX.IntrinsicElements,
-  J extends keyof TsxTargeted<T>
-> = RemoveFields<TsxTargeted<T>, Exclude<keyof TsxTargeted<T>, J>>;
+// export type TsxInclude<
+//   T extends keyof React.JSX.IntrinsicElements,
+//   J extends keyof TsxTargeted<T>
+// > = RemoveFields<TsxTargeted<T>, Exclude<keyof TsxTargeted<T>, J>>;
 
 export type ConditionalToRequired<
   T,
@@ -86,23 +86,13 @@ export function omitFields<
   return obj;
 }
 
-// works like a charm
-
-// const s = {
-//   test: "yes",
-//   thissss: "no",
-//   maybe: 0,
-//   so: () => true
-// } as const
-
-// const xyz = () => ({...omitFields(s, ["so", "maybe"])})
-
 export type UserAgentProps = {
   isBot: boolean;
   ua: string;
   browser: {
     name?: string;
     version?: string;
+    major?: string;
   };
   device: {
     model?: string;
@@ -164,42 +154,42 @@ export type InferGSPRT<V extends (...args: any) => any> = {
   params: Unenumerate<InferIt<V, "RT">>;
 };
 
-export type InferTsxTargetedFlexi<T> =
-  T extends React.DetailedHTMLProps<infer U, infer E> ? readonly [U, E] : T;
+// export type InferTsxTargetedFlexi<T> =
+//   T extends React.DetailedHTMLProps<infer U, infer E> ? readonly [U, E] : T;
 
-export type Selector<
-  T,
-  K extends "attribute" | "element" | "tuple"
-> = T extends readonly [infer A, infer B]
-  ? K extends "attribute"
-    ? A
-    : K extends "element"
-      ? B
-      : readonly [A, B]
-  : T;
-export type FlexiKeys = Unenumerate<readonly ["attribute", "element", "tuple"]>;
+// export type Selector<
+//   T,
+//   K extends "attribute" | "element" | "tuple"
+// > = T extends readonly [infer A, infer B]
+//   ? K extends "attribute"
+//     ? A
+//     : K extends "element"
+//       ? B
+//       : readonly [A, B]
+//   : T;
+// export type FlexiKeys = Unenumerate<readonly ["attribute", "element", "tuple"]>;
 
-export type TsxTargetedExp<
-  T extends keyof React.JSX.IntrinsicElements,
-  K extends FlexiKeys
-> = {
-  readonly [P in T]: Selector<
-    InferTsxTargetedFlexi<React.JSX.IntrinsicElements[P]>,
-    K
-  >;
-}[T];
+// export type TsxTargetedExp<
+//   T extends keyof React.JSX.IntrinsicElements,
+//   K extends FlexiKeys
+// > = {
+//   readonly [P in T]: Selector<
+//     InferTsxTargetedFlexi<React.JSX.IntrinsicElements[P]>,
+//     K
+//   >;
+// }[T];
 
-export type TsxExcludeExp<
-  I extends FlexiKeys,
-  K extends keyof React.JSX.IntrinsicElements,
-  J extends keyof TsxTargetedExp<K, I>
-> = RemoveFields<TsxTargetedExp<K, I>, J>;
+// export type TsxExcludeExp<
+//   I extends FlexiKeys,
+//   K extends keyof React.JSX.IntrinsicElements,
+//   J extends keyof TsxTargetedExp<K, I>
+// > = RemoveFields<TsxTargetedExp<K, I>, J>;
 
-export type TsxIncludeExp<
-  I extends FlexiKeys,
-  K extends keyof React.JSX.IntrinsicElements,
-  J extends keyof TsxTargetedExp<K, I>
-> = RemoveFields<TsxTargetedExp<K, I>, Exclude<keyof TsxTargetedExp<K, I>, J>>;
+// export type TsxIncludeExp<
+//   I extends FlexiKeys,
+//   K extends keyof React.JSX.IntrinsicElements,
+//   J extends keyof TsxTargetedExp<K, I>
+// > = RemoveFields<TsxTargetedExp<K, I>, Exclude<keyof TsxTargetedExp<K, I>, J>>;
 
 export type IsOptional<T, K extends keyof T> = undefined extends T[K]
   ? object extends Pick<T, K>
@@ -214,22 +204,10 @@ export type OnlyOptional<T> = {
 export type OnlyRequired<T> = {
   [K in keyof T as IsOptional<T, K> extends false ? K : never]: T[K];
 };
-
-export type FilterOptionalOrRequired<
-  V,
-  T extends "conditional" | "required"
-> = T extends "conditional" ? OnlyOptional<V> : OnlyRequired<V>;
-
 export type StringToBoolean<T> = T extends "true" | "false" ? boolean : T;
 
 export type ClassValue =
-  | ClassArray
-  | ClassDictionary
-  | string
-  | number
-  | null
-  | boolean
-  | undefined;
+  ClassArray | ClassDictionary | string | number | null | boolean | undefined;
 
 export type ClassDictionary = Record<string, any>;
 

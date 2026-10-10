@@ -18,7 +18,7 @@ export function CookieProvider({
   children
 }: Readonly<{ children: ReactNode }>) {
   const get = useCallback(<const K extends CookieKey>(key: K) => {
-    return Cookies.get(key) as GetCookie<K, true>;
+    return Cookies.get(key) satisfies GetCookie<K> | undefined;
   }, []);
 
   const set = useCallback(

@@ -1,6 +1,7 @@
 "use client";
 
 import type { SyntheticEvent } from "react";
+import { useToast } from "@dcs/ui";
 import { useCallback, useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
 import useSWR from "swr";
@@ -8,6 +9,7 @@ import type { TsxExclude } from "@/types/helpers";
 import type { ExpectedRes } from "@/types/next";
 import { eventSubmissionAction } from "@/app/actions";
 import { cn } from "@/lib/utils";
+import { submissionFailure } from "@/utils/submission-result";
 
 function fetcher<const T extends ExpectedRes | undefined>(
   input: RequestInfo,
@@ -44,7 +46,7 @@ export function SendButton({
         {...props}
         disabled={pending}
         className={cn(
-          "block w-full rounded-md bg-dcs-800 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-dcs-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dcs-600",
+          "block w-full rounded-md bg-dcs-800 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-dcs-700 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-dcs-600",
           className
         )}
         type='submit'>
@@ -61,6 +63,7 @@ export function EventForm() {
   const [_device, setDevice] = useState<string | undefined>();
   const [_browser, setBrowser] = useState<string | undefined>();
   const { data } = UseSwrSync({ hasData });
+  const { toast } = useToast();
 
   const dataCb = useCallback((props: ExpectedRes) => {
     const data = props.userAgentObject;
@@ -123,14 +126,21 @@ export function EventForm() {
       formData.append("city", data.city);
       formData.append("flag", data.flag);
     }
-    try {
-      await eventSubmissionAction(formData);
-      formRef.current?.reset();
-    } catch (err) {
-      console.error(
-        typeof err === "string" ? err : JSON.stringify(err, null, 2)
-      );
+    const result =
+      await eventSubmissionAction(formData).catch(submissionFailure);
+
+    if (!result.ok) {
+      console.error(result.message);
+      toast.error("Something went wrong", {
+        description: "Your message didn't go through. Please try again."
+      });
+      return;
     }
+
+    formRef.current?.reset();
+    toast.success("Message sent", {
+      description: "We'll get back to you soon!"
+    });
   }
 
   return (
