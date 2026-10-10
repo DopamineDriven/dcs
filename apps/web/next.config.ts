@@ -16,7 +16,8 @@ export default {
       { pathname: "/*" },
       { pathname: "/avatars/**" },
       { pathname: "/infographics/**" },
-      { pathname: "/meta/**" }
+      { pathname: "/meta/**" },
+      { pathname: "/images/**" }
     ],
     remotePatterns: [
       { hostname: "localhost", port: "3001", protocol: "http" },
