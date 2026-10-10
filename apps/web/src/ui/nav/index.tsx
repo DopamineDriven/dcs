@@ -19,9 +19,9 @@ import { Brand } from "@/ui/nav/brand";
 import { MegaPanel } from "@/ui/nav/mega-panel";
 import { MobileDrawer } from "@/ui/nav/mobile-drawer";
 
-const navLinkClass =
+const navLinkStyles =
   "text-gray-500 relative inline-flex min-h-24 items-center justify-center gap-1.5 text-sm font-medium transition-colors duration-180 hover:text-dcs-800";
-const navLinkActiveClass =
+const navLinkActiveStyles =
   "text-dcs-800 after:bg-dcs-800 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:content-['']";
 
 export function SiteHeader() {
@@ -101,8 +101,8 @@ export function SiteHeader() {
               aria-current={current === "home" ? "page" : undefined}
               onClick={closeAll}
               className={cn(
-                navLinkClass,
-                current === "home" && navLinkActiveClass
+                navLinkStyles,
+                current === "home" && navLinkActiveStyles
               )}>
               Home
             </Link>
@@ -123,8 +123,8 @@ export function SiteHeader() {
                     )
                   }
                   className={cn(
-                    navLinkClass,
-                    (isOpen || isCurrent) && navLinkActiveClass
+                    navLinkStyles,
+                    (isOpen || isCurrent) && navLinkActiveStyles
                   )}>
                   {menu.label}
                   <ChevronDown

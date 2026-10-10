@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import { Footer } from "@/ui/sections/Footer";
-import { SiteHeader } from "@/ui/sections/SiteHeader";
+import { SiteHeader } from "@/ui/nav";
 
 export function LayoutScaffold({ children }: { children: ReactNode }) {
   return (

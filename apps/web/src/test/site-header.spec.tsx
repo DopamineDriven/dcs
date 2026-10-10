@@ -7,7 +7,7 @@ import {
   publishRouterTransitionStart,
   resetRouterTransitions
 } from "@/navigation/transition-store";
-import { SiteHeader } from "@/ui/sections/SiteHeader";
+import { SiteHeader } from "@/ui/nav";
 
 MotionGlobalConfig.skipAnimations = true;
 (
