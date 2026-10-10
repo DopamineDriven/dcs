@@ -1,7 +1,18 @@
 @import "tailwindcss/theme.css" layer(theme) source("../src");
-@import "tw-animate-css";
 @import "tailwindcss/utilities.css" layer(utilities);
+@import "tw-animate-css";
 @custom-variant li (& li);
+@custom-variant h2 (& h2);
+@custom-variant p (& p);
+@custom-variant h3 (& h3);
+@custom-variant ul (& ul);
+@custom-variant ol (& ol);
+@custom-variant img (& img);
+@custom-variant audio (& audio);
+@custom-variant a (& a);
+@custom-variant pp (& p+p);
+@custom-variant strong (& strong);
+@custom-variant h1h3 (& h1, h3);
 @custom-variant dark (
   &:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *)
 );
@@ -83,7 +94,11 @@
   --color-muted-foreground: oklch(55.167% 0.01387 285.878);
   --color-accent: oklch(97.259% 0.00873 264.613);
   --color-accent-foreground: oklch(38.974% 0.0826 254.269);
-  --color-border: color-mix(in oklch, oklch(38.974% 0.0826 254.269) 14%, transparent);
+  --color-border: color-mix(
+    in oklch,
+    oklch(38.974% 0.0826 254.269) 14%,
+    transparent
+  );
   --color-ring: oklch(38.974% 0.0826 254.269);
   --color-loading-dot: oklch(38.974% 0.0826 254.269);
   --color-destructive: oklch(63.68% 0.2078 25.33);
@@ -92,7 +107,11 @@
   --color-success: oklch(0.6 0.16 150);
   --color-popover: oklch(100% 0 0);
   --color-popover-foreground: oklch(14.45% 0 0);
-  --shadow-link: 0 4px 12px var(--tw-shadow-color, color-mix(in oklch, oklch(38.974% 0.0826 254.269) 12%, transparent));
+  --shadow-link: 0 4px 12px
+    var(
+      --tw-shadow-color,
+      color-mix(in oklch, oklch(38.974% 0.0826 254.269) 12%, transparent)
+    );
 
   --animate-loading-blink: loading-blink 1.4s ease infinite both;
 
@@ -126,8 +145,12 @@
   --animate-image-arrive: image-arrive 1000ms cubic-bezier(0.16, 1, 0.3, 1) both;
 
   @keyframes image-arrive {
-    from { transform: scale(1.045); }
-    to { transform: scale(1); }
+    from {
+      transform: scale(1.045);
+    }
+    to {
+      transform: scale(1);
+    }
   }
   --animate-shimmer: shimmer 3s cubic-bezier(0.4, 0.7, 0.6, 1) infinite;
 

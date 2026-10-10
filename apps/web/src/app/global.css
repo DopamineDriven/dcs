@@ -9,8 +9,16 @@
   &:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *)
 );
 @custom-variant li (& li);
-@custom-variant h2(& h2);
-@custom-variant p(& p);
+@custom-variant h2 (& h2);
+@custom-variant p (& p);
+@custom-variant h3 (& h3);
+@custom-variant ul (& ul);
+@custom-variant ol (& ol);
+@custom-variant img (& img);
+@custom-variant audio (& audio);
+@custom-variant a (& a);
+@custom-variant pp (& p+p);
+@custom-variant strong (& strong);
 @custom-variant h1h3 (& h1, h3);
 
 @font-face {
