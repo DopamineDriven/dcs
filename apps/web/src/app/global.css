@@ -431,7 +431,7 @@ body::-webkit-scrollbar-thumb {
 
 @layer base {
   * {
-    border-color: var(--border);
+    border-color: var(--color-border);
   }
   button,
   a,
