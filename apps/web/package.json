@@ -21,6 +21,7 @@
     "@base-ui/react": "catalog:bui",
     "@d0paminedriven/codemod": "catalog:dd",
     "@d0paminedriven/fs": "catalog:dd",
+    "@d0paminedriven/iso-3166-1": "catalog:dd",
     "@dcs/ui": "workspace:*",
     "@radix-ui/react-label": "catalog:radix",
     "@radix-ui/react-slot": "catalog:radix",

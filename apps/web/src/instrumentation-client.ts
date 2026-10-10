@@ -9,5 +9,5 @@ export const onRouterTransitionStart = (
   navigationType: RouterTransitionType,
   event: RouterTransitionStartEvent | null
 ) => {
-  publishRouterTransitionStart(url, navigationType, event);
+  return publishRouterTransitionStart(url, navigationType, event);
 };

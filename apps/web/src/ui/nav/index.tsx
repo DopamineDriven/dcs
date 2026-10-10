@@ -91,7 +91,7 @@ export function SiteHeader() {
         onBlur={onHeaderBlur}
         className="border-dcs-800 sticky top-0 z-40 border-b bg-white">
         <div className="page-container flex min-h-24 items-center justify-between gap-7 max-lg:min-h-20 max-sm:min-h-19 max-sm:gap-3">
-          <Brand onNavigate={closeAll} />
+          <Brand onNavigateAction={closeAll} />
 
           <nav
             aria-label="Main navigation"

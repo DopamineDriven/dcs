@@ -361,21 +361,7 @@
   font-style: italic;
 }
 
-/* v0-tw container: 2.5rem gutters, 3.5rem from `smaller`, 4.5rem from `almost-lg`, 7rem from `lgxl`. */
-@utility page-container {
-  width: calc(100% - 2.5rem);
-  max-width: 80rem;
-  margin-inline: auto;
-  @media (width >= 37.5rem) {
-    width: calc(100% - 3.5rem);
-  }
-  @media (width >= 62.5rem) {
-    width: calc(100% - 4.5rem);
-  }
-  @media (width >= 75rem) {
-    width: calc(100% - 7rem);
-  }
-}
+
 
 @utility eyebrow {
   font-size: 0.875rem;

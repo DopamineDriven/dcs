@@ -17,7 +17,8 @@ export default {
       { pathname: "/avatars/**" },
       { pathname: "/infographics/**" },
       { pathname: "/meta/**" },
-      { pathname: "/images/**" }
+      { pathname: "/images/**" },
+      { pathname: "/flags/**" }
     ],
     remotePatterns: [
       { hostname: "localhost", port: "3001", protocol: "http" },
@@ -44,6 +45,24 @@ export default {
     return [
       {
         source: "/fonts/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable"
+          }
+        ]
+      },
+      {
+        source: "/images/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable"
+          }
+        ]
+      },
+      {
+        source: "/flags/:path*",
         headers: [
           {
             key: "Cache-Control",

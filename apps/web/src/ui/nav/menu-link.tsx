@@ -9,20 +9,23 @@ export function MenuLink({
   link: NavLink;
   onNavigateAction: () => void;
 }) {
+  const { description, href, label } = link;
   return (
     <Link
-      href={link.href}
-      onClick={onNavigateAction}
-      className="group/link hover:bg-dcs-50 focus-visible:bg-dcs-50 focus-visible:outline-dcs-800 -mx-3 flex items-center justify-between gap-3 rounded px-3 py-2 transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2">
-      <span className="flex flex-col gap-0.5">
-        <span className="text-dcs-800 text-[0.9375rem] font-medium">
-          {link.label}
+      href={href}
+      className="group hover:bg-muted hover:text-foreground focus-visible:bg-muted focus-visible:text-foreground -mx-2.75 flex items-center justify-between gap-3 rounded-sm px-2.75 py-2.25 transition-[background] duration-150 ease-[ease]"
+      onClick={onNavigateAction}>
+      <span className="flex flex-col gap-0.75">
+        <span className="text-primary text-[0.9375rem] font-medium">
+          {label}
         </span>
-        <span className="text-sm text-gray-500">{link.description}</span>
+        <span className="text-muted-foreground text-sm/[1.55]">
+          {description}
+        </span>
       </span>
       <ArrowUpRight
-        aria-hidden
-        className="text-dcs-800 size-4 shrink-0 opacity-0 transition-opacity duration-150 group-hover/link:opacity-100 group-focus-visible/link:opacity-100"
+        className="text-primary size-4 shrink-0 opacity-0 transition-opacity duration-150 ease-[ease] group-hover:opacity-100 group-focus-visible:opacity-100"
+        aria-hidden="true"
       />
     </Link>
   );

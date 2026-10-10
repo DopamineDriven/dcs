@@ -47,6 +47,9 @@ catalogs:
     '@d0paminedriven/fs':
       specifier: ^11.0.0
       version: 11.0.0
+    '@d0paminedriven/iso-3166-1':
+      specifier: ^1.4.0
+      version: 1.4.0
     '@d0paminedriven/turbogen':
       specifier: ^10.0.1
       version: 10.0.1
@@ -477,6 +480,9 @@ importers:
       '@d0paminedriven/fs':
         specifier: catalog:dd
         version: 11.0.0
+      '@d0paminedriven/iso-3166-1':
+        specifier: catalog:dd
+        version: 1.4.0
       '@dcs/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -1576,6 +1582,9 @@ packages:
 
   '@d0paminedriven/fs@11.0.0':
     resolution: {integrity: sha512-eB5jYfokk6aUrUNepy+e+hnHQCgEHrc3osf4RjQriMO05y/Lyw2A21DK04FG+VVOmDM1thB4U8YB2lr1a+Aewg==}
+
+  '@d0paminedriven/iso-3166-1@1.4.0':
+    resolution: {integrity: sha512-CLBdsFppYLzGoAFekYKVH786qmDn8oPuz76qUEiVXAY1C9l4e4K4RYigVDjV6/1e5rw3lcHpH7IlYwVd6qEdcw==}
 
   '@d0paminedriven/turbogen@10.0.1':
     resolution: {integrity: sha512-H6meYF2d2REOjNG4jUTGUYazQ7cn2ne8V2gAm01XT2ieULmu2EL9zufpKs7FUo1+6+2WojFWxCfd3hOGliM/lA==}
@@ -5027,6 +5036,10 @@ packages:
 
   dotenv@16.4.5:
     resolution: {integrity: sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==}
+    engines: {node: '>=12'}
+
+  dotenv@16.6.1:
+    resolution: {integrity: sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==}
     engines: {node: '>=12'}
 
   dotenv@17.4.2:
@@ -8647,6 +8660,10 @@ snapshots:
       dotenv-expand: 12.0.3
       fflate: 0.8.3
 
+  '@d0paminedriven/iso-3166-1@1.4.0':
+    dependencies:
+      dotenv: 16.6.1
+
   '@d0paminedriven/turbogen@10.0.1(@types/node@26.6.4)':
     dependencies:
       '@d0paminedriven/fs': 11.0.0
@@ -12040,6 +12057,8 @@ snapshots:
   dotenv@16.0.3: {}
 
   dotenv@16.4.5: {}
+
+  dotenv@16.6.1: {}
 
   dotenv@17.4.2: {}
 

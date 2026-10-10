@@ -1,36 +1,43 @@
-import { DrisdellIcon } from "@dcs/ui";
+import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 export function Brand({
-  onNavigate,
+  onNavigateAction,
   compact = false
 }: {
-  onNavigate?: () => void;
+  onNavigateAction?: () => void;
   compact?: boolean;
 }) {
   return (
     <Link
       href="/"
+      className="text-primary smaller:gap-3.25 inline-flex shrink-0 items-center gap-2.5"
       aria-label="Drisdell Consulting Services home"
-      onClick={onNavigate}
-      className="text-dcs-800 svg:text-xl inline-flex shrink-0 items-center gap-3.25 max-sm:gap-2.5">
-      <DrisdellIcon
-        aria-hidden
+      onClick={() => onNavigateAction?.()}>
+      <Image
         className={cn(
-          "object-contain",
-          compact ? "h-12.5 w-11.75" : "h-15 w-14.5"
+          compact
+            ? "size-12 object-contain"
+            : "smaller:h-13.5 smaller:w-13 almost-lg:h-15 almost-lg:w-14.5 h-12.5 w-11.75 object-contain"
         )}
+        src="/images/dcs-logo.svg"
+        width={62}
+        height={58}
+        alt=""
+        priority
       />
       <span className="flex flex-col gap-0">
         <span
           className={cn(
-            "font-basis-grotesque-pro-medium font-semibold tracking-[-0.045em] max-sm:text-xl/[1.2]",
-            compact ? "text-xl/[1.2]" : "text-2xl/[1.2]"
+            `leading-[1.2] font-[650] tracking-[-0.045em]`,
+            compact
+              ? "text-[1.3125rem]"
+              : "smaller:text-[1.4375rem] text-[1.375rem]"
           )}>
           Drisdell
         </span>
-        <span className="font-basis-grotesque-pro-regular text-sm/[1.8] font-normal tracking-[0.015em]">
+        <span className="text-sm/[1.8] tracking-[0.015em]">
           Consulting Services
         </span>
       </span>

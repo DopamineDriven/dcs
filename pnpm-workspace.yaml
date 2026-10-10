@@ -35,6 +35,7 @@ catalogs:
   dd:
     "@d0paminedriven/codemod": ^2.3.0
     "@d0paminedriven/fs": ^11.0.0
+    "@d0paminedriven/iso-3166-1": ^1.4.0
     "@d0paminedriven/turbogen": ^10.0.1
   dotenv:
     dotenv: ^18.0.6

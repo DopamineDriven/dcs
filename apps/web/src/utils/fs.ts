@@ -19,7 +19,6 @@ import type {
 dotenv.config();
 
 /* eslint-disable no-useless-escape */
-/* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable no-extra-boolean-cast */
 /* eslint-disable @typescript-eslint/prefer-for-of */
@@ -507,7 +506,7 @@ export class FsService {
       Buffer.from(
         fsSync.readFileSync(relative(cwd, path)).toJSON()
           .data satisfies number[]
-      ) satisfies WithImplicitCoercion<ArrayBuffer | SharedArrayBuffer>
+      )
     ) satisfies Buffer;
 
   public dirContainsDir({
