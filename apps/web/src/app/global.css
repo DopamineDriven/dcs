@@ -335,17 +335,19 @@
   font-style: italic;
 }
 
+/* v0-tw container: 2.5rem gutters, 3.5rem from `smaller`, 4.5rem from `almost-lg`, 7rem from `lgxl`. */
 @utility page-container {
-  width: min(100% - 112px, 1280px);
+  width: calc(100% - 2.5rem);
+  max-width: 80rem;
   margin-inline: auto;
-  @media (width < 1200px) {
-    width: calc(100% - 72px);
+  @media (width >= 37.5rem) {
+    width: calc(100% - 3.5rem);
   }
-  @media (width < 1024px) {
-    width: calc(100% - 56px);
+  @media (width >= 62.5rem) {
+    width: calc(100% - 4.5rem);
   }
-  @media (width < 600px) {
-    width: calc(100% - 40px);
+  @media (width >= 75rem) {
+    width: calc(100% - 7rem);
   }
 }
 
