@@ -1,6 +1,5 @@
 import type { BaseSVGProps } from "@/icons/index";
 
-
 export function Volume({ role = "img", ...svg }: BaseSVGProps) {
   return (
     <svg

@@ -12,6 +12,10 @@
 @custom-variant a (& a);
 @custom-variant pp (& p+p);
 @custom-variant strong (& strong);
+@custom-variant svg (& svg);
+@custom-variant h1 (& h1);
+@custom-variant h4 (& h4);
+@custom-variant video (& video);
 @custom-variant h1h3 (& h1, h3);
 @custom-variant dark (
   &:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *)

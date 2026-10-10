@@ -2,8 +2,8 @@
 
 import type { ComponentPropsWithRef } from "react";
 import { useEffect } from "react";
-import { cn } from "@/lib/utils";
 import { animate, motion, useMotionValue, useTransform } from "motion/react";
+import { cn } from "@/lib/utils";
 
 interface UploadProgressProps extends ComponentPropsWithRef<
   typeof motion.circle

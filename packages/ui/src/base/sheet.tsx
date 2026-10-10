@@ -1,10 +1,10 @@
 "use client";
 
 import type { ComponentPropsWithRef } from "react";
+import { Dialog as SheetPrimitive } from "@base-ui/react/dialog";
 import { BaseButton } from "@/base/button";
 import { X } from "@/icons/x";
 import { cn } from "@/lib/utils";
-import { Dialog as SheetPrimitive } from "@base-ui/react/dialog";
 
 function BaseSheet<const T = unknown>({
   ...props

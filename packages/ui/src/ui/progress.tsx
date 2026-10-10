@@ -1,8 +1,8 @@
 "use client";
 
 import type { ComponentPropsWithRef } from "react";
-import { cn } from "@/lib/utils";
 import * as ProgressPrimitive from "@radix-ui/react-progress";
+import { cn } from "@/lib/utils";
 
 type ProgressProps = ComponentPropsWithRef<typeof ProgressPrimitive.Root>;
 

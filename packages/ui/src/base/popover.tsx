@@ -1,8 +1,8 @@
 "use client";
 
 import type { ComponentPropsWithRef } from "react";
-import { cn } from "@/lib/utils";
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
+import { cn } from "@/lib/utils";
 
 function BasePopover<const T = unknown>({
   ...props

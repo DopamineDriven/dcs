@@ -9,7 +9,7 @@ export function TextLink({
   return (
     <Link
       className={cn(
-        "text-dcs-800 inline-flex items-center gap-3 text-sm font-medium [&_svg]:shrink-0 [&_svg]:transition-transform [&_svg]:duration-180 hover:[&_svg]:translate-x-0.5 hover:[&_svg]:-translate-y-0.5",
+        "text-dcs-800 svg:shrink-0 svg:transition-transform svg:duration-180 hover:svg:translate-x-0.5 hover:svg:-translate-y-0.5 inline-flex items-center gap-3 text-sm font-medium",
         className
       )}
       {...props}

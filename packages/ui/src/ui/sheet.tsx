@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
+import * as SheetPrimitive from "@radix-ui/react-dialog";
 import { X as XIcon } from "@/icons/x";
 import { cn } from "@/lib/utils";
-import * as SheetPrimitive from "@radix-ui/react-dialog";
 
 function Sheet({
   ...props

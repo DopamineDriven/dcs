@@ -1,8 +1,8 @@
 "use client";
 
 import type { ComponentPropsWithoutRef, ComponentPropsWithRef } from "react";
-import { cn } from "@/lib/utils";
 import * as PopoverPrimitive from "@radix-ui/react-popover";
+import { cn } from "@/lib/utils";
 
 type PopoverProps<T extends "Anchor" | "Content" | "Root" | "Trigger"> =
   T extends "Root"

@@ -16,7 +16,7 @@ const styles = {
 } as const;
 
 export const brandButtonVariants = cva(
-  "group/btn inline-flex min-h-12 items-center justify-center gap-5 rounded border border-transparent px-5 py-3 text-sm font-medium transition-[background-color,box-shadow] duration-180 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-dcs-800 [&_svg]:shrink-0 [&_svg]:transition-transform [&_svg]:duration-180 hover:[&_svg]:translate-x-0.5 hover:[&_svg]:-translate-y-0.5",
+  "group/btn inline-flex min-h-12 items-center justify-center gap-5 rounded border border-transparent px-5 py-3 text-sm font-medium transition-[background-color,box-shadow] duration-180 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-dcs-800 svg:shrink-0 svg:transition-transform svg:duration-180 hover:svg:translate-x-0.5 hover:svg:-translate-y-0.5",
   styles
 );
 

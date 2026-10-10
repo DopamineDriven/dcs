@@ -1,6 +1,6 @@
 import type { BaseSVGProps } from "@/icons/index";
 
-export function Pause({ role="img", ...svg }: BaseSVGProps) {
+export function Pause({ role = "img", ...svg }: BaseSVGProps) {
   return (
     <svg
       role={role}

@@ -1,6 +1,6 @@
+import { DrisdellIcon } from "@dcs/ui";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { DrisdellIcon } from "@dcs/ui";
 
 export function Brand({
   onNavigate,
@@ -14,7 +14,7 @@ export function Brand({
       href="/"
       aria-label="Drisdell Consulting Services home"
       onClick={onNavigate}
-      className="text-dcs-800 inline-flex shrink-0 items-center gap-3.25 max-sm:gap-2.5 [&_svg]:text-xl">
+      className="text-dcs-800 svg:text-xl inline-flex shrink-0 items-center gap-3.25 max-sm:gap-2.5">
       <DrisdellIcon
         aria-hidden
         className={cn(

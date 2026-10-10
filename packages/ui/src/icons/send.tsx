@@ -17,4 +17,3 @@ export function Send({ role = "img", ...svg }: BaseSVGProps) {
     </svg>
   );
 }
-

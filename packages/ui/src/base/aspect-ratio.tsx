@@ -19,4 +19,3 @@ function BaseAspectRatio({ ratio, className, ...props }: BaseAspectRatioProps) {
 }
 
 export { BaseAspectRatio, type BaseAspectRatioProps };
- 

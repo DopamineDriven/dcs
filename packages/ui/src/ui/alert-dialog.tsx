@@ -2,9 +2,9 @@
 
 import type { VariantProps } from "class-variance-authority";
 import type { ComponentPropsWithRef } from "react";
-import { buttonVariants } from "@/ui/button";
-import { cn } from "@/lib/utils";
 import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog";
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/ui/button";
 
 type AlertDialogProps<
   T extends

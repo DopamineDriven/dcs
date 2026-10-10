@@ -1,9 +1,9 @@
 "use client";
 
 import type { ComponentPropsWithRef } from "react";
+import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { ChevronDown } from "@/icons/chevron-down";
 import { cn } from "@/lib/utils";
-import * as AccordionPrimitive from "@radix-ui/react-accordion";
 
 type AccordionProps<T extends "Root" | "Trigger" | "Content" | "Item"> = {
   [P in T]: ComponentPropsWithRef<(typeof AccordionPrimitive)[P]>;

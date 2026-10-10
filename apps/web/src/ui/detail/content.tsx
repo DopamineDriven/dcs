@@ -34,7 +34,7 @@ export function DetailContent({ page }: { page: SiteContent }) {
     <>
       {page.sections.map((section, index) => (
         <section
-          className={cn(index > 0 && "mt-10.5 border-t pt-8")}
+          className={cn("pp:mt-5.5", index > 0 && "mt-10.5 border-t pt-8")}
           id={section.id}
           key={section.title ?? section.body}>
           {section.title && (
@@ -44,7 +44,7 @@ export function DetailContent({ page }: { page: SiteContent }) {
           )}
           {paragraphs(section.body).map(paragraph => (
             <p
-              className="text-muted-foreground smaller:text-[1.0625rem] text-[0.9375rem] leading-[1.8] whitespace-pre-line [&+p]:mt-5.5"
+              className="text-muted-foreground smaller:text-[1.0625rem] text-[0.9375rem] leading-[1.8] whitespace-pre-line"
               key={paragraph}>
               {paragraph}
             </p>

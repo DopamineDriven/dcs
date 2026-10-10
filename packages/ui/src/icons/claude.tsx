@@ -1,6 +1,5 @@
 import type { BaseSVGProps } from "@/icons/index";
 
-
 export function ClaudeIcon({ role = "img", ...svg }: BaseSVGProps) {
   return (
     <svg

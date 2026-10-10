@@ -17,4 +17,3 @@ export function ThumbsDown({ role = "img", ...svg }: BaseSVGProps) {
     </svg>
   );
 }
-

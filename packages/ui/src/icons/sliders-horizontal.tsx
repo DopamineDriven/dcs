@@ -1,6 +1,10 @@
 import type { BaseSVGProps } from "@/icons/index";
 
-export function SlidersHorizontal({ role = "img",  strokeWidth = "2", ...svg }: BaseSVGProps) {
+export function SlidersHorizontal({
+  role = "img",
+  strokeWidth = "2",
+  ...svg
+}: BaseSVGProps) {
   return (
     <svg
       role={role}
