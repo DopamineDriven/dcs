@@ -32,11 +32,6 @@ export function DetailContent({ page }: { page: SiteContent }) {
 
   return (
     <>
-      {page.lead && (
-        <p className="text-primary mb-7 text-[1.3125rem] leading-normal font-medium tracking-tight text-pretty md:text-[1.5rem]">
-          {page.lead}
-        </p>
-      )}
       {page.sections.map((section, index) => (
         <section
           className={cn(index > 0 && "mt-10.5 border-t pt-8")}

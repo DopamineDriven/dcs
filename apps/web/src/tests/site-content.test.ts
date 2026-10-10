@@ -33,9 +33,11 @@ describe("sitePages", () => {
     }
   });
 
-  it("pairs every narration with a hero image", () => {
+  it("keeps every narration as a local track under /audio", () => {
     for (const page of sitePages) {
-      if ("narration" in page) assert.ok("image" in page, page.path);
+      if ("narration" in page) {
+        assert.match(page.narration, /^\/audio\/[a-z-]+\.mp3$/, page.path);
+      }
     }
   });
 

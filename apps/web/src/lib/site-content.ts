@@ -32,6 +32,7 @@ export const sitePages = [
     eyebrow: "About Drisdell Consulting Services",
     description:
       "Independent expertise since 1995. A personal commitment to the people behind every project.",
+    narration: "/audio/about-us.mp3",
     sections: [
       {
         title: "Built around your business.",
@@ -264,13 +265,13 @@ export const existingFormPaths = [
   "/consultants/submit-a-resume"
 ] as const satisfies readonly string[];
 
-function normalizePath(path: string) {
+export function normalizeSitePath(path: string) {
   const stripped = (path.split(/[?#]/)[0] ?? "").replace(/\/+$/, "");
   return stripped === "" ? "/" : stripped;
 }
 
 export function findSitePage(path: string): SiteContent | undefined {
-  const target = normalizePath(path);
+  const target = normalizeSitePath(path);
   return sitePages.find(page => page.path === target);
 }
 
@@ -297,7 +298,7 @@ const parents = [
 ] as const satisfies readonly DetailParent[];
 
 export function detailParent(path: string): DetailParent {
-  return normalizePath(path).startsWith("/consultants")
+  return normalizeSitePath(path).startsWith("/consultants")
     ? parents[1]
     : parents[0];
 }

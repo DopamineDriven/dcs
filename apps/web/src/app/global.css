@@ -9,6 +9,8 @@
   &:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *)
 );
 @custom-variant li (& li);
+@custom-variant h2(& h2);
+@custom-variant p(& p);
 @custom-variant h1h3 (& h1, h3);
 
 @font-face {

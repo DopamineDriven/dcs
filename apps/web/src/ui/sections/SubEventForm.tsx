@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { shimmer } from "@/lib/shimmer";
 import { cn } from "@/lib/utils";
-import css from "../dynamic/children-scaffold.module.css";
 
 export const data = [
   {
@@ -81,7 +80,7 @@ export function SubEventForm() {
                 <h2 className="font-basis-grotesque-pro-medium text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
                   {v.title}
                 </h2>
-                <div className={css.inner_wp_content}>
+                <div className="font-basis-grotesque-pro-regular [&>p]:mt-2 [&>p]:text-base/6 [&>p]:text-gray-700 lg:[&>p]:max-w-3xl">
                   <p className="text-pretty">{v.content}</p>
                 </div>
               </div>

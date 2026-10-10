@@ -16,15 +16,18 @@ import { Narration } from "@/ui/detail/narration";
 import { Sidebar } from "@/ui/detail/sidebar";
 
 /**
- * The detail frame for every About Us and Consultants page. Pass `children`
- * to replace the static sections (for example with a WordPress body).
+ * The detail frame for every About Us and Consultants page. `children`
+ * replace the static sections (a WordPress body); `after` renders full-width
+ * sections between the article and the contact band (child cards, a form).
  */
 export function DetailPage({
   page,
-  children
+  children,
+  after
 }: {
   page: SiteContent;
   children?: ReactNode;
+  after?: ReactNode;
 }) {
   const parent = detailParent(page.path);
   const wide = isWidePresentation(page);
@@ -50,6 +53,11 @@ export function DetailPage({
             "min-w-0 flex-1",
             wide ? "w-full max-w-none" : "max-w-190"
           )}>
+          {!page.presentation && page.lead && (
+            <p className="text-primary mb-7 text-[1.3125rem] leading-normal font-medium tracking-tight text-pretty md:text-[1.5rem]">
+              {page.lead}
+            </p>
+          )}
           {children ?? <DetailContent page={page} />}
           {page.narration && (
             <Narration src={page.narration} eyebrow={page.eyebrow} />
@@ -65,6 +73,7 @@ export function DetailPage({
           </Link>
         </article>
       </div>
+      {after}
       <ContactSection />
     </>
   );

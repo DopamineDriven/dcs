@@ -18,12 +18,18 @@ function must<T>(value: T | null | undefined, what: string): T {
   return value;
 }
 
-function render(path: string, children?: ReactNode) {
+function render(path: string, children?: ReactNode, after?: ReactNode) {
   const page = must(findSitePage(path), `site page ${path}`);
   container = document.createElement("div");
   document.body.appendChild(container);
   root = createRoot(container);
-  act(() => root.render(<DetailPage page={page}>{children}</DetailPage>));
+  act(() =>
+    root.render(
+      <DetailPage page={page} after={after}>
+        {children}
+      </DetailPage>
+    )
+  );
   return container;
 }
 
@@ -61,11 +67,13 @@ describe("DetailPage", () => {
     expect(audio?.getAttribute("src")).toBe("/audio/about-mission.mp3");
   });
 
-  it("omits the image and narration on a parent page and ends the crumbs on the parent", () => {
+  it("omits the image on a parent page, keeps its narration, and ends the crumbs on the parent", () => {
     render("/about-us");
     expect(crumbCurrent()?.textContent).toBe("About us");
     expect(container.querySelector("img")).toBeNull();
-    expect(container.querySelector("details")).toBeNull();
+    expect(container.querySelector("details audio")?.getAttribute("src")).toBe(
+      "/audio/about-us.mp3"
+    );
     expect(container.querySelector("h1")?.textContent).toBe(
       "Good people. Lasting partnerships."
     );
@@ -99,6 +107,41 @@ describe("DetailPage", () => {
       "action link"
     );
     expect(cta.textContent).toContain("Explore skills and positions");
+  });
+
+  it("keeps the lead above children so a WordPress body still gets its opening line", () => {
+    render("/about-us/our-mission", <div data-testid="wp-body">body</div>);
+    const article = must(container.querySelector("article"), "article");
+    const lead = must(article.querySelector("p"), "lead paragraph");
+    expect(lead.textContent).toContain("Solution Builders who excel");
+    expect(
+      lead.compareDocumentPosition(
+        must(article.querySelector('[data-testid="wp-body"]'), "wp body")
+      ) & Node.DOCUMENT_POSITION_FOLLOWING
+    ).toBeTruthy();
+  });
+
+  it("renders the after slot between the article and the contact band", () => {
+    render(
+      "/about-us",
+      undefined,
+      <section data-testid="cards">cards</section>
+    );
+    const cards = must(
+      container.querySelector('[data-testid="cards"]'),
+      "cards"
+    );
+    const article = must(container.querySelector("article"), "article");
+    const contact = must(
+      container.querySelector('section[aria-labelledby="contact-heading"]'),
+      "contact band"
+    );
+    expect(
+      article.compareDocumentPosition(cards) & Node.DOCUMENT_POSITION_FOLLOWING
+    ).toBeTruthy();
+    expect(
+      cards.compareDocumentPosition(contact) & Node.DOCUMENT_POSITION_FOLLOWING
+    ).toBeTruthy();
   });
 
   it("lets children replace the static sections so WordPress bodies can slot in", () => {
