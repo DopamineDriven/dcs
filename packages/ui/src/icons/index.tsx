@@ -9,9 +9,12 @@ import { ArrowLeftRight } from "@/icons/arrow-left-right";
 import { ArrowRight } from "@/icons/arrow-right";
 import { ArrowUpRight } from "@/icons/arrow-up-right";
 import { AudioLines } from "@/icons/audio-lines";
+import { BadgeCheck } from "@/icons/badge-check";
 import { Blocks } from "@/icons/blocks";
 import { BookOpen } from "@/icons/book-open";
 import { Bot } from "@/icons/bot";
+import { Briefcase } from "@/icons/briefcase";
+import { BuildingComplex } from "@/icons/building-complex";
 import { Camera } from "@/icons/camera";
 import { Check } from "@/icons/check";
 import { ChevronDown } from "@/icons/chevron-down";
@@ -42,6 +45,7 @@ import { Eye } from "@/icons/eye";
 import { EyeClosed } from "@/icons/eye-closed";
 import { EyeOff } from "@/icons/eye-off";
 import { FileText } from "@/icons/file-text";
+import { FileUp } from "@/icons/file-up";
 import { Folder } from "@/icons/folder";
 import { GeminiIcon } from "@/icons/gemini";
 import { Github } from "@/icons/github";
@@ -50,6 +54,7 @@ import { GoogleIcon } from "@/icons/google";
 import { GripVertical } from "@/icons/grip-vertical";
 import { Handshake } from "@/icons/handshake";
 import { Headphones } from "@/icons/headphones";
+import { HeartHandshake } from "@/icons/heart-handshake";
 import { History } from "@/icons/history";
 import { ImageGen } from "@/icons/image-gen";
 import { ImageIcon } from "@/icons/image-icon";
@@ -59,6 +64,7 @@ import { KeyRound } from "@/icons/key-round";
 import { Kimi } from "@/icons/kimi";
 import { Layers } from "@/icons/layers";
 import { LinkedIn } from "@/icons/linkedin";
+import { ListChecks } from "@/icons/list-checks";
 import { Loader } from "@/icons/loader";
 import { LoaderCircle } from "@/icons/loader-circle";
 import { LoaderPinwheel } from "@/icons/loader-pinwheel";
@@ -67,17 +73,20 @@ import { Mail } from "@/icons/mail";
 import { Menu } from "@/icons/menu";
 import { MessageCircleQuestion } from "@/icons/message-circle-question";
 import { MessageSquare } from "@/icons/message-square";
+import { MessageSquareQuote } from "@/icons/message-square-quote";
 import { MessageSquareText } from "@/icons/message-square-text";
 import { MetaIcon } from "@/icons/meta";
 import { Mic } from "@/icons/mic";
 import { MinimaxIcon } from "@/icons/minimax";
 import { MistralIcon } from "@/icons/mistral";
 import { Moon } from "@/icons/moon";
+import { Network } from "@/icons/network";
 import { OpenAiIcon } from "@/icons/openai";
 import { Package } from "@/icons/package";
 import { Palette } from "@/icons/palette";
 import { PanelLeft } from "@/icons/panel-left";
 import { PanelLeftClose } from "@/icons/panel-left-close";
+import { PanelLeftOpen } from "@/icons/panel-left-open";
 import { PanelRightClose } from "@/icons/panel-right-close";
 import { Paperclip } from "@/icons/paperclip";
 import { Pause } from "@/icons/pause";
@@ -89,6 +98,7 @@ import { QuoteIcon } from "@/icons/quote";
 import { QwenIcon } from "@/icons/qwen";
 import { ReadAloud } from "@/icons/read-aloud";
 import { RetryIcon } from "@/icons/retry";
+import { RouteIcon } from "@/icons/route";
 import { SakanaIcon } from "@/icons/sakana";
 import { Save } from "@/icons/save";
 import { Search } from "@/icons/search";
@@ -104,6 +114,7 @@ import { Sparkles } from "@/icons/sparkles";
 import { SquarePen } from "@/icons/square-pen";
 import { Stop } from "@/icons/stop";
 import { Sun } from "@/icons/sun";
+import { Target } from "@/icons/target";
 import { Terminal } from "@/icons/terminal";
 import { ThumbsDown } from "@/icons/thumbs-down";
 import { ThumbsUp } from "@/icons/thumbs-up";
@@ -134,9 +145,12 @@ const IconComponents = {
   ArrowRight,
   ArrowUpRight,
   AudioLines,
+  BadgeCheck,
   Blocks,
   BookOpen,
   Bot,
+  Briefcase,
+  BuildingComplex,
   Camera,
   Check,
   ChevronDown,
@@ -169,6 +183,7 @@ const IconComponents = {
   EyeClosed,
   EyeOff,
   FileText,
+  FileUp,
   Folder,
   GeminiIcon,
   Github,
@@ -177,6 +192,7 @@ const IconComponents = {
   GripVertical,
   Handshake,
   Headphones,
+  HeartHandshake,
   History,
   ImageGen,
   ImageIcon,
@@ -186,6 +202,7 @@ const IconComponents = {
   Kimi,
   Layers,
   LinkedIn,
+  ListChecks,
   LoaderCircle,
   LoaderPinwheel,
   Loader,
@@ -194,16 +211,19 @@ const IconComponents = {
   Menu,
   MessageCircleQuestion,
   MessageSquare,
+  MessageSquareQuote,
   MessageSquareText,
   MetaIcon,
   Mic,
   MinimaxIcon,
   MistralIcon,
   Moon,
+  Network,
   OpenAiIcon,
   Package,
   Palette,
   PanelLeft,
+  PanelLeftOpen,
   PanelLeftClose,
   PanelRightClose,
   Paperclip,
@@ -216,6 +236,7 @@ const IconComponents = {
   QwenIcon,
   ReadAloud,
   RetryIcon,
+  RouteIcon,
   SakanaIcon,
   Save,
   Search,
@@ -231,6 +252,7 @@ const IconComponents = {
   SquarePen,
   Stop,
   Sun,
+  Target,
   Terminal,
   ThumbsDown,
   ThumbsUp,
@@ -289,9 +311,12 @@ export {
   ArrowRight,
   ArrowUpRight,
   AudioLines,
+  BadgeCheck,
   Blocks,
   BookOpen,
   Bot,
+  Briefcase,
+  BuildingComplex,
   Camera,
   Check,
   ChevronDown,
@@ -324,6 +349,7 @@ export {
   EyeClosed,
   EyeOff,
   FileText,
+  FileUp,
   Folder,
   GeminiIcon,
   Github,
@@ -332,6 +358,7 @@ export {
   GripVertical,
   Handshake,
   Headphones,
+  HeartHandshake,
   History,
   ImageGen,
   ImageIcon,
@@ -341,6 +368,7 @@ export {
   Kimi,
   Layers,
   LinkedIn,
+  ListChecks,
   LoaderCircle,
   LoaderPinwheel,
   Loader,
@@ -349,16 +377,19 @@ export {
   Menu,
   MessageCircleQuestion,
   MessageSquare,
+  MessageSquareQuote,
   MessageSquareText,
   MetaIcon,
   Mic,
   MinimaxIcon,
   MistralIcon,
   Moon,
+  Network,
   OpenAiIcon,
   Package,
   Palette,
   PanelLeft,
+  PanelLeftOpen,
   PanelLeftClose,
   PanelRightClose,
   Paperclip,
@@ -371,6 +402,7 @@ export {
   QwenIcon,
   ReadAloud,
   RetryIcon,
+  RouteIcon,
   SakanaIcon,
   Save,
   Search,
@@ -386,6 +418,7 @@ export {
   SquarePen,
   Stop,
   Sun,
+  Target,
   Terminal,
   ThumbsDown,
   ThumbsUp,

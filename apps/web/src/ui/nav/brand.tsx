@@ -16,10 +16,10 @@ export function Brand({
       aria-label="Drisdell Consulting Services home"
       onClick={() => onNavigateAction?.()}>
       <Image
-        className={cn(
+        className={cn("object-contain",
           compact
-            ? "size-12 object-contain"
-            : "smaller:h-13.5 smaller:w-13 almost-lg:h-15 almost-lg:w-14.5 h-12.5 w-11.75 object-contain"
+            ? "size-12"
+            : "smaller:h-13.5 smaller:w-13 almost-lg:h-15 almost-lg:w-14.5 h-12.5 w-11.75"
         )}
         src="/images/dcs-logo.svg"
         width={62}

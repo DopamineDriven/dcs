@@ -9,7 +9,8 @@ import "./global.css";
 import { ToastProvider } from "@dcs/ui";
 import { DM_Sans, Inter } from "next/font/google";
 import Script from "next/script";
-import { LayoutScaffold } from "@/ui/layout";
+import { SiteFooter } from "@/ui/footer";
+import { SiteHeader } from "@/ui/nav/site-header";
 import * as myGtag from "@/utils/analytics";
 
 const inter = Inter({
@@ -121,7 +122,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className="bg-background text-foreground font-sans leading-[1.55] antialiased">
         <CookieProvider>
           <ToastProvider>
-            <LayoutScaffold>{children}</LayoutScaffold>
+            <>
+              <SiteHeader />
+              {children}
+              <SiteFooter />
+            </>
           </ToastProvider>
         </CookieProvider>
       </body>

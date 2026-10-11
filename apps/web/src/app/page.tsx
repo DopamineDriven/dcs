@@ -10,11 +10,11 @@ export const metadata = {
 
 export default function HomePage() {
   return (
-    <>
+    <main id="main-content" className="mx-auto w-full">
       <HomeHero />
       <DiscoverySection />
       <CompanyPromise />
       <ContactSection />
-    </>
+    </main>
   );
 }
