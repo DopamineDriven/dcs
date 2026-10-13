@@ -8,8 +8,6 @@ import { EncodeClientMutationId } from "@/utils/encode-client-mutation-id";
 import { fetchWpAPI } from "@/utils/fetch-wordpress";
 import { SubmissionWorkup } from "./submission-workup";
 
-/* eslint-disable @typescript-eslint/no-non-null-assertion  */
-
 export async function ExecuteContactFormSubmissionMutation<
   const T extends ExecuteContactFormSubmissionMutationProps
 >({ body, email, firstName, lastName, subject, ip, userAgent }: T) {
@@ -47,5 +45,8 @@ export async function ExecuteContactFormSubmissionMutation<
         }
       ]
     }
-  }).then(data => data!);
+  }).then(data => {
+    if (!data) throw new Error("something went wrong with contact form submission event");
+    else return data;
+  });
 }

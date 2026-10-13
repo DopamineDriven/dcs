@@ -58,7 +58,7 @@ function textOf(html: string) {
     .trim();
 }
 
-export function parseWpContent(content: string): ParsedWpContent {
+export function parseWpContent(content: string) {
   let html = content;
 
   const audio = html.match(AUDIO_BLOCK)?.[0];
@@ -74,10 +74,10 @@ export function parseWpContent(content: string): ParsedWpContent {
   const lead = heading?.[1] ? textOf(heading[1]) : undefined;
   if (heading) html = html.replace(LEADING_H3, "");
 
-  return { lead, narration, html: html.trim() };
+  return { lead, narration, html: html.trim() } satisfies ParsedWpContent;
 }
 
-function wpImage(featured: WpFeaturedImage): SiteImage | undefined {
+function wpImage(featured: WpFeaturedImage) {
   if (!featured?.node.sourceUrl) return undefined;
   const { sourceUrl, altText, mediaDetails } = featured.node;
   return {
@@ -85,7 +85,7 @@ function wpImage(featured: WpFeaturedImage): SiteImage | undefined {
     alt: altText,
     width: mediaDetails.width,
     height: mediaDetails.height
-  };
+  } satisfies SiteImage;
 }
 
 /**
@@ -96,7 +96,7 @@ function wpImage(featured: WpFeaturedImage): SiteImage | undefined {
 export function mergeSiteContent(
   curated: SiteContent | undefined,
   page: WpPageLike
-): MergedSiteContent {
+) {
   const parsed = parseWpContent(page.content);
   return {
     path: normalizeSitePath(page.uri),
@@ -111,5 +111,5 @@ export function mergeSiteContent(
     attribution: curated?.attribution,
     action: curated?.action,
     html: parsed.html
-  };
+  } satisfies MergedSiteContent;
 }

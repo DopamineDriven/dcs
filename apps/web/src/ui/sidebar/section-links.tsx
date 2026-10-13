@@ -56,7 +56,7 @@ export function SectionLinks({
   collapsed: boolean;
 }) {
   return (
-    <ul className="flex flex-col gap-1">
+    <ul className="font-basis flex flex-col gap-1">
       {links.map(link => {
         let Icon: IconValueProps;
         const tryGet = sectionIcons.get(link.href);

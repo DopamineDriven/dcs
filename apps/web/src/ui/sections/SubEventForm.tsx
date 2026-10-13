@@ -37,7 +37,7 @@ export const data = [
 
 export function SubEventForm() {
   return (
-    <div className="bg-white py-8 sm:py-12">
+    <div className="bg-background py-8 sm:py-12">
       <div className="mx-auto grid max-w-7xl auto-rows-fr grid-cols-1 gap-6 px-6 lg:space-y-12 lg:px-8">
         {data.map((v, i) => (
           <div
@@ -46,7 +46,7 @@ export function SubEventForm() {
             <div className={cn("lg:pr-4", i === 1 ? "lg:order-last" : "")}>
               <div className="bg-dcs-900 relative overflow-hidden rounded-3xl px-6 pt-64 pb-9 shadow-2xl sm:px-12 lg:max-w-lg lg:px-8 lg:pb-8 xl:px-10 xl:pb-10">
                 <Image
-                  alt={v.image.url}
+                  alt={v.title}
                   src={v.image.url}
                   width={v.image.width}
                   height={v.image.height}
@@ -66,7 +66,7 @@ export function SubEventForm() {
                       clipPath:
                         "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
                     }}
-                    className="from-dcs-600 to-dcs-800 aspect-1097/845 w-[68.5625rem] bg-linear-to-tr opacity-40"
+                    className="from-dcs-600 to-dcs-800 aspect-1097/845 w-274.25 bg-linear-to-tr opacity-40"
                   />
                 </div>
               </div>

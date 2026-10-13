@@ -1,4 +1,4 @@
-import type { Rm } from "@dcs/types";
+export type Rm<T, P extends keyof T = keyof T> = { [S in keyof T as Exclude<S, P>]: T[S]; };
 
 export const COOKIES = {
   browserVersion: "browserVersion",

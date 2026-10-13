@@ -1,8 +1,5 @@
-
-
 export function b64toBlob(b64Data: string) {
   const sliceSize = 512;
-  // eslint-disable-next-line @typescript-eslint/prefer-regexp-exec
   const typeMatch = b64Data.match(/data:(.*);/);
   const type = typeMatch?.[1];
   console.log(type ?? "");
@@ -25,6 +22,6 @@ export function b64toBlob(b64Data: string) {
     byteArrays.push(byteArray);
   }
 
-  const blob = new Blob(byteArrays, { type: type });
+  const blob = new Blob([Buffer.concat(byteArrays)], { type: type });
   return blob;
 }

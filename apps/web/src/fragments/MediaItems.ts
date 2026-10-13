@@ -8,6 +8,8 @@ export const MediaItemFragment = gql`
     title
     sourceUrl
     databaseId
+    fileSize
+    filePath
     description
     id
     slug

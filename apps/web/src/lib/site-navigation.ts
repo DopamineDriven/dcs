@@ -1,3 +1,7 @@
+import { getSiteUrl } from "@/lib/site-url";
+
+export const liveSite = getSiteUrl(process.env.VERCEL_ENV);
+
 export const homeUrl = "/";
 export const contactUrl = "/contact-us";
 export type CompanyGroupProps = {

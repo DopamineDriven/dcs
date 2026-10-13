@@ -1,3 +1,5 @@
 import type { Config } from "postcss-load-config";
 
-export default { plugins: { "@tailwindcss/postcss": {} } } satisfies Config;
+const config = { plugins: { "@tailwindcss/postcss": {} } } satisfies Config;
+
+export default config;

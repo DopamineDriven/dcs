@@ -1,29 +1,13 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
-import { LoadingDots } from "@/ui/loading/Dots";
-import { ParticleHeaderComponent } from "@/ui/particles/ParticleHeader";
-import { EventForm } from "@/ui/sections/EventForm";
-import { SubEventForm } from "@/ui/sections/SubEventForm";
+import { QrPage } from "@/ui/qr";
 
 export const metadata = {
-  title: "Welcome to Drisdell Consulting Services"
+  title: "Welcome to Drisdell Consulting Services",
+  description:
+    "Connect with Drisdell Consulting Services to discuss your HCM needs and goals.",
+  robots: { index: false, follow: false }
 } satisfies Metadata;
 
-export default function QrPage() {
-  return (
-    <>
-      <div className='relative'>
-        <Suspense fallback={<LoadingDots />}>
-          <ParticleHeaderComponent
-            title='Event Form Placeholder'
-            content=''
-            target='QR'
-          />
-        </Suspense>
-        <div className='absolute inset-0 overflow-hidden' />
-      </div>
-      <EventForm />
-      <SubEventForm />
-    </>
-  );
+export default function Qr() {
+  return <QrPage />;
 }

@@ -3,12 +3,10 @@ import type {
   ExecuteResumeFormSubmissionMutationProps,
   SubmissionPayloadProps
 } from "@/types/wp";
+import { SubmissionWorkup } from "@/mutations/submission-workup";
 import { DateCreatedHelper } from "@/utils/date-created";
 import { EncodeClientMutationId } from "@/utils/encode-client-mutation-id";
 import { fetchWpAPI } from "@/utils/fetch-wordpress";
-import { SubmissionWorkup } from "./submission-workup";
-
-/* eslint-disable @typescript-eslint/no-non-null-assertion  */
 
 export async function ExecuteResumeSubmissionMutation<
   const T extends ExecuteResumeFormSubmissionMutationProps
@@ -52,5 +50,9 @@ export async function ExecuteResumeSubmissionMutation<
         { id: 11, value: file }
       ]
     }
-  }).then(data => data!);
+  }).then(data => {
+    if (!data)
+      throw new Error("something went wrong with resume form submission event");
+    else return data;
+  });
 }

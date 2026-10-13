@@ -1,7 +1,6 @@
 import { resolve } from "node:path";
 import { Fs } from "@d0paminedriven/fs";
-import { Iso3166_1 } from "@d0paminedriven/iso-3166-1";
-
+import {flagsToFetch} from "@/utils/__write__/flag-arr"
 const fs = new Fs(process.cwd());
 const _flagArr = fs.readDir(
   resolve(
@@ -9,15 +8,28 @@ const _flagArr = fs.readDir(
   )
 );
 
-// (async () => {
-//   for (const x of flagArr) {
-//     await fs.fetchRemoteWriteLocalLargeFiles(
-//       `https://raw.githubusercontent.com/DopamineDriven/portfolio-2025/refs/heads/master/apps/chess-v2/public/flags/${x}`,
-//       `public/flags/${x}`,
-//       false
-//     );
-//   }
-// })();
+if (process.argv[3] === "read") {
+  const ss = Array.of<string>();
+
+  for (const f of _flagArr) {
+    ss.push(
+      `https://raw.githubusercontent.com/DopamineDriven/portfolio-2025/refs/heads/master/apps/chess-v2/public/flags/${f}`
+    );
+  }
+
+  const template = `export const flagsToFetch=${JSON.stringify(_flagArr, null, 2)};`;
+  fs.withWs("src/utils/__write__/flag-arr.ts", template);
+}
+
+(async () => {
+  for (const x of flagsToFetch) {
+    await fs.fetchRemoteWriteLocalLargeFiles(
+      `https://raw.githubusercontent.com/DopamineDriven/portfolio-2025/refs/heads/master/apps/chess-v2/public/flags/${x}`,
+      `public/flags/${x}`,
+      false
+    );
+  }
+})();
 
 const alpha2ToCountryCode = {
   AD: "020",
@@ -271,9 +283,7 @@ const alpha2ToCountryCode = {
   ZW: "716"
 };
 
-const tester = new Iso3166_1().parseCountryDataCountryFlagAndCountryArea(
-  `${alpha2ToCountryCode["US"]}`
-);
+
 // prettier-ignore
 const template = `import { Iso3166_1 } from "@d0paminedriven/iso-3166-1";
 
@@ -293,5 +303,6 @@ export function getDataByAlpha2(a: keyof typeof alpha2ToCountryCode) {
     flagAspectRatio
   };
 }`;
-fs.withWs("src/lib/alpha2-to-country-code.ts", template);
-console.log(tester);
+if (process.argv[3] === "write") {
+  fs.withWs("src/lib/alpha2-to-country-code.ts", template);
+}

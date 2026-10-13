@@ -18,13 +18,13 @@ export function ProcessNode({
       className={cn(
         `border-primary border`,
         review ? "rounded-t-[0.3125rem]" : "rounded-[0.3125rem]",
-        configuration ? "mdlg:min-h-34 min-h-0" : "min-h-27.75",
+        configuration ? "@mdlg/detail:min-h-34 min-h-0" : "min-h-27.75",
         node.effort === "drisdell"
           ? "bg-primary text-primary-foreground"
           : "bg-background text-primary",
         input
-          ? "xssm:min-h-40.5 xssm:p-3.75 mdlg:min-h-46.5 larger:min-h-40.5 larger:p-4.5 min-h-48 p-3.25"
-          : "xssm:p-5 p-4.5"
+          ? "@xssm/detail:min-h-40.5 @xssm/detail:p-3.75 @mdlg/detail:min-h-46.5 @larger/detail:min-h-40.5 @larger/detail:p-4.5 min-h-48 p-3.25"
+          : "@xssm/detail:p-5 p-4.5"
       )}>
       <EffortLabel effort={node.effort} />
       <p

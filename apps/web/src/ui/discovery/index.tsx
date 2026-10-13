@@ -10,11 +10,11 @@ const destinations = [
     icon: Blocks
   },
   {
-    title: "Our consultants",
+    title: "Consultants",
     description:
       "Seasoned problem-solvers who care as much about the outcome as you do.",
     detail: "Meet your partners",
-    href: "/about-us/our-consultants",
+    href: "/consultants",
     icon: UsersRound
   },
   {

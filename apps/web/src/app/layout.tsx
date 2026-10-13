@@ -4,13 +4,13 @@ import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import { CookieProvider } from "@/context/cookie-context";
 import { getSiteUrl } from "@/lib/site-url";
-import "@dcs/ui/globals.css";
-import "./global.css";
-import { ToastProvider } from "@dcs/ui";
+import "./globals.css";
+import { ToastProvider } from "@/toast/context";
 import { DM_Sans, Inter } from "next/font/google";
 import Script from "next/script";
+import { SectionSidebarProvider } from "@/context/sidebar-provider";
 import { SiteFooter } from "@/ui/footer";
-import { SiteHeader } from "@/ui/nav/site-header";
+import { SiteHeader } from "@/ui/site-header";
 import * as myGtag from "@/utils/analytics";
 
 const inter = Inter({
@@ -38,7 +38,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl(process.env.VERCEL_ENV)),
   title: {
     default: "Drisdell Consulting Services",
-    template: "%s | DCS"
+    template:
+      "%s | Exceptional Human Capital and Workforce Management IT System Support"
   },
   // Since 1995, we have provided quality services and custom application development solutions to our customers.  And as hard as it is to accomplish in this day and age, we have realized a 100% on time, on budget project completion record on all of our client projects. We successfully manage projects, implement systems and solve business problems—just ask any of our clients!
   description:
@@ -122,11 +123,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className="bg-background text-foreground font-sans leading-[1.55] antialiased">
         <CookieProvider>
           <ToastProvider>
-            <>
-              <SiteHeader />
-              {children}
-              <SiteFooter />
-            </>
+            <SiteHeader />
+            <SectionSidebarProvider>{children}</SectionSidebarProvider>
+            <SiteFooter />
           </ToastProvider>
         </CookieProvider>
       </body>

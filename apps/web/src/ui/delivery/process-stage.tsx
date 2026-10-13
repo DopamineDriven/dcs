@@ -13,7 +13,7 @@ export function ProcessStage({
   if (stage.kind === "parallel") {
     return (
       <div>
-        <div className="xssm:gap-4 grid grid-cols-2 gap-2.5">
+        <div className="@xssm/detail:gap-4 grid grid-cols-2 gap-2.5">
           {stage.nodes.map(node => (
             <ProcessNode key={node.label} node={node} input />
           ))}
@@ -40,7 +40,7 @@ export function ProcessStage({
         <div className="bg-background text-primary flex items-center gap-3.5 rounded-b-[0.3125rem] border border-t-0 px-4.5 py-4">
           <ArrowLeftRight className="size-5 shrink-0" aria-hidden="true" />
           <span className="sr-only">Two-way collaboration with: </span>
-          <span className="xssm:flex-row xssm:items-center xssm:gap-4 mdlg:flex-col mdlg:items-start mdlg:gap-1.25 larger:flex-row larger:items-center larger:gap-3 flex flex-1 flex-col items-start justify-between gap-1.25 text-sm/[1.55]">
+          <span className="@xssm/detail:flex-row @xssm/detail:items-center @xssm/detail:gap-4 @mdlg/detail:flex-col @mdlg/detail:items-start @mdlg/detail:gap-1.25 @larger/detail:flex-row @larger/detail:items-center @larger/detail:gap-3 flex flex-1 flex-col items-start justify-between gap-1.25 text-sm/[1.55]">
             <span>{stage.review.label}</span>
             <EffortLabel effort={stage.review.effort} muted />
           </span>

@@ -4,22 +4,17 @@ export type SubmissionResult =
   { ok: true; message: string } | { ok: false; message: string };
 
 /** Collapse a Gravity Forms submission payload into a success/failure result. */
-export function submissionResult(
-  payload: SubmissionPayloadProps
-): SubmissionResult {
+export function submissionResult(payload: SubmissionPayloadProps) {
   const { errors, confirmation } = payload.data.submitGfForm;
   return errors != null
-    ? { ok: false, message: errors }
+    ? submissionFailure(errors)
     : { ok: true, message: confirmation.message };
 }
 
 /** Normalize anything thrown while submitting into a failure result. */
-export function submissionFailure(err: unknown): SubmissionResult {
-  const message =
-    err instanceof Error
-      ? err.message
-      : typeof err === "string"
-        ? err
-        : JSON.stringify(err);
-  return { ok: false, message };
+export function submissionFailure(_error: unknown) {
+  return {
+    ok: false,
+    message: "Your message could not be sent. Please try again."
+  };
 }

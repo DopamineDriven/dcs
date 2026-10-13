@@ -1,27 +1,12 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
-import { LoadingDots } from "@/ui/loading/Dots";
-import { ParticleHeaderComponent } from "@/ui/particles/ParticleHeader";
-import { ContactForm } from "@/ui/sections/ContactForm";
+import { ContactPage } from "@/ui/contact";
 
 export const metadata = {
-  title: "Contact Us"
+  title: "Contact Us",
+  description:
+    "Send Drisdell Consulting Services a message about your Human Capital and Workforce Management needs."
 } satisfies Metadata;
 
 export default function ContactUsPage() {
-  return (
-    <>
-      <div className='relative'>
-        <Suspense fallback={<LoadingDots />}>
-          <ParticleHeaderComponent
-            title='Contact Us'
-            content=''
-            target='CONTACT'
-          />
-        </Suspense>
-        <div className='absolute inset-0 overflow-hidden' />
-      </div>
-      <ContactForm />
-    </>
-  );
+  return <ContactPage />;
 }

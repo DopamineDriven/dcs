@@ -251,18 +251,34 @@ export const alpha2ToCountryCode = {
   ZM: "894",
   ZW: "716"
 };
+export const alpha2Set = new Set(Object.keys(alpha2ToCountryCode));
 
+function isDecimalAr(s: string) {
+  return s === "1.21901033" || s === "1.618";
+}
 export function getDataByAlpha2(a: keyof typeof alpha2ToCountryCode) {
   const x = new Iso3166_1();
   const [alpha2, alpha3, fullName, flagUrl, countryArea, flagAspectRatio] =
     x.parseCountryDataCountryFlagAndCountryArea(alpha2ToCountryCode[a]);
-
+  /**
+   * flagAspectRatio value union:
+   *
+   * "1.21901033/1" | "1.618/1" | "1/1" | "10/7" | "11/6" | "11/7" | "11/8" | "15/13" | "18/11" | "19/10" | "2/1" | "20/11" | "22/15" | "25/18" | "26/17" | "28/11" | "3/2" | "335/189" | "36/19" | "37/28" | "4/3" | "41/22" | "5/3" | "5/4" | "7/4" | "7/5" | "7/6" | "8/5"
+   */
+  const [w, h] = [
+    flagAspectRatio.slice(0, flagAspectRatio.lastIndexOf("/")),
+    flagAspectRatio.slice(flagAspectRatio.lastIndexOf("/") + 1)
+  ];
+  const aspectRatio = isDecimalAr(w)
+    ? Number.parseFloat(w) / Number.parseInt(h, 10)
+    : Number.parseInt(w, 10) / Number.parseInt(h, 10);
   return {
     alpha2,
     alpha3,
     fullName,
     flagUrl,
     countryArea,
-    flagAspectRatio
+    flagAspectRatio,
+    aspectRatio
   };
 }

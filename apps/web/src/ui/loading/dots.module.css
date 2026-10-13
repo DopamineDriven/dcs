@@ -1,4 +1,4 @@
-@reference "../../app/global.css";
+@reference "../../app/globals.css";
 .loading {
   @apply w-screen;
   display: inline-flex;

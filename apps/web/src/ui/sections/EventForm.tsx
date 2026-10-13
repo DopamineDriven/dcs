@@ -1,13 +1,15 @@
 "use client";
 
-import type { SyntheticEvent } from "react";
+import type { ComponentPropsWithRef, SyntheticEvent } from "react";
+import type { Rm } from "@dcs/types";
 import { useToast } from "@dcs/ui";
 import { useCallback, useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
 import useSWR from "swr";
-import type { TsxExclude } from "@/types/helpers";
 import type { ExpectedRes } from "@/types/next";
 import { eventSubmissionAction } from "@/app/actions";
+import { useCookiesCtx } from "@/context/cookie-context";
+import { toLatLng } from "@/lib/latlng";
 import { cn } from "@/lib/utils";
 import { submissionFailure } from "@/utils/submission-result";
 
@@ -38,7 +40,7 @@ function UseSwrSync({ hasData }: { hasData: boolean }) {
 export function SendButton({
   className,
   ...props
-}: TsxExclude<"button", "disabled" | "type">) {
+}: Rm<ComponentPropsWithRef<"button">, "type" | "disabled">) {
   const { pending } = useFormStatus();
   return (
     <div className="mt-10">
@@ -64,6 +66,22 @@ export function EventForm() {
   const [_browser, setBrowser] = useState<string | undefined>();
   const { data } = UseSwrSync({ hasData });
   const { toast } = useToast();
+  const { getTargeted } = useCookiesCtx();
+  const { ua, ip, latlng, tz, country, region, city, locale, browserName,postalCode,viewport } = getTargeted([
+    "ua",
+    "browserName",
+    "tz",
+    "ip",
+    "latlng",
+    "country",
+    "city",
+    "locale",
+    "postalCode",
+    "region",
+    "viewport"
+  ]);
+
+  const { lat, lng } = toLatLng(latlng);
 
   const dataCb = useCallback((props: ExpectedRes) => {
     const data = props.userAgentObject;
@@ -118,13 +136,19 @@ export function EventForm() {
 
   async function formAction(formData: FormData) {
     if (data) {
-      formData.append("user-agent", data.ua);
-      formData.append("ip", data.ip);
-      formData.append("lat", data.lat);
-      formData.append("lng", data.lng);
-      formData.append("tz", data.tz);
-      formData.append("city", data.city);
+      formData.append("user-agent", ua);
+      formData.append("ip", ip);
+      formData.append("lat", lat);
+      formData.append("lng", lng);
+      formData.append("tz", tz);
+      formData.append("city", city);
       formData.append("flag", data.flag);
+      formData.append("country", country);
+      formData.append("locale", locale);
+      formData.append("region", region);
+      formData.append("postalCode", postalCode);
+      formData.append("deviceType", viewport);
+      formData.append("browserName", browserName);
     }
     const result =
       await eventSubmissionAction(formData).catch(submissionFailure);
@@ -153,7 +177,7 @@ export function EventForm() {
             clipPath:
               "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
           }}
-          className="from-dcs-400 to-dcs-800 relative left-1/2 -z-10 aspect-1155/678 w-[36.125rem] max-w-none -translate-x-1/2 rotate-30 bg-linear-to-tr opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"
+          className="from-dcs-400 to-dcs-800 relative left-1/2 -z-10 aspect-1155/678 w-144.5 max-w-none -translate-x-1/2 rotate-30 bg-linear-to-tr opacity-30 sm:left-[calc(50%-40rem)] sm:w-288.75"
         />
       </div>
       <div className="mx-auto max-w-2xl text-center">

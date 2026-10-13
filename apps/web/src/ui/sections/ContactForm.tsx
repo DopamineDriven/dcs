@@ -1,10 +1,10 @@
 "use client";
 
-import type { SyntheticEvent } from "react";
+import type { ComponentPropsWithRef, SyntheticEvent } from "react";
+import type { Rm } from "@dcs/types";
 import { useCallback, useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
 import useSWR from "swr";
-import type { TsxExclude } from "@/types/helpers";
 import { contactUsAction } from "@/app/actions";
 import { cn } from "@/lib/utils";
 import type { ExpectedRes } from "@/types/next";
@@ -38,7 +38,7 @@ function UseSwrSync({ hasData }: { hasData: boolean }) {
 export function SendButton({
   className,
   ...props
-}: TsxExclude<"button", "disabled" | "type">) {
+}: Rm<ComponentPropsWithRef<"button">, "type" | "disabled">) {
   const { pending } = useFormStatus();
   return (
     <div className='mt-10'>
@@ -66,8 +66,7 @@ export function ContactForm() {
   const path = usePathname();
 
   const {getTargeted} = useCookiesCtx();
-  // WE USE THIS, NOT WHATEVER THE HELL I DID 2+ years ago please
-  const _c = getTargeted(["browserName", "ua", "viewport", "latlng", "tz", "city", "country","postalCode"])
+  const _c = getTargeted(["browserName", "ua", "viewport",  "qr_access","latlng", "tz", "city", "country","postalCode"])
   const dataCb = useCallback((props: ExpectedRes) => {
     const data = props.userAgentObject;
     const qr = props.qr;

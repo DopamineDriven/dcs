@@ -15,11 +15,11 @@
 @custom-variant svg (& svg);
 @custom-variant h1 (& h1);
 @custom-variant h4 (& h4);
-@custom-variant video (& video);
-@custom-variant h1h3 (& h1, h3);
+
 @custom-variant dark (
   &:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *)
 );
+
 @theme {
   --breakpoint-xssm: 30rem;
   --breakpoint-smaller: 37.5rem;
@@ -28,6 +28,13 @@
   --breakpoint-larger: 68.75rem;
   --breakpoint-lgxl: 75rem;
   --breakpoint-2xlplus: 93.75rem;
+  --container-xssm: 30rem;
+  --contaiiner-smaller: 37.5rem;
+  --container-mdlg: 56.25rem;
+  --container-almost-lg: 62.5rem;
+  --container-larger: 68.75rem;
+  --container-lgxl: 75rem;
+  --container-2xlplus: 93.75rem;
   --color-dcs-brand: oklch(38.974% 0.0826 254.269);
   --color-dcs-50: oklch(97.259% 0.00873 264.613);
   --color-dcs-100: oklch(94.403% 0.01674 259.501);
@@ -131,10 +138,6 @@
   /*oklch(56.233% 0.1106 236.093)*/
   --radius-sm: 0.25rem;
   --radius-radius: 0.65rem;
-
-  --container-8xl: 96rem;
-  --container-9xl: 120rem;
-  --container-10xl: 173.75rem;
 
   --spacing-8xl: 96rem;
   --spacing-9xl: 121rem;

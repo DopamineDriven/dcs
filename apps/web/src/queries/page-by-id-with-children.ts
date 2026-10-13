@@ -1,19 +1,24 @@
 import gql from "graphql-tag";
 import { print } from "graphql/language/printer";
 import type { PageByIdWithChildrenProps } from "@/types/wp";
+import { HierarchicalContentNodeToContentNodeChildrenConnectionEdgeFragment } from "@/fragments/HierarchicalContentNodeToContentNodeChildrenConnectionEdgeFragment";
+import { HierarchicalContentNodeToContentNodeChildrenConnectionPageInfoFragment } from "@/fragments/HierarchicalContentNodeToContentNodeChildrenConnectionPageInfoFragment";
 import { MediaDetailsFragment } from "@/fragments/MediaDetails";
 import { MediaItemFragment } from "@/fragments/MediaItems";
+import { MediaSizeFragment } from "@/fragments/MediaSize";
 import { NodeWithFeaturedImageToMediaItemConnectionEdgeFragment } from "@/fragments/NodeWithFeaturedImageToMediaItemConnectionEdgeFragment";
 import { PageFragment } from "@/fragments/Page";
 import { parentPagesById } from "@/types/wp";
 import { fetchWpAPI } from "@/utils/fetch-wordpress";
 
-/* eslint-disable @typescript-eslint/no-non-null-assertion  */
 export const PageByIdWithChildrenQuery = gql`
+  ${MediaSizeFragment}
   ${MediaItemFragment}
   ${MediaDetailsFragment}
   ${PageFragment}
   ${NodeWithFeaturedImageToMediaItemConnectionEdgeFragment}
+  ${HierarchicalContentNodeToContentNodeChildrenConnectionPageInfoFragment}
+  ${HierarchicalContentNodeToContentNodeChildrenConnectionEdgeFragment}
   query GetPageByIdWithChildren($id: ID!) {
     page(id: $id) {
       ...PageFragment
@@ -23,22 +28,30 @@ export const PageByIdWithChildrenQuery = gql`
           ...MediaItemFragment
           mediaDetails {
             ...MediaDetailsFragment
+            sizes {
+              ...MediaSizeFragment
+            }
           }
         }
       }
       children {
+        pageInfo {
+          ...HierarchicalContentNodeToContentNodeChildrenConnectionPageInfoFragment
+        }
         edges {
-          cursor
+          ...HierarchicalContentNodeToContentNodeChildrenConnectionEdgeFragment
           node {
             ... on Page {
-              uri
-              title
+              ...PageFragment
               featuredImage {
                 ...NodeWithFeaturedImageToMediaItemConnectionEdgeFragment
                 node {
                   ...MediaItemFragment
                   mediaDetails {
                     ...MediaDetailsFragment
+                    sizes {
+                      ...MediaSizeFragment
+                    }
                   }
                 }
               }
@@ -56,5 +69,8 @@ export async function QueryPageByIdWithChildren<
   return await fetchWpAPI<PageByIdWithChildrenProps>(
     print(PageByIdWithChildrenQuery),
     { id: parentPagesById[target] }
-  ).then(data => data!);
+  ).then(data => {
+    if (!data) throw new Error(`no data returned for ${target}`);
+    else return data satisfies PageByIdWithChildrenProps;
+  });
 }
