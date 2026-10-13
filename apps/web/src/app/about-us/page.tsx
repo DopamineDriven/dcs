@@ -1,35 +1,16 @@
-import type { Metadata } from "next";
-import { Suspense } from "react";
-import { notFound } from "next/navigation";
-import { QueryPageByIdWithChildren } from "@/queries/page-by-id-with-children";
-import { Cards } from "@/ui/dynamic/Cards";
-import { Spinner } from "@/ui/loading/Spinner";
-import { ParticleHeaderComponent } from "@/ui/particles/ParticleHeader";
+import { AboutUsTranscript } from "@/ui/transcript/about-us";
+import { generateWordPressMetadata, WordPressPage } from "@/ui/wp/page";
 
-export const metadata = {
-  title: "About Us"
-} satisfies Metadata;
+export const revalidate = 120;
 
-export const revalidate = 60;
+export function generateMetadata() {
+  return generateWordPressMetadata("/about-us");
+}
 
-export default async function AboutUsPage() {
-  const [data] = await Promise.all([QueryPageByIdWithChildren("About_Us")]);
-  if (!data.page) return notFound();
+export default function AboutUsPage() {
   return (
-    <>
-      <div className='relative'>
-        <Suspense fallback={<Spinner />}>
-          <ParticleHeaderComponent
-            title={data.page.title}
-            target='ABOUT'
-            content='<audio controls preload="metadata" aria-label="About Us"><source src="/about-us.mp3" type="audio/mpeg" /></audio>'
-          />
-        </Suspense>
-        <div className='absolute inset-0 overflow-hidden' />
-      </div>
-      <Suspense fallback={<Spinner />}>
-        <Cards target='About_Us' edges={data.page.children.edges} />
-      </Suspense>
-    </>
+    <WordPressPage path="/about-us">
+      <AboutUsTranscript />
+    </WordPressPage>
   );
 }

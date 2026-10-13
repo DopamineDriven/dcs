@@ -1,45 +1,53 @@
 import type { Metadata, Viewport } from "next";
-import React from "react";
+import type { ReactNode } from "react";
+import { GeistMono } from "geist/font/mono";
+import { GeistSans } from "geist/font/sans";
+import { CookieProvider } from "@/context/cookie-context";
 import { getSiteUrl } from "@/lib/site-url";
-import {
-  BasisGrotesqueProBlack,
-  BasisGrotesqueProBlackItalic,
-  BasisGrotesqueProBold,
-  BasisGrotesqueProBoldItalic,
-  BasisGrotesqueProItalic,
-  BasisGrotesqueProLight,
-  BasisGrotesqueProLightItalic,
-  BasisGrotesqueProMedium,
-  BasisGrotesqueProMediumItalic,
-  BasisGrotesqueProRegular
-} from "@/styles/fonts";
-import "./global.css";
+import "./globals.css";
+import { ToastProvider } from "@/toast/context";
+import { DM_Sans, Inter } from "next/font/google";
 import Script from "next/script";
-import { ViewTransitions } from "next-view-transitions";
-import { Footer } from "@/ui/sections/Footer";
-import { Nav } from "@/ui/sections/Nav";
+import { SectionSidebarProvider } from "@/context/sidebar-provider";
+import { SiteFooter } from "@/ui/footer";
+import { SiteHeader } from "@/ui/site-header";
 import * as myGtag from "@/utils/analytics";
 
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin", "latin-ext"]
+});
+
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
+  subsets: ["latin"],
+  display: "swap"
+});
+
 export const viewport = {
-  colorScheme: "dark light",
-  userScalable: true,
+  colorScheme: "light",
+  userScalable: false,
   themeColor: "#234670",
-  viewportFit: "auto",
+  viewportFit: "cover",
   initialScale: 1,
   maximumScale: 1,
   width: "device-width"
 } satisfies Viewport;
 
-export const metadata = {
-  metadataBase: new URL(getSiteUrl(process.env.NODE_ENV)),
+export const metadata: Metadata = {
+  metadataBase: new URL(getSiteUrl(process.env.VERCEL_ENV)),
   title: {
     default: "Drisdell Consulting Services",
-    template: "%s | Drisdell Consulting Services"
+    template:
+      "%s | Exceptional Human Capital and Workforce Management IT System Support"
   },
   // Since 1995, we have provided quality services and custom application development solutions to our customers.  And as hard as it is to accomplish in this day and age, we have realized a 100% on time, on budget project completion record on all of our client projects. We successfully manage projects, implement systems and solve business problems—just ask any of our clients!
   description:
     "Exceptional Human Capital and Workforce Management IT System Support",
-  manifest: new URL("/meta/site.webmanifest", getSiteUrl(process.env.NODE_ENV)),
+  manifest: new URL(
+    "/meta/site.webmanifest",
+    getSiteUrl(process.env.VERCEL_ENV)
+  ),
   appleWebApp: {
     capable: true,
     title: "Drisdell Consulting Services",
@@ -57,7 +65,7 @@ export const metadata = {
       rel: "apple-touch-icon",
       url: new URL(
         "/meta/apple-touch-icon.png",
-        getSiteUrl(process.env.NODE_ENV)
+        getSiteUrl(process.env.VERCEL_ENV)
       ),
       sizes: "180x180"
     },
@@ -66,19 +74,25 @@ export const metadata = {
       rel: "mask-icon",
       url: new URL(
         "/meta/safari-pinned-tab.svg",
-        getSiteUrl(process.env.NODE_ENV)
+        getSiteUrl(process.env.VERCEL_ENV)
       )
     },
     {
       type: "image/png",
       rel: "icon",
-      url: new URL("/meta/favicon-32x32.png", getSiteUrl(process.env.NODE_ENV)),
+      url: new URL(
+        "/meta/favicon-32x32.png",
+        getSiteUrl(process.env.VERCEL_ENV)
+      ),
       sizes: "32x32"
     },
     {
       type: "image/png",
       rel: "icon",
-      url: new URL("/meta/favicon-16x16.png", getSiteUrl(process.env.NODE_ENV)),
+      url: new URL(
+        "/meta/favicon-16x16.png",
+        getSiteUrl(process.env.VERCEL_ENV)
+      ),
       sizes: "16x16"
     }
   ],
@@ -100,30 +114,27 @@ export const metadata = {
   }
 } satisfies Metadata;
 
-export default function RootLayout({
-  children
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <ViewTransitions>
-      <html
-        suppressHydrationWarning
-        lang='en'
-        className={`h-full ${BasisGrotesqueProBlack.variable} ${BasisGrotesqueProBlackItalic.variable} ${BasisGrotesqueProBold.variable} ${BasisGrotesqueProBoldItalic.variable} ${BasisGrotesqueProItalic.variable} ${BasisGrotesqueProLight.variable} ${BasisGrotesqueProLightItalic.variable} ${BasisGrotesqueProMedium.variable} ${BasisGrotesqueProMediumItalic.variable} ${BasisGrotesqueProRegular.variable}`}>
-        <body className='antialiased'>
-          <div className='m-0 flex min-h-full flex-col justify-between bg-white p-0'>
-            <Nav />
-            <main className=''>{children}</main>
-            <Footer />
-          </div>
-        </body>
-        <Script
-          async
-          strategy='afterInteractive'
-          id='gtag-init'
-          dangerouslySetInnerHTML={{
-            __html: `
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={`bg-background smaller:scroll-pt-28 scroll-pt-22 scroll-smooth ${dmSans.variable} ${inter.variable} ${GeistSans.variable} ${GeistMono.variable}`}>
+      <body className="bg-background text-foreground font-sans leading-[1.55] antialiased">
+        <CookieProvider>
+          <ToastProvider>
+            <SiteHeader />
+            <SectionSidebarProvider>{children}</SectionSidebarProvider>
+            <SiteFooter />
+          </ToastProvider>
+        </CookieProvider>
+      </body>
+      <Script
+        async
+        strategy="afterInteractive"
+        id="gtag-init"
+        dangerouslySetInnerHTML={{
+          __html: `
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
@@ -131,16 +142,15 @@ export default function RootLayout({
             page_path: window.location.pathname,
           });
          `
-          }}
-        />
-        <Script
-          async
-          id={myGtag.GA_TRACKING_ID}
-          data-test={myGtag.GA_TRACKING_ID}
-          strategy='afterInteractive'
-          src={`https://www.googletagmanager.com/gtag/js?id=${myGtag.GA_TRACKING_ID}`}
-        />
-      </html>
-    </ViewTransitions>
+        }}
+      />
+      <Script
+        async
+        id={myGtag.GA_TRACKING_ID}
+        data-test={myGtag.GA_TRACKING_ID}
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=${myGtag.GA_TRACKING_ID}`}
+      />
+    </html>
   );
 }

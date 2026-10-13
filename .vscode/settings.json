@@ -3,24 +3,43 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[postcss]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "bradlc.vscode-tailwindcss"
   },
-  "[prisma]": {
-    "editor.defaultFormatter": "Prisma.prisma"
+  "[css]": {
+    "editor.defaultFormatter": "bradlc.vscode-tailwindcss"
   },
+  "tailwindCSS.codeLens": true,
+  "tailwindCSS.lint.invalidApply": "warning",
+  "tailwindCSS.validate": true,
+  "tailwindCSS.colorDecorators": true,
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "editor.quickSuggestions": {
+    "other": "on",
+    "comments": "off",
+    "strings": "on"
+  },
   "C_Cpp.dimInactiveRegions": false,
+  "css.lint.unknownAtRules": "ignore",
   "css.completion.completePropertyWithSemicolon": true,
   "css.format.enable": true,
   "css.format.newlineBetweenSelectors": true,
+  "files.associations": {
+    "*.css": "tailwindcss",
+    "*.svg": "svg",
+    "*.ndjson": "ndjson",
+    "*.jsonl": "jsonl"
+  },
   "css.hover.documentation": true,
   "css.hover.references": true,
   "editor.bracketPairColorization.enabled": false,
+  "svg.preview.autoShow": false,
+  "svg.preview.disable": true,
+  "svg.preview.mode": "svg",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.suggest.showStatusBar": true,
   "eslint.enable": true,
@@ -33,9 +52,6 @@
   ],
   "eslint.workingDirectories": [
     {
-      "mode": "auto"
-    },
-    {
       "pattern": "apps/*/"
     },
     {
@@ -46,9 +62,11 @@
     }
   ],
   "files.autoSave": "afterDelay",
-  "gitlens.statusBar.enabled": true,
-  "javascript.referencesCodeLens.showOnAllFunctions": true,
   "openInDefaultBrowser.run.openWithLocalHttpServer": false,
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ],
   "tailwindCSS.classAttributes": [
     "class",
     "className",
@@ -57,17 +75,37 @@
     "rootClassName",
     ".*Variant.*",
     ".*variant.*",
-    ".*Styles.*",
-    ".*ClassName.*"
+    ".*Styles.*"
   ],
-  "typescript.enablePromptUseWorkspaceTsdk": true,
-  "typescript.tsserver.web.typeAcquisition.enabled": true,
-  "typescript.implementationsCodeLens.enabled": true,
-  "typescript.implementationsCodeLens.showOnInterfaceMethods": true,
-  "typescript.locale": "en",
-  "typescript.referencesCodeLens.enabled": true,
-  "typescript.referencesCodeLens.showOnAllFunctions": true,
-  "typescript.tsdk": "node_modules/typescript/lib",
+  "prettier.trailingComma": "none",
+  "js/ts.tsdk.promptToUseWorkspaceVersion": true,
+  "js/ts.tsserver.web.typeAcquisition.enabled": true,
+  "js/ts.implementationsCodeLens.enabled": true,
+  "js/ts.implementationsCodeLens.showOnInterfaceMethods": true,
+  "js/ts.locale": "en",
+  "js/ts.referencesCodeLens.enabled": true,
+  "js/ts.referencesCodeLens.showOnAllFunctions": true,
+  "js/ts.experimental.useTsgo": true,
+  "js/ts.tsdk.path": "node_modules/@typescript/native-preview",
   "yaml.hover": true,
-  "yaml.validate": true
+  "yaml.validate": true,
+  "workbench.editor.autoLockGroups": {
+    "default": false
+  },
+  "json.schemaDownload.trustedDomains": {
+    "https://schemastore.azurewebsites.net/": true,
+    "https://turborepo.com/schema.json": true,
+    "https://raw.githubusercontent.com/": true,
+    "https://www.schemastore.org/": true,
+    "https://json.schemastore.org/": true,
+    "https://json-schema.org/": true,
+    "https://docs.renovatebot.com/": true,
+    "https://turborepo.org/schema.json": true
+  },
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  }
 }

@@ -1,0 +1,65 @@
+{
+  "name": "@dcs/types",
+  "version": "0.1.0",
+  "description": "convenient type utils",
+  "publishConfig": {
+    "access": "public",
+    "typesVersions": {
+      "*": {
+        "*": [
+          "dist/index.d.ts"
+        ],
+        "utils": [
+          "dist/utils.d.ts"
+        ]
+      }
+    }
+  },
+  "license": "MIT",
+  "source": "src/index.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/index.d.ts"
+      ],
+      "utils": [
+        "dist/utils.d.ts"
+      ]
+    }
+  },
+  "type": "module",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist/**/*.{js,cjs,mjs,d.ts,d.cts,d.mts}"
+  ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./utils": "./dist/utils.js"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "pnpm build",
+    "lint": "eslint",
+    "typecheck": "tsgo --noEmit",
+    "format": "prettier --write \"src/**/*.{ts,cts,mts,js,mjs,cjs,json,yaml,yml}\" --ignore-unknown --cache",
+    "clean": "git clean -xdf .turbo dist node_modules"
+  },
+  "devDependencies": {
+    "@dcs/eslint-config": "workspace:*",
+    "@dcs/prettier-config": "workspace:*",
+    "@dcs/tsconfig": "workspace:*",
+    "@types/node": "catalog:node",
+    "@typescript/native-preview": "catalog:tsgo",
+    "eslint": "catalog:eslint",
+    "jiti": "catalog:jiti",
+    "prettier": "catalog:prettier",
+    "tsdown": "catalog:tsdown",
+    "tslib": "catalog:tslib",
+    "tsx": "catalog:tsx",
+    "typescript": "catalog:ts",
+    "typescript-eslint": "catalog:tseslint"
+  },
+  "prettier": "@dcs/prettier-config"
+}

@@ -17,7 +17,7 @@ async function fetchAPI<const T>(
     })
   });
 
-  const json = (await res.json()) as Record<string, T>;
+  const json = (await res.json<Record<string, T>>());
   if (json.errors) {
     console.error(json.errors);
     throw new Error(`WPGraphQL Fetcher Failed`);
@@ -87,7 +87,7 @@ export const queryObject = {
   `
 } as const;
 
-async function getPagesData({
+export async function getPagesData({
   first,
   field,
   order
@@ -102,17 +102,13 @@ async function getPagesData({
   return data;
 }
 
-export async function fetcher() {
-  return fetch("").then(res => res.json());
-}
-
-(async () => {
-  return await getPagesData({ field: "SLUG", order: "ASC", first: 100 }).then(
-    data => {
-      const handleData =
-        typeof data === "object" ? JSON.stringify(data, null, 2) : data;
-      console.log(handleData);
-      return data;
-    }
-  );
-})().catch(err => console.error(err ? err : "unknown error"));
+// (async () => {
+//   return await getPagesData({ field: "SLUG", order: "ASC", first: 100 }).then(
+//     data => {
+//       const handleData =
+//         typeof data === "object" ? JSON.stringify(data, null, 2) : data;
+//       console.log(handleData);
+//       return data;
+//     }
+//   );
+// })().catch(err => console.error(err ?? "unknown error"));

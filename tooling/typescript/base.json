@@ -1,24 +1,38 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "target": "ES2022",
-    "lib": ["ES2022", "ScriptHost"],
     "allowJs": true,
-    "declaration": true,
-    "resolveJsonModule": true,
-    "moduleDetection": "force",
-    "isolatedModules": true,
+    "checkJs": false,
+    "disableSourceOfProjectReferenceRedirect": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "incremental": true,
-    "disableSourceOfProjectReferenceRedirect": true,
+    "isolatedModules": true,
+    "lib": [
+      "ES2024",
+      "ScriptHost",
+      "ESNext",
+      "ES2018.AsyncGenerator",
+      "ES2024.Collection",
+      "ES2024.Object",
+      "ESNext.Iterator",
+      "ESNext.AsyncIterable",
+      "ESNext.Collection",
+      "ES2018.AsyncIterable"
+    ],
+    "module": "Preserve",
+    "moduleDetection": "auto",
+    "moduleResolution": "Bundler",
+    "noEmit": true,
+    "noUncheckedIndexedAccess": true,
+    "preserveWatchOutput": true,
+    "resolveJsonModule": true,
+    "pretty": true,
+    "skipLibCheck": true,
     "strict": true,
     "strictNullChecks": true,
-    "noUncheckedIndexedAccess": true,
-    "checkJs": true,
-    "module": "Preserve",
-    "moduleResolution": "Bundler",
-    "noEmit": true
+    "useUnknownInCatchVariables": true,
+    "target": "esnext"
   },
-  "exclude": ["node_modules", "build", "dist", ".next/cache"]
+  "exclude": ["node_modules", "build", "dist", ".next"]
 }

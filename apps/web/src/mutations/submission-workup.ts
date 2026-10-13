@@ -13,7 +13,7 @@ export const SubmissionWorkup = gql`
   ${GfEntryToFormFieldConnectionEdgeFieldsFragment}
   ${GfFormFieldsFragment}
   ${SubmissionConfirmationFieldsFragment}
-  mutation Submission($input: SubmitGfFormInput!) {
+  mutation  ($input: SubmitGfFormInput!) {
     submitGfForm(input: $input) {
       clientMutationId
       confirmation {

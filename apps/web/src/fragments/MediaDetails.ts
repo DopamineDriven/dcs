@@ -5,5 +5,6 @@ export const MediaDetailsFragment = gql`
     __typename
     width
     height
+    filePath
   }
 `;

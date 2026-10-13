@@ -1,37 +1,85 @@
 {
   "name": "@dcs/eslint-config",
-  "private": true,
-  "version": "1.0.0",
+  "version": "0.1.0",
   "type": "module",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist/**/*.{js,cjs,mjs,d.ts,d.cts,d.mts}"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "typesVersions": {
+      "*": {
+        "*": [
+          "dist/index.d.ts"
+        ],
+        "base": [
+          "dist/base.d.ts"
+        ],
+        "next": [
+          "dist/next.d.ts"
+        ],
+        "react": [
+          "dist/react.d.ts"
+        ]
+      }
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/index.d.ts"
+      ],
+      "base": [
+        "dist/base.d.ts"
+      ],
+      "next": [
+        "dist/next.d.ts"
+      ],
+      "react": [
+        "dist/react.d.ts"
+      ]
+    }
+  },
+  "source": "index.ts",
   "exports": {
-    "./base": "./base.js",
-    "./next": "./next.js",
-    "./react": "./react.js"
+    ".": "./dist/index.js",
+    "./base": "./dist/base.js",
+    "./next": "./dist/next.js",
+    "./react": "./dist/react.js"
   },
   "license": "MIT",
   "scripts": {
-    "clean": "git clean -xdf .cache .turbo node_modules",
+    "build": "tsdown",
+    "clean": "git clean -xdf .cache .turbo node_modules dist",
+    "lint": "eslint",
     "format": "prettier --check . --ignore-path ../../.gitignore",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsgo --noEmit"
   },
   "dependencies": {
-    "@eslint/compat": "^1.2.3",
-    "@next/eslint-plugin-next": "latest",
-    "eslint-config-turbo": "latest",
-    "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-jsx-a11y": "^6.10.2",
-    "eslint-plugin-react": "^7.37.2",
-    "eslint-plugin-react-hooks": "^5.0.0",
-    "eslint-plugin-turbo": "latest",
-    "typescript-eslint": "latest"
+    "@eslint/compat": "catalog:eslint",
+    "@eslint/config-helpers": "catalog:eslint",
+    "@eslint/js": "catalog:eslint",
+    "@next/eslint-plugin-next": "catalog:next",
+    "eslint-plugin-import": "catalog:eslint",
+    "eslint-plugin-jsx-a11y": "catalog:eslint",
+    "eslint-plugin-react": "catalog:eslint",
+    "eslint-plugin-react-hooks": "catalog:eslint",
+    "eslint-plugin-turbo": "catalog:turbo",
+    "jiti": "catalog:jiti",
+    "typescript-eslint": "catalog:tseslint"
   },
   "devDependencies": {
-    "@dcs/prettier-config": "workspace:*",
     "@dcs/tsconfig": "workspace:*",
-    "@types/eslint__js": "^8.42.3",
-    "eslint": "^9.14.0",
-    "prettier": "^3.3.3",
-    "typescript": "latest"
-  },
-  "prettier": "@dcs/prettier-config"
+    "@types/node": "catalog:node",
+    "@typescript/native-preview": "catalog:tsgo",
+    "eslint": "catalog:eslint",
+    "prettier": "catalog:prettier",
+    "tsdown": "catalog:tsdown",
+    "tslib": "catalog:tslib",
+    "tsx": "catalog:tsx",
+    "typescript": "catalog:ts"
+  }
 }

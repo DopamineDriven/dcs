@@ -1,14 +1,26 @@
 {
   "recommendations": [
     "bradlc.vscode-tailwindcss",
-    "esbenp.prettier-vscode",
-    "meganrogge.template-string-converter",
-    "pflannery.vscode-versionlens",
-    "ms-vscode.vscode-typescript-next",
+    "dbaeumer.vscode-eslint",
     "donjayamanne.githistory",
+    "eamodio.gitlens",
+    "editorconfig.editorconfig",
+    "esbenp.prettier-vscode",
+    "ghmcadams.lintlens",
+    "hilleer.yaml-plus-json",
     "ipatalas.vscode-postfix-ts",
-    "prisma.prisma",
-    "abians.prisma-generate-uml"
+    "meganrogge.template-string-converter",
+    "meouwu.css-var-color-decorator",
+    "ms-vscode.vscode-typescript-next",
+    "pascalreitermann93.vscode-yaml-sort",
+    "redhat.vscode-yaml",
+    "redis.redis-for-vscode",
+    "rvest.vs-code-prettier-eslint",
+    "visualstudioexptteam.intellicode-api-usage-examples",
+    "visualstudioexptteam.vscodeintellicode",
+    "xshrim.txt-syntax",
+    "yoavbls.pretty-ts-errors",
+    "yutengjing.vscode-versionlens-plus"
   ],
   "unwantedRecommendations": []
 }

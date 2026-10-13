@@ -1,8 +1,14 @@
 {
-  "extends": "@dcs/tsconfig/base.json",
+  "extends": "@dcs/tsconfig/node-pkg.json",
   "compilerOptions": {
-    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json"
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "declarationMap": false,
+    "sourceMap": false,
+    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
+    "types": ["*"]
   },
-  "include": ["**/*"],
+  "include": ["**/*.ts"],
   "exclude": ["node_modules"]
 }

@@ -1,0 +1,28 @@
+{
+  "extends": "@dcs/tsconfig/react-library.json",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "types": ["*"],
+    "rootDir": ".",
+    "declarationMap": false,
+    "sourceMap": false,
+    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
+    "outDir": "dist"
+  },
+
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.mjs"
+  ],
+  "exclude": ["dist"]
+}

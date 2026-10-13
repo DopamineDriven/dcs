@@ -1,3 +1,4 @@
+@reference "../../app/globals.css";
 .loading {
   @apply w-screen;
   display: inline-flex;
@@ -9,7 +10,7 @@
 }
 
 .loading span {
-  @apply w-[4rem] my-0 mx-[2rem] sm:mx-[2.9375rem] h-[4rem] sm:w-[6.625rem] sm:h-[6.625rem];
+  @apply w-4 my-0 mx-2 sm:mx-3 h-4 sm:w-6 sm:h-6;
   animation-name: blink;
   animation-duration: 1.4s;
   animation-iteration-count: infinite;

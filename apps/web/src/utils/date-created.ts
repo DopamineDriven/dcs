@@ -1,4 +1,5 @@
 export function DateCreatedHelper(date: typeof Date) {
-  const created = new Date(date.now()).toISOString().split(/Z/)?.[0] ?? "";
-  return `${created} UTC`;
+  const d = new Date(date.now()).toISOString();
+  // wp doesn't accept the Z timezone info on teh ISO string
+  return `${d.slice(0, d.lastIndexOf("Z"))} UTC`;
 }
