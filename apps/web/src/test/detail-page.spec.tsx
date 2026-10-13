@@ -18,14 +18,14 @@ function must<T>(value: T | null | undefined, what: string): T {
   return value;
 }
 
-function render(path: string, children?: ReactNode, after?: ReactNode) {
+function render(path: string, children?: ReactNode, _after?: ReactNode) {
   const page = must(findSitePage(path), `site page ${path}`);
   container = document.createElement("div");
   document.body.appendChild(container);
   root = createRoot(container);
   act(() =>
     root.render(
-      <DetailPage page={page} after={after}>
+      <DetailPage page={page}>
         {children}
       </DetailPage>
     )

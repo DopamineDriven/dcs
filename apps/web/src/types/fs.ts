@@ -1,3 +1,5 @@
+import { WithImplicitCoercion } from "buffer";
+
 export type PromptPropsBase = {
   readonly workspace: string;
   readonly isXr: boolean;
