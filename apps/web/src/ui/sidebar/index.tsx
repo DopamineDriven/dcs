@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown, PanelLeftClose, PanelLeftOpen } from "@dcs/ui";
+import { ChevronDown, PanelLeftClose, PanelLeftOpen } from "@d0paminedriven/icons";
 import { useId } from "react";
 import { usePathname } from "next/navigation";
 import { useSectionSidebar } from "@/context/sidebar-provider";

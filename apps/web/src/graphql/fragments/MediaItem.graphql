@@ -5,6 +5,8 @@ fragment MediaItemFragment on MediaItem {
   title
   sourceUrl
   databaseId
+  fileSize
+  filePath
   description
   id
   slug

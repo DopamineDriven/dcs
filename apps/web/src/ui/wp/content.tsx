@@ -1,6 +1,6 @@
 import "server-only";
 import type { HTMLReactParserOptions } from "html-react-parser";
-import { ArrowUpRight } from "@dcs/ui";
+import { ArrowUpRight } from "@d0paminedriven/icons";
 import Link from "next/link";
 import { ElementType } from "domelementtype";
 import parse, { domToReact } from "html-react-parser";

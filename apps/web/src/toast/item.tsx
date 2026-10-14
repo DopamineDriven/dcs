@@ -2,10 +2,11 @@
 
 import type { Easing, PanInfo } from "motion/react";
 import type { JSX, KeyboardEvent } from "react";
+import { CircleAlert, CircleCheck, Info, X } from "@d0paminedriven/icons";
 import { animate, motion, useMotionValue } from "motion/react";
-import type { BaseSVGProps } from "@dcs/ui";
 import type { ToastRecord, ToastVariant } from "@/toast/types";
-import { useAutoDismiss, CircleAlert, CircleCheck, Info, X, } from "@dcs/ui";
+import type { BaseSVGProps } from "@d0paminedriven/icons";
+import { useAutoDismiss } from "@/hooks/use-auto-dismiss";
 import { cn } from "@/lib/utils";
 
 const EXIT_EASE = [0.215, 0.61, 0.355, 1] as const satisfies Easing;

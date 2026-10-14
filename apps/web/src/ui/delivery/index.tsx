@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowLeftRight, Check } from "@dcs/ui";
+import { ArrowDown, ArrowLeftRight, Check } from "@d0paminedriven/icons";
 import { deliveryPaths } from "@/lib/project-delivery";
 import { ProcessLane } from "@/ui/delivery/process-lane";
 

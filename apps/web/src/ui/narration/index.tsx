@@ -1,4 +1,4 @@
-import { ArrowUpRight, ChevronDown, Headphones } from "@dcs/ui";
+import { ArrowUpRight, ChevronDown, Headphones } from "@d0paminedriven/icons";
 import { cn } from "@/lib/utils";
 
 export function PageNarration({

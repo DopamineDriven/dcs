@@ -7,7 +7,7 @@ import {
   publishRouterTransitionStart,
   resetRouterTransitions
 } from "@/navigation/transition-store";
-import { SiteHeader } from "@/ui/nav";
+import { SiteHeader } from "@/ui/site-header";
 
 MotionGlobalConfig.skipAnimations = true;
 (
@@ -255,7 +255,7 @@ describe("SiteHeader", () => {
   it("styles site-authored elements with the dcs palette, never the semantic tokens", () => {
     mount();
     click(trigger("about"));
-    // Shared @dcs/ui primitives mark their root with data-slot and may use the
+    // Shared primitives mark their root with data-slot and may use the
     // semantic tokens; everything the site authors itself must not.
     const semantic =
       /\b(?:[a-z-]+:)*(?:bg|text|border|outline|from|to)-(?:primary|primary-foreground|background|foreground|muted|muted-foreground|border)(?:\/\d+)?\b/;

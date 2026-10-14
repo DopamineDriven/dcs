@@ -1,0 +1,9 @@
+fragment GfFormFields on GfForm {
+  cssClass
+  databaseId
+  dateCreated
+  description
+  title
+  nextFieldId
+  __typename
+}

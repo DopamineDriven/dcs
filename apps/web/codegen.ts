@@ -1,11 +1,11 @@
 import * as dotenv from "dotenv";
 import type { CodegenConfig } from "@graphql-codegen/cli";
 
-dotenv.config();
+dotenv.config({ quiet: true });
 
 const wpAuthToken = process.env.WORDPRESS_AUTH_REFRESH_TOKEN ?? "";
 
-export default <CodegenConfig>{
+export default (<CodegenConfig>{
   schema: {
     ["https://dcs-headless.com/graphql"]: {
       headers: {
@@ -18,6 +18,8 @@ export default <CodegenConfig>{
       }
     }
   },
+  allowPartialOutputs: true,
+  cwd: process.cwd(),
   documents: ["src/ui/**/*.tsx", "src/graphql/**/*.graphql"],
   verbose: true,
   debug: true,
@@ -29,4 +31,4 @@ export default <CodegenConfig>{
       plugins: ["schema-ast"]
     }
   }
-};
+}) satisfies CodegenConfig;

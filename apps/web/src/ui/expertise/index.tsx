@@ -1,4 +1,4 @@
-import { Check } from "@dcs/ui";
+import { Check } from "@d0paminedriven/icons";
 
 const expertiseGroups = [
   {

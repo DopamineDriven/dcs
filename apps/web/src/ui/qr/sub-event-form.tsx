@@ -1,6 +1,6 @@
 "use client";
 
-import { shimmer } from "@dcs/ui";
+import { shimmer } from "@/lib/shimmer";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 

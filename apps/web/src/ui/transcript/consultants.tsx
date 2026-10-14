@@ -1,4 +1,4 @@
-import { ChevronDown } from "@dcs/ui";
+import { ChevronDown } from "@d0paminedriven/icons";
 
 export function ConsultantsTranscript() {
   return (

@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowRight, ArrowUpRight, Check } from "@dcs/ui";
+import { ArrowDown, ArrowRight, ArrowUpRight, Check } from "@d0paminedriven/icons";
 import Image from "next/image";
 import Link from "next/link";
 import { contactUrl } from "@/lib/site-navigation";
