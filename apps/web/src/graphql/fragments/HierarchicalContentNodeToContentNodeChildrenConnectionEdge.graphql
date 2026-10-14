@@ -1,0 +1,4 @@
+fragment HierarchicalContentNodeToContentNodeChildrenConnectionEdgeFragment on HierarchicalContentNodeToContentNodeChildrenConnectionEdge {
+  __typename
+  cursor
+}

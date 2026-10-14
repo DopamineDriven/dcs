@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { QrPage } from "@/ui/qr";
+export const dynamicParams = true;
+
+export const revalidate = 120;
 
 export const metadata = {
   title: "Welcome to Drisdell Consulting Services",

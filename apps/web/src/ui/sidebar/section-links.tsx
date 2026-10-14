@@ -1,7 +1,7 @@
 "use client";
 
 import type { JSX } from "react";
-import type { BaseSVGProps } from "@dcs/ui";
+import type { BaseSVGProps } from "@d0paminedriven/icons";
 import {
   BadgeCheck,
   Briefcase,
@@ -18,7 +18,7 @@ import {
   RouteIcon,
   Target,
   UsersRound
-} from "@dcs/ui";
+} from "@d0paminedriven/icons";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { sidebarCursorZone } from "@/ui/sidebar/utils";

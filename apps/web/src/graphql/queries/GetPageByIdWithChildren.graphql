@@ -1,34 +1,44 @@
+# import PageFragment from "../fragments/PageFragment.graphql";
+# import NodeWithFeaturedImageToMediaItemConnectionEdgeFragment from "../fragments/NodeWithFeaturedImageToMediaItemConnectionEdgeFragment.graphql";
+# import MediaDetailsFragment from "../fragments/MediaDetails.graphql";
+# import MediaItemFragment from "../fragments/MediaItem.graphql";
+# import MediaSizeFragment from "../fragments/MediaSize.graphql";
+# import HierarchicalContentNodeToContentNodeChildrenConnectionPageInfoFragment from "../fragments/HierarchicalContentNodeToContentNodeChildrenConnectionPageInfo.graphql";
+# import HierarchicalContentNodeToContentNodeChildrenConnectionEdgeFragment from "../fragments/HierarchicalContentNodeToContentNodeChildrenConnectionEdge.graphql";
+
 query GetPageByIdWithChildren($id: ID!) {
   page(id: $id) {
-    content
-    uri
-    slug
-    title
-    isPreview
-    databaseId
-    id
+    ...PageFragment
     featuredImage {
+      ...NodeWithFeaturedImageToMediaItemConnectionEdgeFragment
       node {
-        sourceUrl
+        ...MediaItemFragment
         mediaDetails {
-        width
-        height
+          ...MediaDetailsFragment
+          sizes {
+            ...MediaSizeFragment
+          }
         }
       }
     }
     children {
+      pageInfo {
+        ...HierarchicalContentNodeToContentNodeChildrenConnectionPageInfoFragment
+      }
       edges {
-        cursor
+        ...HierarchicalContentNodeToContentNodeChildrenConnectionEdgeFragment
         node {
           ... on Page {
-            uri
-            title
+            ...PageFragment
             featuredImage {
+              ...NodeWithFeaturedImageToMediaItemConnectionEdgeFragment
               node {
-                sourceUrl
+                ...MediaItemFragment
                 mediaDetails {
-                width
-                height
+                  ...MediaDetailsFragment
+                  sizes {
+                    ...MediaSizeFragment
+                  }
                 }
               }
             }

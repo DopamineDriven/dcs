@@ -1,0 +1,4 @@
+fragment GfEntryToFormFieldConnectionEdgeFields on GfEntryToFormFieldConnectionEdge {
+  cursor
+  __typename
+}

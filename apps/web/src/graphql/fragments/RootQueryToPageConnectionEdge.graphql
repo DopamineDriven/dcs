@@ -1,0 +1,4 @@
+fragment RootQueryToPageConnectionEdgeFragment on RootQueryToPageConnectionEdge {
+  __typename
+  cursor
+}

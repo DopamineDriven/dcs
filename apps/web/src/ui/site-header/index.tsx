@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, ArrowUpRight, ChevronDown, Menu, X } from "@dcs/ui";
+import { ArrowRight, ArrowUpRight, ChevronDown, Menu, X } from "@d0paminedriven/icons";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";

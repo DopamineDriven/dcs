@@ -1,0 +1,7 @@
+fragment RootQueryToPageConnectionPageInfoFragment on RootQueryToPageConnectionPageInfo {
+  __typename
+  endCursor
+  startCursor
+  hasNextPage
+  hasPreviousPage
+}

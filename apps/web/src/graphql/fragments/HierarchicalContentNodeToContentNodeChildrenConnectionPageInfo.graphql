@@ -1,0 +1,7 @@
+fragment HierarchicalContentNodeToContentNodeChildrenConnectionPageInfoFragment on HierarchicalContentNodeToContentNodeChildrenConnectionPageInfo {
+  __typename
+  endCursor
+  startCursor
+  hasNextPage
+  hasPreviousPage
+}

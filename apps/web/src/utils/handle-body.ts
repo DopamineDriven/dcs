@@ -37,5 +37,5 @@ export function handleBody({
   browserVersion,
   qrAccess
 }: SubmissionBody) {
-  return `${body}\n\n --- METADATA -- \n\ncity: ${city}\n\ncoordinates: [${lat},${lng}]\n\nreverse geo lookup: https://www.latlong.net/c/?lat=${lat}&long=${lng}\n\ntimezone: ${tz}\n\nip: ${ip}\n\nuser-agent: ${ua}\n\nflag: ${flag}\n\ncountry: ${country}\n\nregion: ${region}\n\npostal code: ${postalCode}\n\nlocale: ${locale}\n\ndevice type: ${deviceType}\n\nbrowser name: ${browserName}\n\nbrowser version: ${browserVersion}\n\nqr access: ${qrAccess}` as const;
+  return `${body}\n\n --- METADATA -- \n\ncity: ${city}\n\ncoordinates: [${lat},${lng}]\n\nreverse geo lookup: https://www.latlong.net/c/?lat=${lat}&long=${lng} \n\ntimezone: ${tz}\n\nip: ${ip}\n\nuser-agent: ${ua}\n\nflag: ${flag}\n\ncountry: ${country}\n\nregion: ${region}\n\npostal code: ${postalCode}\n\nlocale: ${locale}\n\ndevice type: ${deviceType}\n\nbrowser name: ${browserName}\n\nbrowser version: ${browserVersion}\n\nqr access: ${qrAccess}` as const;
 }

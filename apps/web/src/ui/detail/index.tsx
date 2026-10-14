@@ -1,8 +1,9 @@
 import type { ReactNode } from "react";
-import { ArrowUpRight, ChevronRight, shimmer } from "@dcs/ui";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowUpRight, ChevronRight } from "@d0paminedriven/icons";
 import type { WordPressPagePresentation } from "@/lib/wordpress-pages";
+import { shimmer } from "@/lib/shimmer";
 import { contactUrl } from "@/lib/site-navigation";
 import { cn } from "@/lib/utils";
 import { ContactSection } from "@/ui/contact/section";

@@ -1,4 +1,4 @@
-import { ArrowLeftRight } from "@dcs/ui";
+import { ArrowLeftRight } from "@d0paminedriven/icons";
 import type { DeliveryStage } from "@/lib/project-delivery";
 import { EffortLabel } from "@/ui/delivery/effort-label";
 import { ProcessNode } from "@/ui/delivery/process-node";

@@ -2,4 +2,5 @@ fragment MediaDetailsFragment on MediaDetails {
   __typename
   width
   height
+  filePath
 }

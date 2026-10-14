@@ -4,7 +4,7 @@ import type { FocusEvent } from "react";
 import { useState } from "react";
 import { AnimatePresence } from "motion/react";
 import type { ToastRecord } from "@/toast/types";
-import { useDocumentHidden } from "@dcs/ui";
+import { useDocumentHidden } from "@/hooks/use-document-hidden";
 import { ToastItem } from "@/toast/item";
 
 interface ToastViewportProps {

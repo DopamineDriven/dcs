@@ -1,4 +1,4 @@
-import { ArrowUpRight, Blocks, Compass, Handshake, UsersRound } from "@dcs/ui";
+import { ArrowUpRight, Blocks, Compass, Handshake, UsersRound } from "@d0paminedriven/icons";
 import Link from "next/link";
 
 const destinations = [

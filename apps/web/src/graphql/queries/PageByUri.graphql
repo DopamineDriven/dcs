@@ -1,0 +1,23 @@
+# import PageFragment from "../fragments/PageFragment.graphql";
+# import NodeWithFeaturedImageToMediaItemConnectionEdgeFragment from "../fragments/NodeWithFeaturedImageToMediaItemConnectionEdgeFragment.graphql";
+# import MediaDetailsFragment from "../fragments/MediaDetails.graphql";
+# import MediaItemFragment from "../fragments/MediaItem.graphql";
+# import MediaSizeFragment from "../fragments/MediaSize.graphql";
+
+query PageByUri($uri: ID!) {
+  page(id: $uri, idType: URI) {
+    ...PageFragment
+    featuredImage {
+      ...NodeWithFeaturedImageToMediaItemConnectionEdgeFragment
+      node {
+        ...MediaItemFragment
+        mediaDetails {
+          ...MediaDetailsFragment
+          sizes {
+            ...MediaSizeFragment
+          }
+        }
+      }
+    }
+  }
+}
